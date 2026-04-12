@@ -1,6 +1,10 @@
 {
   "name": "tech-debt-scan",
   "fixture": "blank-project",
+  "covers": [
+    "support.tech-debt.base-flow",
+    "support.tech-debt.write-approval"
+  ],
   "turns": [
     {
       "prompt": "Use the `$tech-debt` skill for this repository.",

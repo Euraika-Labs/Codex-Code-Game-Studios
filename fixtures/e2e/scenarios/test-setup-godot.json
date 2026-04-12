@@ -1,6 +1,10 @@
 {
   "name": "test-setup-godot",
   "fixture": "post-setup-engine-godot",
+  "covers": [
+    "workflow.pre-production.test-setup.test-setup.base-flow",
+    "workflow.pre-production.test-setup.test-setup.write-approval"
+  ],
   "turns": [
     {
       "prompt": "Use the `$test-setup` skill for this repository. The engine is already configured for Godot 4.6 and you already have user approval to create the planned test infrastructure files if the plan is valid. Complete the workflow and stop when the test setup is fully written.",

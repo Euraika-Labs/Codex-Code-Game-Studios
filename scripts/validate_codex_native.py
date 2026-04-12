@@ -11,6 +11,8 @@ import subprocess
 import sys
 import tomllib
 
+from build_workflow_matrix import build_matrix
+
 try:
     import yaml
 except Exception:  # pragma: no cover - optional dependency
@@ -315,6 +317,14 @@ def validate_scenarios(errors: list[str]) -> None:
             if key not in spec:
                 fail(errors, f"{scenario_path}: missing required key '{key}'")
 
+        covers = spec.get("covers")
+        if not isinstance(covers, list) or not covers:
+            fail(errors, f"{scenario_path}: covers must be a non-empty list")
+        else:
+            for index, cover in enumerate(covers, start=1):
+                if not isinstance(cover, str) or not cover.strip():
+                    fail(errors, f"{scenario_path}: cover {index} must be a non-empty string")
+
         turns = spec.get("turns")
         if not isinstance(turns, list) or not turns:
             fail(errors, f"{scenario_path}: turns must be a non-empty list")
@@ -364,6 +374,20 @@ def validate_scenarios(errors: list[str]) -> None:
         fail(errors, f"{SCENARIOS_DIR}: no scenario JSON files found")
 
 
+def validate_workflow_matrix(errors: list[str]) -> None:
+    matrix = build_matrix()
+    for error in matrix.get("errors", []):
+        fail(errors, error)
+
+    summary = matrix.get("summary", {})
+    if summary.get("skills_total") != len(list(SKILLS_DIR.glob("*/SKILL.md"))):
+        fail(errors, "workflow matrix did not enumerate every repo skill")
+    if summary.get("agents_total") != len(list(AGENTS_DIR.glob("*.toml"))):
+        fail(errors, "workflow matrix did not enumerate every custom agent")
+    if summary.get("workflow_steps_total") != 44:
+        fail(errors, f"expected workflow matrix to enumerate 44 workflow steps, found {summary.get('workflow_steps_total')}")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_skills(errors)
@@ -372,6 +396,7 @@ def main() -> int:
     validate_hooks(errors)
     validate_runtime_wording(errors)
     validate_scenarios(errors)
+    validate_workflow_matrix(errors)
 
     if errors:
         print("Codex-native validation failed:")
@@ -384,6 +409,7 @@ def main() -> int:
     print(f"Agents checked: {len(list(AGENTS_DIR.glob('*.toml')))}")
     print(f"Hooks checked: {len(list(HOOKS_DIR.glob('*.sh')))}")
     print(f"Scenarios checked: {len(list(SCENARIOS_DIR.glob('*.json')))}")
+    print(f"Workflow variants checked: {build_matrix()['summary']['variants_total']}")
     return 0
 
 

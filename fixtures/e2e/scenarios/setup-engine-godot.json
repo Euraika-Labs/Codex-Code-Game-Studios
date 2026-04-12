@@ -1,6 +1,10 @@
 {
   "name": "setup-engine-godot",
   "fixture": "blank-project",
+  "covers": [
+    "workflow.concept.engine-setup.setup-engine.base-flow",
+    "workflow.concept.engine-setup.setup-engine.write-approval"
+  ],
   "turns": [
     {
       "prompt": "Use the `$setup-engine godot 4.6` skill for this repository. Project decisions are already made: target platforms PC, input methods Keyboard/Mouse, primary input Keyboard/Mouse, gamepad support None, touch support None, language GDScript, rendering Forward+, physics Godot Physics, classes PascalCase, variables snake_case, signals snake_case, files snake_case, scenes PascalCase, constants SCREAMING_SNAKE_CASE, target framerate 60 FPS, frame budget 16.6 ms, draw calls under 1000, memory ceiling 2 GB. Treat this message as advance approval for any file writes the skill explicitly asks to perform. Complete the workflow and stop only when the setup is finished.",

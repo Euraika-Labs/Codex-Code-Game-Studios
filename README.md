@@ -182,6 +182,25 @@ For higher-fidelity workflow testing in throwaway repo copies, run:
 python3 scripts/run_codex_scenarios.py
 ```
 
+To generate the repo's machine-checkable workflow coverage matrix, run:
+
+```bash
+python3 scripts/build_workflow_matrix.py
+```
+
+To refresh the matrix against live skill probes and fixture scenarios in one go, run:
+
+```bash
+python3 scripts/build_workflow_matrix.py --refresh-live
+```
+
+This performs the full sequential live sweep (skills, agents, then fixture scenarios), so expect it to take noticeably longer than static validation.
+
+The generated outputs land in:
+
+- `docs/studio/workflow-coverage-matrix.json`
+- `docs/studio/workflow-coverage-matrix.md`
+
 The fixture overlays and scenario definitions live under `fixtures/e2e/`.
 
 ## Attribution
