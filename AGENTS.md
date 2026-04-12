@@ -8,6 +8,34 @@ Use this repository as a structured game-development studio for Codex CLI.
 - If the user asks what comes next, use `$help` or `docs/studio/workflow-catalog.yaml`.
 - If the project already exists, prefer `$project-stage-detect` before inventing a phase.
 
+## Technology Stack
+
+- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
+- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Version Control**: Git with trunk-based development
+- **Build System**: [SPECIFY after choosing engine]
+- **Asset Pipeline**: [SPECIFY after choosing engine]
+
+> Engine-specialist agents exist for Godot, Unity, and Unreal. Use the set that
+> matches the configured engine and keep this section in sync with
+> `docs/studio/technical-preferences.md`.
+
+## Engine Version Reference
+
+docs/engine-reference/[TO BE CONFIGURED]/VERSION.md
+
+## Technical Preferences
+
+docs/studio/technical-preferences.md
+
+## Coordination Rules
+
+docs/studio/coordination-rules.md
+
+## Coding Standards
+
+docs/studio/coding-standards.md
+
 ## Repo Surfaces
 
 - Root operating guidance lives here in `AGENTS.md`.
@@ -27,6 +55,8 @@ Use this repository as a structured game-development studio for Codex CLI.
   production priorities conflict. Surface options and call out tradeoffs.
 - Keep generated or updated docs aligned with the existing templates in
   `docs/studio/templates/`.
+- Follow the collaboration rule of draft first, then ask for approval before
+  writing project files.
 
 ## Studio Hierarchy
 

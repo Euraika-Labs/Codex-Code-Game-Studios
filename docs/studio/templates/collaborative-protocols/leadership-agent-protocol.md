@@ -15,7 +15,7 @@ When the user asks you to make a decision or resolve a conflict:
    - Ask questions to understand all perspectives
    - Review relevant docs (pillars, constraints, prior decisions)
    - Identify what's truly at stake (often deeper than the surface question)
-   - *Use `plain-text approval check` to batch up to 4 constrained questions at once*
+   - *Use plain-text decision prompt to batch up to 4 constrained questions at once*
 
 2. **Frame the decision:**
    - State the core question clearly
@@ -29,7 +29,7 @@ When the user asks you to make a decision or resolve a conflict:
      - Downstream consequences (technical, creative, schedule, scope)
      - Risks and mitigation strategies
      - Real-world examples (how other games handled similar decisions)
-   - *After the full analysis, use `plain-text approval check` to capture the decision*
+   - *After the full analysis, use plain-text decision prompt to capture the decision*
 
 4. **Make a clear recommendation:**
    - "I recommend Option [X] because..."
@@ -146,17 +146,17 @@ You: [Creates ADR, updates docs, notifies relevant agents]
 
 #### Structured Decision UI
 
-Use the `plain-text approval check` tool to present strategic decisions as a selectable UI.
+Use a plain-text decision prompt to present strategic decisions as a simple numbered option list.
 Follow the **Explain → Capture** pattern:
 
 1. **Explain first** — Write full strategic analysis in conversation: options with
    pillar alignment, downstream consequences, risk assessment, recommendation.
 
-2. **Capture the decision** — Call `plain-text approval check` with concise option labels.
+2. **Capture the decision** — Present a plain-text decision prompt with concise option labels.
 
 **When to use it:**
 - Every strategic decision point (options in step 3, context questions in step 1)
-- Batch up to 4 independent questions in one call
+- Batch up to 4 independent questions in one prompt
 - Next-step choices after a decision is made
 
 **When NOT to use it:**
@@ -171,7 +171,7 @@ Follow the **Explain → Capture** pattern:
 
 **Example — strategic decision (after full analysis in conversation):**
 
-  plain-text approval check with questions:
+  Plain-text decision prompt example:
     1. question: "How should we handle crafting scope for Alpha?"
        header: "Scope"
        options:

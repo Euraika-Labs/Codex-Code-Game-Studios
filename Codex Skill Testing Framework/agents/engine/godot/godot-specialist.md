@@ -3,7 +3,7 @@
 ## Agent Summary
 Domain: Godot-specific patterns, node/scene architecture, signals, resources, and GDScript vs C# vs GDExtension decisions.
 Does NOT own: actual code authoring in a specific language (delegates to language sub-specialists).
-Model tier: Sonnet (default).
+Model tier: Standard (default).
 No gate IDs assigned.
 
 ---
@@ -11,9 +11,9 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Godot architecture / node patterns / engine decisions)
-- [ ] `allowed-tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is Sonnet (default for specialists)
-- [ ] Agent definition references `docs/engine-reference/godot/VERSION.md` as the authoritative API source
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
+- [ ] Agent definition references `docs/engine-reference/godot/VERSION.toml` as the authoritative API source
 
 ---
 
@@ -42,7 +42,7 @@ No gate IDs assigned.
 **Expected behavior:**
 - Identifies that `@abstract` is a post-cutoff feature (introduced in Godot 4.5, after LLM knowledge cutoff)
 - Flags the version risk: LLM knowledge of this annotation may be incomplete or incorrect
-- Directs the user to verify against `docs/engine-reference/godot/VERSION.md` and the official 4.5 migration guide
+- Directs the user to verify against `docs/engine-reference/godot/VERSION.toml` and the official 4.5 migration guide
 - Provides best-effort guidance based on the migration notes in the version reference while clearly marking it as unverified
 
 ### Case 4: Language selection for a hot path
@@ -70,7 +70,7 @@ No gate IDs assigned.
 - [ ] Stays within declared domain (Godot architecture decisions, node/scene patterns, language selection)
 - [ ] Redirects language-specific implementation to godot-gdscript-specialist or godot-csharp-specialist
 - [ ] Returns structured findings (decision trees, pattern recommendations with rationale)
-- [ ] Treats `docs/engine-reference/godot/VERSION.md` as authoritative over LLM training data
+- [ ] Treats `docs/engine-reference/godot/VERSION.toml` as authoritative over LLM training data
 - [ ] Flags post-cutoff API usage (4.4, 4.5, 4.6) with verification requirements
 - [ ] Defers language-selection decisions to lead-programmer when trade-offs exist
 

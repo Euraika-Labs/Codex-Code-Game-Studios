@@ -3,7 +3,7 @@
 ## Agent Summary
 - **Domain**: Unreal Engine patterns and architecture — Blueprint vs C++ decisions, UE subsystems (GAS, Enhanced Input, Niagara), UE project structure, plugin integration, and engine-level configuration
 - **Does NOT own**: Art style and visual direction (art-director), server infrastructure and deployment (devops-engineer), UI/UX flow design (ux-designer)
-- **Model tier**: Sonnet
+- **Model tier**: Standard
 - **Gate IDs**: None; defers gate verdicts to technical-director
 
 ---
@@ -11,8 +11,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references Unreal Engine)
-- [ ] `allowed-tools:` list matches the agent's role (Read, Write for UE project files; no deployment tools)
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority outside its declared domain (no art, no server infra)
 
 ---

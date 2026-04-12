@@ -14,7 +14,7 @@ all key Tier 2 leads. Any skill, team orchestrator, or workflow may invoke these
 In any skill, replace an inline director prompt with a reference:
 
 ```
-Spawn `creative-director` via Task using gate **CD-PILLARS** from
+Spawn `creative-director` as a subagent using gate **CD-PILLARS** from
 `docs/studio/director-gates.md`.
 ```
 
@@ -78,7 +78,7 @@ Apply the resolved mode:
 
 ```
 # Apply mode check, then:
-Spawn `[agent-name]` via Task:
+Spawn `[agent-name]` as a subagent:
 - Gate: [GATE-ID] (see docs/studio/director-gates.md)
 - Context: [fields listed under that gate]
 - Await the verdict before proceeding.
@@ -88,7 +88,7 @@ For parallel spawning (multiple directors at the same gate point):
 
 ```
 # Apply mode check for each gate first, then spawn all that survive:
-Spawn all [N] agents simultaneously via Task — issue all Task calls before
+Spawn all [N] agents as parallel subagents — issue all subagent calls before
 waiting for any result. Collect all verdicts before proceeding.
 ```
 
@@ -101,7 +101,7 @@ All gates return one of three verdicts. Skills must handle all three:
 | Verdict | Meaning | Default action |
 |---------|---------|----------------|
 | **APPROVE / READY** | No issues. Proceed. | Continue the workflow |
-| **CONCERNS [list]** | Issues present but not blocking. | Surface to user via `plain-text approval check` — options: `Revise flagged items` / `Accept and proceed` / `Discuss further` |
+| **CONCERNS [list]** | Issues present but not blocking. | Surface to user via plain-text decision prompt — options: `Revise flagged items` / `Accept and proceed` / `Discuss further` |
 | **REJECT / NOT READY [blockers]** | Blocking issues. Do not proceed. | Surface blockers to user. Do not write files or advance stage until resolved. |
 
 **Escalation rule**: When multiple directors are spawned in parallel, apply the
@@ -124,7 +124,7 @@ For phase gates, record in `docs/architecture/architecture.md` or
 
 ## Tier 1 — Creative Director Gates
 
-Agent: `creative-director` | Model tier: Opus | Domain: Vision, pillars, player experience
+Agent: `creative-director` | Model tier: Flagship | Domain: Vision, pillars, player experience
 
 ---
 
@@ -266,7 +266,7 @@ any session that produces player feedback
 
 ## Tier 1 — Technical Director Gates
 
-Agent: `technical-director` | Model tier: Opus | Domain: Architecture, engine risk, performance
+Agent: `technical-director` | Model tier: Flagship | Domain: Architecture, engine risk, performance
 
 ---
 
@@ -412,7 +412,7 @@ or before finalizing any engine-specific implementation approach
 
 ## Tier 1 — Producer Gates
 
-Agent: `producer` | Model tier: Opus | Domain: Scope, timeline, dependencies, production risk
+Agent: `producer` | Model tier: Flagship | Domain: Scope, timeline, dependencies, production risk
 
 ---
 
@@ -538,7 +538,7 @@ is invoked
 
 ## Tier 1 — Art Director Gates
 
-Agent: `art-director` | Model tier: Sonnet | Domain: Visual identity, art bible, visual production readiness
+Agent: `art-director` | Model tier: Standard | Domain: Visual identity, art bible, visual production readiness
 
 ---
 
@@ -619,7 +619,7 @@ Agent: `art-director` | Model tier: Sonnet | Domain: Visual identity, art bible,
 ## Tier 2 — Lead Gates
 
 These gates are invoked by orchestration skills and senior skills when a domain
-specialist's feasibility sign-off is needed. Tier 2 leads use Sonnet (default).
+specialist's feasibility sign-off is needed. Tier 2 leads use Standard (default).
 
 ---
 
@@ -766,7 +766,7 @@ When a workflow requires multiple directors at the same checkpoint (most common
 at `$gate-check`), spawn all agents simultaneously:
 
 ```
-Spawn in parallel (issue all Task calls before waiting for any result):
+Spawn in parallel (issue all subagent calls before waiting for any result):
 1. creative-director  → gate CD-PHASE-GATE
 2. technical-director → gate TD-PHASE-GATE
 3. producer           → gate PR-PHASE-GATE

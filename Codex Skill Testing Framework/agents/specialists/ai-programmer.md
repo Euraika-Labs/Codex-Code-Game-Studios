@@ -3,7 +3,7 @@
 ## Agent Summary
 Domain: NPC behavior, state machines, pathfinding, perception systems, and AI decision-making.
 Does NOT own: player mechanics (gameplay-programmer), rendering or engine internals (engine-programmer).
-Model tier: Sonnet (default).
+Model tier: Standard (default).
 No gate IDs assigned.
 
 ---
@@ -11,8 +11,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references NPC behavior / AI systems)
-- [ ] `allowed-tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority over player mechanics or engine rendering
 
 ---

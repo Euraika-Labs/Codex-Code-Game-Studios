@@ -15,7 +15,7 @@ Verdicts: WITHIN BUDGET, CONCERNS, or OVER BUDGET.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: WITHIN BUDGET, CONCERNS, OVER BUDGET
 - [ ] Contains "May I write" language (skill writes perf report)

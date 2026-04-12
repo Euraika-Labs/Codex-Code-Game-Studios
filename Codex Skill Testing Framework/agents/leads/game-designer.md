@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** Core loop design, progression systems, combat mechanics rules, economy design, player-facing rules and interactions.
 **Does NOT own:** Code implementation (lead-programmer / gameplay-programmer), visual art (art-director), narrative lore and story (narrative-director — coordinates with), balance formula math (systems-designer — collaborates with).
-**Model tier:** Sonnet (individual system design authoring and review).
+**Model tier:** Standard (individual system design authoring and review).
 **Gate IDs handled:** Design review verdicts on mechanic specs (no named gate ID prefix — uses APPROVED / NEEDS REVISION vocabulary).
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/game-designer.md` frontmatter:
+Verified by reading the agent's `.codex/agents/game-designer.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references core loop, progression, combat rules, economy, player-facing design — not generic)
-- [ ] `allowed-tools:` list is read-focused; includes Read for GDDs and design docs; no Bash unless design tooling requires it
-- [ ] Model tier is `claude-sonnet-4-6` per coordination-rules.md
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4-mini` per coordination-rules.md
 - [ ] Agent definition does not claim authority over code implementation, visual art style, or standalone narrative lore decisions
 
 ---

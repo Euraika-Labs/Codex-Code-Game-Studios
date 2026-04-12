@@ -6,7 +6,7 @@
 compliance, and category-rubric scoring. It operates in three modes:
 
 - **static**: Checks a single skill file for structural requirements
-  (frontmatter fields, phase headings, verdict keywords, "May I write" language,
+  (YAML frontmatter fields, phase headings, verdict keywords, "May I write" language,
   next-step handoff) without needing a fixture. Produces a per-check PASS/FAIL
   table.
 - **spec**: Reads a test spec file from `tests/skills/` and evaluates the skill
@@ -24,7 +24,7 @@ system differs by mode.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdicts: COMPLIANT, NON-COMPLIANT, WARNINGS (static mode); PASS, FAIL, PARTIAL (spec mode); COMPLETE (audit mode)
 - [ ] Does NOT contain "May I write" language (skill is read-only in all modes)
@@ -44,7 +44,7 @@ None. `$skill-test` is a meta-utility skill. No director gates apply.
 
 **Fixture:**
 - `.agents/skills/brainstorm/SKILL.md` exists and is well-formed:
-  - Has all required frontmatter fields
+  - Has all required YAML frontmatter fields
   - Has ≥2 phase headings
   - Has verdict keywords
   - Has "May I write" language
@@ -69,17 +69,17 @@ None. `$skill-test` is a meta-utility skill. No director gates apply.
 
 ---
 
-### Case 2: Static Mode — Skill Missing "May I Write" Despite Write Tool in allowed-tools
+### Case 2: Static Mode — Skill Missing "May I Write" Despite Write Tool in runtime config
 
 **Fixture:**
-- `.agents/skills/some-skill/SKILL.md` has `Write` in `allowed-tools` frontmatter
+- `.agents/skills/some-skill/SKILL.md` has `Write` in `runtime config` YAML frontmatter
 - The skill body has no "May I write" or "May I update" language
 
 **Input:** `$skill-test static some-skill`
 
 **Expected behavior:**
 1. Skill reads `some-skill/SKILL.md`
-2. Check 4 (collaborative write protocol) fails: `Write` in allowed-tools but no
+2. Check 4 (collaborative write protocol) fails: `Write` in runtime config but no
    "May I write" language found
 3. All other checks may pass
 4. Verdict is NON-COMPLIANT with Check 4 as the failing assertion

@@ -15,7 +15,7 @@ PASS, WARNINGS, or FAIL.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: PASS, WARNINGS, FAIL
 - [ ] Does NOT require "May I write" language (read-only; write is optional flagging report)

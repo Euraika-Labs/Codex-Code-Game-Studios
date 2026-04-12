@@ -79,7 +79,7 @@ If a visual anchor exists from game-concept.md: present it and ask:
 - "Revise it before expanding?"
 - "Start fresh with new options?"
 
-**Agent delegation (MANDATORY)**: Spawn `art-director` via Task:
+**Agent delegation (MANDATORY)**: Spawn `art-director` as a subagent:
 - Provide: game concept (elevator pitch, core fantasy), full pillar set, platform target, any reference games/art from Phase 1 framing, the visual anchor if it exists
 - Ask: "Draft a Visual Identity Statement for this game. Provide: (1) a one-line visual rule that could resolve any visual decision ambiguity, (2) 2–3 supporting visual principles, each with a one-sentence design test ('when X is ambiguous, this principle says choose Y'). Anchor all principles directly in the stated pillars — each principle must serve a specific pillar."
 
@@ -98,7 +98,7 @@ For each major game state (e.g., exploration, combat, victory, defeat, menus —
 - Atmospheric descriptors (3–5 adjectives)
 - Energy level (frenetic / measured / contemplative / etc.)
 
-**Agent delegation**: Spawn `art-director` via Task with the Visual Identity Statement and pillar set. Ask: "Define mood and atmosphere targets for each major game state in this game. Be specific — 'dark and foreboding' is not enough. Name the exact emotional target, the lighting character (warm/cool, high/low contrast, time of day direction), and at least one visual element that carries the mood. Each game state must feel visually distinct from the others."
+**Agent delegation**: Spawn `art-director` as a subagent with the Visual Identity Statement and pillar set. Ask: "Define mood and atmosphere targets for each major game state in this game. Be specific — 'dark and foreboding' is not enough. Name the exact emotional target, the lighting character (warm/cool, high/low contrast, time of day direction), and at least one visual element that carries the mood. Each game state must feel visually distinct from the others."
 
 Write the approved section to file immediately.
 
@@ -112,7 +112,7 @@ Cover:
 - UI shape grammar (does UI echo the world aesthetic, or is it a distinct HUD language?)
 - Hero shapes vs. supporting shapes (what draws the eye, what recedes?)
 
-**Agent delegation**: Spawn `art-director` via Task with Visual Identity Statement and mood targets. Ask: "Define the shape language for this game. Connect each shape principle back to the visual identity statement and a specific game pillar. Explain what these shape choices communicate to the player emotionally."
+**Agent delegation**: Spawn `art-director` as a subagent with Visual Identity Statement and mood targets. Ask: "Define the shape language for this game. Connect each shape principle back to the visual identity statement and a specific game pillar. Explain what these shape choices communicate to the player emotionally."
 
 Write the approved section to file immediately.
 
@@ -127,7 +127,7 @@ Cover:
 - UI palette (may differ from world palette — define the divergence explicitly)
 - Colorblind safety: which semantic colors need shape/icon/sound backup
 
-**Agent delegation**: Spawn `art-director` via Task with Visual Identity Statement and mood targets. Ask: "Design the color system for this game. Every semantic color assignment must be explained — why does this color mean danger/safety/reward in this world? Identify which color pairs might fail colorblind players and specify what backup cues are needed."
+**Agent delegation**: Spawn `art-director` as a subagent with Visual Identity Statement and mood targets. Ask: "Design the color system for this game. Every semantic color assignment must be explained — why does this color mean danger/safety/reward in this world? Identify which color pairs might fail colorblind players and specify what backup cues are needed."
 
 Write the approved section to file immediately.
 
@@ -139,13 +139,13 @@ These sections translate the visual identity into concrete production rules. The
 
 ### Section 5: Character Design Direction
 
-**Agent delegation**: Spawn `art-director` via Task with sections 1–4. Ask: "Define character design direction for this game. Cover: visual archetype for the player character (if any), distinguishing feature rules per character type (how do players tell enemies/NPCs/allies apart at a glance?), expression/pose style targets (stiff/expressive/realistic/exaggerated), and LOD philosophy (how much detail is preserved at game camera distance?)."
+**Agent delegation**: Spawn `art-director` as a subagent with sections 1–4. Ask: "Define character design direction for this game. Cover: visual archetype for the player character (if any), distinguishing feature rules per character type (how do players tell enemies/NPCs/allies apart at a glance?), expression/pose style targets (stiff/expressive/realistic/exaggerated), and LOD philosophy (how much detail is preserved at game camera distance?)."
 
 Write the approved section to file.
 
 ### Section 6: Environment Design Language
 
-**Agent delegation**: Spawn `art-director` via Task with sections 1–4. Ask: "Define the environment design language for this game. Cover: architectural style and its relationship to the world's culture/history, texture philosophy (painted vs. PBR vs. stylized — why this choice for this game?), prop density rules (sparse/dense — what drives the choice per area type?), and environmental storytelling guidelines (what visual details should tell the story without text?)."
+**Agent delegation**: Spawn `art-director` as a subagent with sections 1–4. Ask: "Define the environment design language for this game. Cover: architectural style and its relationship to the world's culture/history, texture philosophy (painted vs. PBR vs. stylized — why this choice for this game?), prop density rules (sparse/dense — what drives the choice per area type?), and environmental storytelling guidelines (what visual details should tell the story without text?)."
 
 Write the approved section to file.
 
@@ -175,7 +175,7 @@ Write the approved section to file.
 
 **Goal**: A curated reference set that is specific about what to take and what to avoid from each source.
 
-**Agent delegation**: Spawn `art-director` via Task with the completed sections 1–8. Ask: "Compile a reference direction for this game. Provide 3–5 reference sources (games, films, art styles, or specific artists). For each: name it, specify exactly what visual element to draw from it (not 'the general aesthetic' — a specific technique, color choice, or compositional rule), and specify what to explicitly avoid or diverge from (to prevent the 'trying to copy X' reading). References should be additive — no two references should be pointing in exactly the same direction."
+**Agent delegation**: Spawn `art-director` as a subagent with the completed sections 1–8. Ask: "Compile a reference direction for this game. Provide 3–5 reference sources (games, films, art styles, or specific artists). For each: name it, specify exactly what visual element to draw from it (not 'the general aesthetic' — a specific technique, color choice, or compositional rule), and specify what to explicitly avoid or diverge from (to prevent the 'trying to copy X' reading). References should be additive — no two references should be pointing in exactly the same direction."
 
 Write the approved section to file.
 
@@ -188,7 +188,7 @@ Write the approved section to file.
 - `lean` → skip (not a PHASE-GATE). Note: "AD-ART-BIBLE skipped — Lean mode." Proceed to Phase 6.
 - `full` → spawn as normal.
 
-After all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` via Task using gate **AD-ART-BIBLE** (`docs/studio/director-gates.md`).
+After all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` as a subagent using gate **AD-ART-BIBLE** (`docs/studio/director-gates.md`).
 
 Pass: art bible file path, game pillars, visual identity anchor.
 

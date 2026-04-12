@@ -2,7 +2,7 @@
 
 ## Skill Summary
 
-`$architecture-review` is an Opus-tier skill that validates a technical architecture
+`$architecture-review` is an Flagship-tier skill that validates a technical architecture
 document against the project's 8 required architecture sections and checks that it
 is internally consistent, non-contradictory with existing ADRs, and correctly
 targeting the pinned engine version. It produces a verdict of APPROVED /
@@ -19,7 +19,7 @@ no files are written.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: APPROVED, NEEDS REVISION, MAJOR REVISION NEEDED
 - [ ] Does NOT require "May I write" language (read-only skill)

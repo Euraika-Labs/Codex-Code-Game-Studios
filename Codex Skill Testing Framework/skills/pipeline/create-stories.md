@@ -4,7 +4,7 @@
 
 `$create-stories` breaks a single epic into developer-ready story files. It reads
 the EPIC.md, the corresponding GDD, governing ADRs, the control manifest, and the
-TR registry. Each story gets structured frontmatter including: Title, Epic, Layer,
+TR registry. Each story gets structured YAML frontmatter including: Title, Epic, Layer,
 Priority, Status, TR-ID, ADR references, Acceptance Criteria, and Definition of
 Done. Stories are classified by type (Logic / Integration / Visual/Feel / UI /
 Config/Data) which determines the required test evidence path.
@@ -20,7 +20,7 @@ before writing each story file. Stories are written to
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED, NEEDS WORK
 - [ ] Contains "May I write" collaborative protocol language (per-story approval)
@@ -59,13 +59,13 @@ In `solo` mode: QL-STORY-READY is skipped with equivalent notes.
 **Expected behavior:**
 1. Skill reads EPIC.md, GDD, governing ADRs, control manifest, and TR registry
 2. Classifies each requirement into a story type (Logic / Integration / Visual/Feel / UI / Config/Data)
-3. Drafts 3 story files with correct frontmatter schema
+3. Drafts 3 story files with correct YAML frontmatter schema
 4. QL-STORY-READY is skipped (lean mode) — noted in output
 5. Asks "May I write" before writing each story file
 6. Writes all 3 story files after approval
 
 **Assertions:**
-- [ ] Each story's frontmatter contains: Title, Epic, Layer, Priority, Status, TR-ID, ADR reference, Acceptance Criteria, DoD
+- [ ] Each story's YAML frontmatter contains: Title, Epic, Layer, Priority, Status, TR-ID, ADR reference, Acceptance Criteria, DoD
 - [ ] Story types are correctly classified (at least one Logic type in fixture)
 - [ ] "May I write" is asked per story (not once for the entire batch)
 - [ ] QL-STORY-READY skip is noted in output
@@ -113,7 +113,7 @@ In `solo` mode: QL-STORY-READY is skipped with equivalent notes.
 5. Both stories are shown in the draft — user asked "May I write" for both
 
 **Assertions:**
-- [ ] Story 2 has `Status: Blocked` in its frontmatter
+- [ ] Story 2 has `Status: Blocked` in its YAML frontmatter
 - [ ] Blocking note names the specific ADR number and recommends `$architecture-decision`
 - [ ] Story 1 has `Status: Ready` — blocked status does not affect non-blocked stories
 - [ ] Blocked status is shown in the draft preview before writing

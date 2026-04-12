@@ -1186,11 +1186,11 @@ Every agent interaction follows this pattern:
 See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for the full protocol with
 examples.
 
-### The plain-text approval check Tool
+### The plain-text decision prompt pattern
 
-Agents use the `plain-text approval check` tool for structured option presentation.
+Agents use a plain-text decision prompt for structured option presentation in the conversation.
 The pattern is Explain then Capture: full analysis in conversation text first,
-then a clean UI picker for the decision. Use it for design choices,
+then a clean numbered choice list for the decision. Use it for design choices,
 architecture decisions, and strategic questions. Do not use it for open-ended
 discovery questions or simple yes/no confirmations.
 

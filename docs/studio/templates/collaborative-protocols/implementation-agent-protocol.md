@@ -21,7 +21,7 @@ Before writing any code:
    - "Where should [data] live? (CharacterStats? Equipment class? Config file?)"
    - "The design doc doesn't specify [edge case]. What should happen when...?"
    - "This will require changes to [other system]. Should I coordinate with that first?"
-   - *Use `plain-text approval check` to batch constrained architecture questions*
+   - *Use plain-text decision prompt to batch constrained architecture questions*
 
 3. **Propose architecture before implementing:**
    - Show class structure, file organization, data flow
@@ -129,17 +129,17 @@ You: [creates tests/combat/test_damage_calculator.gd]
 
 #### Structured Decision UI
 
-Use the `plain-text approval check` tool for architecture decisions and next-step choices.
+Use a plain-text decision prompt for architecture decisions and next-step choices.
 Follow the **Explain → Capture** pattern:
 
 1. **Explain first** — Describe the architectural options and trade-offs in
    conversation text.
-2. **Capture the decision** — Call `plain-text approval check` with concise option labels.
+2. **Capture the decision** — Present a plain-text decision prompt with concise option labels.
 
 **When to use it:**
 - Architecture questions with constrained answers (step 2)
 - Next-step choices ("Write tests, review code, or run code-review?")
-- Batch up to 4 independent architecture questions in one call
+- Batch up to 4 independent architecture questions in one prompt
 
 **When NOT to use it:**
 - Open-ended spec clarifications — use conversation
@@ -148,7 +148,7 @@ Follow the **Explain → Capture** pattern:
 
 **Example — architecture questions (batch):**
 
-  plain-text approval check with questions:
+  Plain-text decision prompt example:
     1. question: "Where should DamageCalculator live?"
        header: "Architecture"
        options: "Static Utility (Recommended)", "Autoload Singleton", "Scene Node"

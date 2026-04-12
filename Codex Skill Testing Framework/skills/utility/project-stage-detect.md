@@ -3,7 +3,7 @@
 ## Skill Summary
 
 `$project-stage-detect` automatically analyzes project artifacts to determine
-the current development stage. It runs on the Haiku model (read-only) and
+the current development stage. It runs on the Fast model (read-only) and
 examines `production/stage.txt` (if present), design documents in `design/`,
 source code in `src/`, sprint and milestone files in `production/`, and the
 presence of engine configuration to classify the project into one of seven
@@ -21,7 +21,7 @@ from artifacts, LOW if conflicting signals were found).
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains all seven stage names: Concept, Systems Design, Technical Setup, Pre-Production, Production, Polish, Release
 - [ ] Does NOT contain "May I write" language (skill is detection-only)

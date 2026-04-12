@@ -19,7 +19,7 @@ fields are ambiguous and need human review).
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, PARTIAL
 - [ ] Contains "May I write" collaborative protocol language before writing the doc

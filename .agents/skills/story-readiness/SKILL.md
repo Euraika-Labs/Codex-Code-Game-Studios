@@ -321,7 +321,7 @@ Apply the review mode resolved in Phase 0 before spawning QL-STORY-READY:
 - `lean` → skip. Note: "QL-STORY-READY skipped — Lean mode." Proceed to close.
 - `full` → spawn as normal.
 
-Spawn `qa-lead` via Task using gate **QL-STORY-READY** (`docs/studio/director-gates.md`).
+Spawn `qa-lead` as a subagent using gate **QL-STORY-READY** (`docs/studio/director-gates.md`).
 
 Pass the following context:
 - Story title

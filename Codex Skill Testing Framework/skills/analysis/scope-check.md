@@ -2,7 +2,7 @@
 
 ## Skill Summary
 
-`$scope-check` is a Haiku-tier read-only skill that analyzes a feature, sprint,
+`$scope-check` is a Fast-tier read-only skill that analyzes a feature, sprint,
 or story for scope creep risk. It reads sprint and story files and compares them
 against the active milestone goals. It is designed for fast, low-cost checks
 before or during planning. No director gates are invoked. No files are written.
@@ -14,7 +14,7 @@ Verdicts: ON SCOPE, CONCERNS, or SCOPE CREEP DETECTED.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: ON SCOPE, CONCERNS, SCOPE CREEP DETECTED
 - [ ] Does NOT require "May I write" language (read-only skill)
@@ -154,7 +154,7 @@ None. Scope check is a read-only advisory skill; no gates are invoked.
 - [ ] Maps each story to a milestone goal (or flags as unmapped)
 - [ ] Does not write any files
 - [ ] No director gates are invoked
-- [ ] Runs on Haiku model tier (fast, low-cost)
+- [ ] Runs on Fast model tier (fast, low-cost)
 - [ ] Verdict is one of: ON SCOPE, CONCERNS, SCOPE CREEP DETECTED
 
 ---

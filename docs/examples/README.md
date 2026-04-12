@@ -244,7 +244,7 @@ Question → Options → Decision → Draft → Approval
 ```
 
 > **Note:** These examples show the collaborative pattern as conversational text.
-> In practice, agents now use the `plain-text approval check` tool at decision points to
+> In practice, agents now use a plain-text decision prompt at decision points to
 > present structured option pickers (with labels, descriptions, and multi-select).
 > The pattern is **Explain → Capture**: agents explain their analysis in
 > conversation first, then present a structured UI picker for the user's decision.

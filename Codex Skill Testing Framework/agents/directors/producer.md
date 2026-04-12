@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** Scope management, sprint planning validation, milestone tracking, epic prioritization, production phase gate.
 **Does NOT own:** Game design decisions (creative-director / game-designer), technical architecture (technical-director), creative direction.
-**Model tier:** Opus (multi-document synthesis, high-stakes phase gate verdicts).
+**Model tier:** Flagship (multi-document synthesis, high-stakes phase gate verdicts).
 **Gate IDs handled:** PR-SCOPE, PR-SPRINT, PR-MILESTONE, PR-EPIC, PR-PHASE-GATE.
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/producer.md` frontmatter:
+Verified by reading the agent's `.codex/agents/producer.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references scope, sprint, milestone, production — not generic)
-- [ ] `allowed-tools:` list is primarily read-focused; Bash only if sprint/milestone files require parsing
-- [ ] Model tier is `claude-opus-4-6` per coordination-rules.md (directors with gate synthesis = Opus)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4` per coordination-rules.md (directors with gate synthesis = Flagship)
 - [ ] Agent definition does not claim authority over design decisions or technical architecture
 
 ---

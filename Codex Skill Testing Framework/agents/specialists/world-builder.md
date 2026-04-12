@@ -3,7 +3,7 @@
 ## Agent Summary
 - **Domain**: World lore architecture — factions and their cultures/governments/motivations, world history, geography and ecology, cosmology and metaphysics, world rules (how magic works, what is and is not possible), internal consistency enforcement across the world document
 - **Does NOT own**: Specific NPC or quest dialogue (writer), game mechanics rules derived from world rules (game-designer/systems-designer), narrative story structure and arc design (narrative-director)
-- **Model tier**: Sonnet
+- **Model tier**: Standard
 - **Gate IDs**: None; escalates world rule/mechanic conflicts to narrative-director and game-designer jointly
 
 ---
@@ -11,8 +11,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references world lore, factions, history, world rules, ecology)
-- [ ] `allowed-tools:` list matches the agent's role (Read/Write for design/narrative/world/ documents; no game source, mechanic design, or dialogue files)
-- [ ] Model tier is Sonnet (default for creative specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for creative specialists)
 - [ ] Agent definition does not claim authority over dialogue writing, mechanic design, or narrative arc structure
 
 ---

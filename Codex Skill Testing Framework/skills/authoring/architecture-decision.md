@@ -20,7 +20,7 @@ asks "May I write" per section during authoring. ADRs are written to
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: ACCEPTED, PROPOSED, CONCERNS
 - [ ] Contains "May I write" collaborative protocol language (per-section approval)
@@ -154,14 +154,14 @@ In `solo` mode: both gates are skipped. ADR is written with Status: Proposed.
 - ADR Status is set to Accepted
 
 **Assertions (both approved):**
-- [ ] ADR frontmatter/header shows `Status: Accepted`
+- [ ] ADR YAML frontmatter/header shows `Status: Accepted`
 - [ ] Both TD-ADR and LP-FEASIBILITY appear as APPROVED in output
 
 **Full mode, one gate returns CONCERNS:**
 - ADR Status stays Proposed
 
 **Assertions (CONCERNS):**
-- [ ] ADR frontmatter/header shows `Status: Proposed`
+- [ ] ADR YAML frontmatter/header shows `Status: Proposed`
 - [ ] Concerns are listed in output
 - [ ] Skill does NOT set Status: Accepted when any gate returns CONCERNS
 

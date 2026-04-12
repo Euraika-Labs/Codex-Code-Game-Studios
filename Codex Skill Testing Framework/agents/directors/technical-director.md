@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** System architecture decisions, technical feasibility assessment, ADR oversight and approval, engine risk evaluation, technical phase gate.
 **Does NOT own:** Game design decisions (creative-director / game-designer), creative direction, visual art style, production scheduling (producer).
-**Model tier:** Opus (multi-document synthesis, high-stakes architecture and phase gate verdicts).
+**Model tier:** Flagship (multi-document synthesis, high-stakes architecture and phase gate verdicts).
 **Gate IDs handled:** TD-SYSTEM-BOUNDARY, TD-FEASIBILITY, TD-ARCHITECTURE, TD-ADR, TD-ENGINE-RISK, TD-PHASE-GATE.
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/technical-director.md` frontmatter:
+Verified by reading the agent's `.codex/agents/technical-director.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references architecture, feasibility, ADR — not generic)
-- [ ] `allowed-tools:` list may include Read for architecture documents; Bash only if required for technical checks
-- [ ] Model tier is `claude-opus-4-6` per coordination-rules.md (directors with gate synthesis = Opus)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4` per coordination-rules.md (directors with gate synthesis = Flagship)
 - [ ] Agent definition does not claim authority over game design decisions or creative direction
 
 ---

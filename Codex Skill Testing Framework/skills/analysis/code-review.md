@@ -14,7 +14,7 @@ APPROVED, CONCERNS, or NEEDS CHANGES.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: APPROVED, CONCERNS, NEEDS CHANGES
 - [ ] Does NOT require "May I write" language (read-only; findings are advisory output)

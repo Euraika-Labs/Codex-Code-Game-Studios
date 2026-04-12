@@ -44,7 +44,7 @@ read-only and must not trigger director gates during the analysis phase.
 | **R5 — Structured findings** | Output contains a per-section status table or checklist before the final verdict |
 
 > **Exceptions:**
-> - `design-review`: Has `Write, Edit` in allowed-tools to support an optional "Revise now" path (all writes gated behind user approval) and to write review logs. R1 is satisfied because the reviewed document is never silently modified.
+> - `design-review`: May support an optional "Revise now" path and review-log writes, but any write path must remain explicitly gated behind user approval. R1 is satisfied because the reviewed document is never silently modified.
 > - `architecture-review`: Spawns TD-ARCHITECTURE and LP-FEASIBILITY gates after its analysis is complete. This is intentional — architecture review is high-stakes and benefits from director sign-off. R4 is satisfied because the gates run post-analysis, not during it.
 
 ---
@@ -187,7 +187,7 @@ Used to validate agent spec files in `tests/agents/`.
 | **D1 — Correct verdict vocabulary** | Returns APPROVE / CONCERNS / REJECT (or domain equivalent: REALISTIC/CONCERNS/UNREALISTIC for producer) |
 | **D2 — Domain boundary respected** | Does not make binding decisions outside its declared domain |
 | **D3 — Conflict escalation** | When two departments conflict, escalates to correct parent (creative-director or technical-director) rather than unilaterally deciding |
-| **D4 — Opus model tier** | Agent is assigned Opus model per coordination-rules.md |
+| **D4 — Flagship model profile** | Agent uses the leadership-grade Codex model profile from coordination-rules.md (currently `gpt-5.4`) |
 
 ### `lead`
 
@@ -198,7 +198,7 @@ systems-designer, level-designer
 |---|---|
 | **L1 — Domain verdict** | Returns a domain-specific verdict (e.g., FEASIBLE/INFEASIBLE for lead-programmer, PASS/FAIL for qa-lead) |
 | **L2 — Escalates to shared parent** | Out-of-domain conflicts escalate to creative-director (design) or technical-director (tech) |
-| **L3 — Sonnet model tier** | Agent is assigned Sonnet model (default) per coordination-rules.md |
+| **L3 — Standard model profile** | Agent uses the default lead/specialist Codex model profile from coordination-rules.md (currently `gpt-5.4-mini`) |
 
 ### `specialist`
 
@@ -246,4 +246,4 @@ analytics-engineer, economy-designer, localization-lead
 |---|---|
 | **O1 — Domain ownership clear** | Agent description clearly states what it owns (pipeline, releases, economy, etc.) |
 | **O2 — Defers implementation** | Does not write game logic or engine code; delegates to appropriate specialist |
-| **O3 — Toolset matches role** | `allowed-tools` in frontmatter matches the operational (not coding) nature of the role |
+| **O3 — Runtime config matches role** | Agent `model`, optional `sandbox_mode`, and `developer_instructions` match the operational (not coding) nature of the role |

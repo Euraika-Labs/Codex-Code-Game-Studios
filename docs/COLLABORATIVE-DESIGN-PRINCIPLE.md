@@ -329,30 +329,30 @@ Skill: "Writing design/concept.md..."
 
 ---
 
-## 🎛️ Structured Decision UI (plain-text approval check)
+## 🎛️ Structured Decision UI (plain-text decision prompt)
 
-Use the `plain-text approval check` tool to present decisions as a **selectable UI** instead
+Use a plain-text decision prompt to present decisions as a **simple numbered option list** instead
 of plain markdown text. This gives the user a clean interface to pick from options
 (or type "Other" for a custom answer).
 
 ### The Explain → Capture Pattern
 
-Detailed reasoning doesn't fit in the tool's short descriptions. So use a two-step
+Detailed reasoning doesn't fit in the prompt's short option labels. So use a two-step
 pattern:
 
 1. **Explain first** — Write your full expert analysis in conversation text:
    detailed pros/cons, theory references, example games, pillar alignment. This is
    where the reasoning lives.
 
-2. **Capture the decision** — Call `plain-text approval check` with concise option labels
+2. **Capture the decision** — Present a plain-text decision prompt with concise option labels
    and short descriptions. The user picks from the UI or types a custom answer.
 
-### When to Use plain-text approval check
+### When to Use plain-text decision prompt
 
 ✅ **Use it for:**
 - Every decision point where you'd present 2-4 options
 - Initial clarifying questions with constrained answers
-- Batching up to 4 independent questions in one call
+- Batching up to 4 independent questions in one prompt
 - Next-step choices ("Draft formulas or refine rules first?")
 - Architecture decisions ("Static utility or singleton?")
 - Strategic choices ("Simplify scope, slip deadline, or cut feature?")
@@ -375,7 +375,7 @@ pattern:
 After introducing the topic in conversation, batch constrained questions:
 
 ```
-plain-text approval check:
+plain-text decision prompt:
   questions:
     - question: "Should crafting recipes be discovered or learned?"
       header: "Discovery"
@@ -402,7 +402,7 @@ plain-text approval check:
 After writing the full pros/cons analysis in conversation text:
 
 ```
-plain-text approval check:
+plain-text decision prompt:
   questions:
     - question: "Which crafting approach fits your vision?"
       header: "Approach"
@@ -420,7 +420,7 @@ plain-text approval check:
 After presenting the full strategic analysis with pillar alignment:
 
 ```
-plain-text approval check:
+plain-text decision prompt:
   questions:
     - question: "How should we handle crafting scope for Alpha?"
       header: "Scope"
@@ -436,12 +436,12 @@ plain-text approval check:
 ### Team Skill Orchestration
 
 In team skills, subagents return their analysis as text. The **orchestrator**
-(main session) calls `plain-text approval check` at each decision point between phases:
+(main session) calls plain-text decision prompt at each decision point between phases:
 
 ```
 [game-designer returns 3 combat approaches with analysis]
 
-Orchestrator uses plain-text approval check:
+Orchestrator uses plain-text decision prompt:
   question: "Which combat approach should we develop?"
   options: [concise summaries of the 3 approaches]
 
@@ -685,4 +685,4 @@ This principle has been fully embedded across the project:
 - **All skills** — Updated to require approval before writing
 - **WORKFLOW-GUIDE.md** — Rewritten with collaborative examples
 - **README.md** — Clarifies collaborative (not autonomous) design
-- **plain-text approval check tool** — Integrated into 16 skills for structured option UI
+- **plain-text decision prompt tool** — Integrated into 16 skills for structured option UI

@@ -16,7 +16,7 @@ the story file and optionally to `docs/tech-debt-register.md`.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥5 phase headings (complex skill warranting `context: fork` if applicable)
 - [ ] Contains verdict keywords: COMPLETE, BLOCKED
 - [ ] Contains "May I write" collaborative protocol language (writes to story file and tech-debt register)

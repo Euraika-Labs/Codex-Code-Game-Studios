@@ -123,7 +123,7 @@ Options: "Yes, create it", "Skip", "Pause — I need to write ADRs first"
 - `lean` → skip (not a PHASE-GATE). Note: "PR-EPIC skipped — Lean mode." Proceed to Step 5 (write epic files).
 - `full` → spawn as normal.
 
-After all epics for the current layer are defined (Step 4 completed for all in-scope systems), and before writing any files, spawn `producer` via Task using gate **PR-EPIC** (`docs/studio/director-gates.md`).
+After all epics for the current layer are defined (Step 4 completed for all in-scope systems), and before writing any files, spawn `producer` as a subagent using gate **PR-EPIC** (`docs/studio/director-gates.md`).
 
 Pass: the full epic structure summary (all epics, their scope summaries, governing ADR counts), the layer being processed, milestone timeline and team capacity.
 

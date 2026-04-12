@@ -3,7 +3,7 @@
 ## Agent Summary
 - **Domain**: Rapid throwaway prototypes in the `prototypes/` directory, concept validation experiments, mechanical feasibility tests. Standards intentionally relaxed for speed — prototypes are not production code.
 - **Does NOT own**: Production source code in `src/` (gameplay-programmer), design documents (game-designer), production-grade architecture decisions (lead-programmer / technical-director)
-- **Model tier**: Sonnet
+- **Model tier**: Standard
 - **Gate IDs**: None; produces recommendation docs after prototype conclusion; does not participate in phase gates
 
 ---
@@ -11,8 +11,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references rapid prototyping, prototypes/ directory, throwaway code)
-- [ ] `allowed-tools:` list matches the agent's role (Read/Write scoped to prototypes/ directory; no production src/ write access)
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition explicitly states that prototype code is not production code and must not be copied to src/
 
 ---
@@ -26,7 +26,7 @@
 - Code prioritizes speed over correctness: no unit tests, no doc comments required, global state is acceptable for a prototype
 - Implements the minimal viable mechanic: a deck, a draw function (draw N cards), a hand container with a size limit, and a simple UI or debug print to verify state
 - Does NOT implement production patterns (dependency injection, signals, data-driven config) unless they take less time than not using them
-- Includes a `README.md` in the prototype folder: hypothesis being tested, how to run, what to observe in the playtest
+- Includes a `README.toml` in the prototype folder: hypothesis being tested, how to run, what to observe in the playtest
 
 ### Case 2: Out-of-domain request — production-grade implementation
 **Input**: "The card mechanic prototype worked great. Now write the production implementation of the card system for src/gameplay/cards/."
@@ -39,7 +39,7 @@
 ### Case 3: Prototype validates the mechanic — recommendation output
 **Input**: "The card-draw prototype playtested well. Three sessions all enjoyed drawing 3 cards/turn with hand limit 7. No confusion observed. What's next?"
 **Expected behavior**:
-- Produces a prototype conclusion document in `prototypes/card-draw-mechanic/conclusion.md` (or equivalent)
+- Produces a prototype conclusion document in `prototypes/card-draw-mechanic/conclusion.toml` (or equivalent)
 - Document includes: hypothesis that was tested, playtest method (sessions, duration, observer notes), result verdict (VALIDATED), key findings (what worked, any minor issues observed), recommendation for production (specific mechanic parameters to preserve: 3 cards/turn, hand limit 7), and a flag to route the production implementation request to gameplay-programmer
 - Does NOT begin writing production code
 - Output is structured as a decision-ready recommendation, not a narrative summary
@@ -47,7 +47,7 @@
 ### Case 4: Prototype reveals the mechanic is unworkable — abandonment note
 **Input**: "The prototype for the physics-based lock-picking mechanic is done. After 4 playtest sessions, all testers found it frustrating — too much precision required, not fun. One tester rage-quit."
 **Expected behavior**:
-- Produces a prototype abandonment note in `prototypes/lock-picking-physics/conclusion.md`
+- Produces a prototype abandonment note in `prototypes/lock-picking-physics/conclusion.toml`
 - Document includes: hypothesis that was tested, result verdict (ABANDONED), specific reasons (precision barrier too high, negative emotional response, rage-quit incident as evidence), and a recommendation for alternative approaches to explore (simplified key-tumbler mechanic, rhythm-based alternative, removal of the mechanic entirely)
 - Does NOT recommend persisting with the prototype mechanic because of sunk cost
 - Does NOT mark the result as inconclusive — after 4 sessions with consistent negative responses, abandonment is the correct verdict

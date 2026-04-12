@@ -3,7 +3,7 @@
 ## Agent Summary
 Domain: Shaders, VFX, rendering optimization, art pipeline tools, and visual performance.
 Does NOT own: art style decisions or color palette (art-director), gameplay code (gameplay-programmer).
-Model tier: Sonnet (default).
+Model tier: Standard (default).
 No gate IDs assigned.
 
 ---
@@ -11,8 +11,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references shaders / VFX / rendering)
-- [ ] `allowed-tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority over art style direction or gameplay logic
 
 ---
@@ -47,13 +47,13 @@ No gate IDs assigned.
 ### Case 4: Engine version compatibility
 **Input:** "Use the new texture sampler API for the water shader."
 **Expected behavior:**
-- Checks the engine version reference (e.g., `docs/engine-reference/godot/VERSION.md`) before suggesting any API
+- Checks the engine version reference (e.g., `docs/engine-reference/godot/VERSION.toml`) before suggesting any API
 - Flags if the requested API is post-cutoff (e.g., Godot 4.4+ texture type changes)
 - Provides the correct syntax for the project's pinned engine version
 - If uncertain about post-cutoff behavior, explicitly states the uncertainty and directs to verified docs
 
 ### Case 5: Context pass — uses performance budget
-**Input:** Performance budget from `technical-preferences.md` provided in context: 2ms GPU frame budget, max 200 draw calls. Request: "Optimize the forest rendering system."
+**Input:** Performance budget from `technical-preferences.toml` provided in context: 2ms GPU frame budget, max 200 draw calls. Request: "Optimize the forest rendering system."
 **Expected behavior:**
 - References the specific 2ms GPU budget and 200 draw call limit from the provided context
 - Proposes optimizations calibrated to those exact targets (e.g., "batching reduces draw calls from 340 to ~180, within the 200 limit")

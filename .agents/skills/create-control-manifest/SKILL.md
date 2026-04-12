@@ -119,7 +119,7 @@ Ask: "Does this look complete? Any rules to add or remove before I write the man
 - `lean` → skip. Note: "TD-MANIFEST skipped — Lean mode." Proceed to Phase 5.
 - `full` → spawn as normal.
 
-Spawn `technical-director` via Task using gate **TD-MANIFEST** (`docs/studio/director-gates.md`).
+Spawn `technical-director` as a subagent using gate **TD-MANIFEST** (`docs/studio/director-gates.md`).
 
 Pass: the Control Manifest Preview from Phase 4 (rule counts per layer, full extracted rule list), the list of ADRs covered, engine version, and any rules sourced from technical-preferences.md or engine reference docs.
 

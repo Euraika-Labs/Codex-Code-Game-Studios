@@ -19,7 +19,7 @@ for a quick-design, the skill redirects to `$design-system` instead.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: CREATED, BLOCKED, REDIRECTED
 - [ ] Contains "May I write" collaborative protocol language (for quick-note file)

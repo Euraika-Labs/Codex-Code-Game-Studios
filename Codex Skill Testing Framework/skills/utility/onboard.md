@@ -5,7 +5,7 @@
 `$onboard` generates a contextual project onboarding summary tailored for a new
 team member. It reads AGENTS.md, `technical-preferences.md`, the active sprint
 file, recent git commits, and `production/stage.txt` to produce a structured
-orientation document. The skill runs on the Haiku model (read-only, formatting
+orientation document. The skill runs on the Fast model (read-only, formatting
 task) and produces no file writes — all output is conversational.
 
 The skill optionally accepts a role argument (e.g., `$onboard artist`) to tailor
@@ -19,7 +19,7 @@ always ONBOARDING COMPLETE — the skill is purely informational.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: ONBOARDING COMPLETE
 - [ ] Does NOT contain "May I write" language (skill is read-only)

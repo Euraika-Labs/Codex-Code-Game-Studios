@@ -20,7 +20,7 @@ REVERTED (fix was applied but caused regression and was reverted).
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: IMPROVED, NO CHANGE, REVERTED
 - [ ] Contains "May I write" collaborative protocol language before applying fixes
@@ -40,7 +40,7 @@ None. `$skill-improve` is a meta-utility skill. No director gates apply.
 
 **Fixture:**
 - `.agents/skills/some-skill/SKILL.md` has 2 static failures:
-  - Check 4: no "May I write" language despite having Write in allowed-tools
+  - Check 4: no "May I write" language despite having Write in runtime config
   - Check 5: no next-step handoff at the end
 
 **Input:** `$skill-improve some-skill`

@@ -16,10 +16,10 @@ REVISION NEEDED. It is a read-only skill (no file writes) and runs as a
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings or numbered steps
 - [ ] Contains verdict keywords: APPROVED, NEEDS REVISION, MAJOR REVISION NEEDED
-- [ ] Does NOT require "May I write" language (read-only skill — `allowed-tools` excludes Write/Edit)
+- [ ] Does NOT require a write-approval prompt because the skill remains read-only
 - [ ] Output format is documented (review template shown in skill body)
 
 ---

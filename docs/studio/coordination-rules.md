@@ -12,62 +12,64 @@
 5. **No Unilateral Cross-Domain Changes**: An agent must never modify files
    outside its designated directories without explicit delegation.
 
-## Model Tier Assignment
+## Codex Model Profiles
 
-Skills and agents are assigned to model tiers based on task complexity:
+Use these neutral profile names in studio docs. The actual `.codex/agents/*.toml`
+files remain the source of truth for model selection.
 
-| Tier | Model | When to use |
+| Profile | Default model | When to use |
 |------|-------|-------------|
-| **Haiku** | `claude-haiku-4-5-20251001` | Read-only status checks, formatting, simple lookups — no creative judgment needed |
-| **Sonnet** | `claude-sonnet-4-6` | Implementation, design authoring, analysis of individual systems — default for most work |
-| **Opus** | `claude-opus-4-6` | Multi-document synthesis, high-stakes phase gate verdicts, cross-system holistic review |
+| **Fast** | `gpt-5.3-codex-spark` | Quick read-only checks, status summaries, lightweight operational tasks |
+| **Standard** | `gpt-5.4-mini` | Default for most implementation, design authoring, and single-domain analysis |
+| **Flagship** | `gpt-5.4` | High-stakes multi-document synthesis, phase gates, and cross-discipline decisions |
 
-Skills with `model: haiku`: `$help`, `$sprint-status`, `$story-readiness`, `$scope-check`,
-`$project-stage-detect`, `$changelog`, `$patch-notes`, `$onboard`
+Recommended defaults:
 
-Skills with `model: opus`: `$review-all-gdds`, `$architecture-review`, `$gate-check`
+- Use **Fast** for utility/status workflows such as `$help`,
+  `$project-stage-detect`, `$changelog`, and other mostly read-and-format tasks.
+- Use **Flagship** for director-grade reviews such as `$review-all-gdds`,
+  `$architecture-review`, and `$gate-check`.
+- Use **Standard** for everything else unless a specific agent file overrides it.
 
-All other skills default to Sonnet. When creating new skills, assign Haiku if the
-skill only reads and formats; assign Opus if it must synthesize 5+ documents with
-high-stakes output; otherwise leave unset (Sonnet).
-
-## Subagents vs Agent Teams
+## Subagents vs External Agent Teams
 
 This project uses two distinct multi-agent patterns:
 
-### Subagents (current, always active)
-Spawned via `Task` within a single Codex CLI session. Used by all `team-*` skills
-and orchestration skills. Subagents share the session's permission context, run
-sequentially or in parallel within the session, and return results to the parent.
+### Subagents (built-in, preferred)
 
-**When to spawn in parallel**: If two subagents' inputs are independent (neither
-needs the other's output to begin), spawn both Task calls simultaneously rather
-than waiting. Example: `$review-all-gdds` Phase 1 (consistency) and Phase 2
-(design theory) are independent — spawn both at the same time.
+Spawn focused subagents within a single Codex session. Use built-in agent types
+or project-scoped custom agents from `.codex/agents/`. Subagents inherit the
+parent session's approval, sandbox, and most runtime context unless a custom
+agent overrides specific settings.
 
-### Agent Teams (experimental — opt-in)
-Multiple independent Codex CLI *sessions* running simultaneously, coordinated
-via a shared task list. Each session has its own context window and token budget.
-Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` environment variable.
+**When to run subagents in parallel**: If two subagents can begin without each
+other's output, start both before waiting. Example: independent review phases
+that inspect different artifacts.
 
-**Use agent teams when**:
+### External Agent Teams (optional, project-managed)
+
+If you want true multi-session parallelism, orchestrate multiple Codex sessions
+outside the CLI and coordinate them with a shared task list or supervisor
+process. This is a project convention, not a built-in Codex CLI feature, so
+document the launcher, ownership rules, and merge protocol before using it.
+
+**Use external agent teams when**:
+
 - Work spans multiple subsystems that will not touch the same files
-- Each workstream would take >30 minutes and benefits from true parallelism
-- A senior agent (technical-director, producer) needs to coordinate 3+ specialist
-  sessions working on different epics simultaneously
+- Each workstream is long-running enough to justify true parallel sessions
+- A coordinating agent or human is available to integrate results
 
-**Do not use agent teams when**:
-- One session's output is required as input for another (use sequential subagents)
-- The task fits in a single session's context (use subagents instead)
-- Cost is a concern — each team member burns tokens independently
+**Do not use external agent teams when**:
 
-**Current status**: Not yet used in this project. Document usage here when first adopted.
+- One session's output is required as input for another
+- The work fits comfortably in one session with built-in subagents
+- The extra coordination cost outweighs the time saved
 
-## Parallel Task Protocol
+## Parallel Subagent Protocol
 
-When an orchestration skill spawns multiple independent agents:
+When an orchestration skill spawns multiple independent subagents:
 
-1. Issue all independent Task calls before waiting for any result
+1. Issue all independent subagent calls before waiting for any result
 2. Collect all results before proceeding to dependent phases
-3. If any agent is BLOCKED, surface it immediately — do not silently skip
+3. If any agent is BLOCKED, surface it immediately and do not silently skip it
 4. Always produce a partial report if some agents complete and others block

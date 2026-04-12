@@ -14,10 +14,10 @@
 
 These should pass before any behavioral testing:
 
-- [ ] Frontmatter has all required fields (`name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`)
+- [ ] YAML YAML frontmatter has the required Codex fields (`name`, `description`)
 - [ ] 2+ phase headings found
 - [ ] At least one verdict keyword present (`PASS`, `FAIL`, `CONCERNS`, `APPROVED`, `BLOCKED`, `COMPLETE`, `READY`)
-- [ ] If `allowed-tools` includes Write/Edit: `"May I write"` language present
+- [ ] If the skill writes project files, `"May I write"` language is present
 - [ ] Next-step handoff section present at end
 
 ---

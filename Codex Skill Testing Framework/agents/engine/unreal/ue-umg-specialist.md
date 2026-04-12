@@ -3,7 +3,7 @@
 ## Agent Summary
 - **Domain**: UMG widget hierarchy design, data binding patterns, CommonUI input routing and action tags, widget styling (WidgetStyle assets), UI optimization (widget pooling, ListView, invalidation)
 - **Does NOT own**: UX flow and screen navigation design (ux-designer), gameplay logic (gameplay-programmer), backend data sources (game code), server communication
-- **Model tier**: Sonnet
+- **Model tier**: Standard
 - **Gate IDs**: None; defers UX flow decisions to ux-designer
 
 ---
@@ -11,8 +11,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references UMG, widget hierarchy, CommonUI)
-- [ ] `allowed-tools:` list matches the agent's role (Read/Write for UI assets and Blueprint files; no server or gameplay source tools)
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority over UX flow, navigation architecture, or gameplay data logic
 
 ---

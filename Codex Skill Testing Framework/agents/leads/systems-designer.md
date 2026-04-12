@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** Combat formulas, progression curves, crafting recipes, status effect interactions, economy math, numerical balance.
 **Does NOT own:** Narrative and lore (narrative-director), visual design (art-director), code implementation (lead-programmer), conceptual mechanic rules (game-designer — collaborates with).
-**Model tier:** Sonnet (individual system analysis — formula review and balance math).
+**Model tier:** Standard (individual system analysis — formula review and balance math).
 **Gate IDs handled:** Systems review verdicts on formulas and balance specs (uses APPROVED / NEEDS REVISION vocabulary).
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/systems-designer.md` frontmatter:
+Verified by reading the agent's `.codex/agents/systems-designer.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references formulas, progression curves, balance math, economy — not generic)
-- [ ] `allowed-tools:` list is read-focused; may include Bash for formula evaluation scripts if the project uses them; no write access outside `design/balance/` without delegation
-- [ ] Model tier is `claude-sonnet-4-6` per coordination-rules.md
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4-mini` per coordination-rules.md
 - [ ] Agent definition does not claim authority over narrative, visual design, or conceptual mechanic rule ownership
 
 ---

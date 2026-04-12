@@ -14,7 +14,7 @@ user approval. Verdicts: COMPLETE, GAPS FOUND, or MISSING CRITICAL CONTENT.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: COMPLETE, GAPS FOUND, MISSING CRITICAL CONTENT
 - [ ] Does NOT require "May I write" language (read-only output; write is optional report)

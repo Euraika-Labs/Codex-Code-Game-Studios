@@ -3,7 +3,7 @@
 ## Agent Summary
 - **Domain**: CI/CD pipeline configuration, build scripts, version control workflow enforcement, deployment infrastructure, branching strategy, environment management, automated test integration in CI
 - **Does NOT own**: Game logic or gameplay systems, security audits (security-engineer), QA test strategy (qa-lead), game networking logic (network-programmer)
-- **Model tier**: Sonnet
+- **Model tier**: Standard
 - **Gate IDs**: None; escalates deployment blockers to producer
 
 ---
@@ -11,8 +11,8 @@
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references CI/CD, build, deployment, version control)
-- [ ] `allowed-tools:` list matches the agent's role (Read/Write for pipeline config files, shell scripts, YAML; no game source editing tools)
-- [ ] Model tier is Sonnet (default for operations specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for operations specialists)
 - [ ] Agent definition does not claim authority over game logic, security audits, or QA test design
 
 ---
@@ -23,7 +23,7 @@
 **Input**: "Set up a CI pipeline for our Godot 4 project. It should run tests on every push to main and every pull request, and fail the build if tests fail."
 **Expected behavior**:
 - Produces a GitHub Actions workflow YAML (`.github/workflows/ci.yml` or equivalent)
-- Uses the Godot headless test runner command from `coding-standards.md`: `godot --headless --script tests/gdunit4_runner.gd`
+- Uses the Godot headless test runner command from `coding-standards.toml`: `godot --headless --script tests/gdunit4_runner.gd`
 - Configures trigger on `push` to main and `pull_request`
 - Sets the job to fail (`exit 1` or non-zero exit) when tests fail — does NOT configure the pipeline to continue on test failure
 - References the project's coding standards CI rules in the output or comments
@@ -74,7 +74,7 @@
 ---
 
 ## Coverage Notes
-- Case 1 (Godot CI) references `coding-standards.md` CI rules — verify this file is present and current before running this test
+- Case 1 (Godot CI) references `coding-standards.toml` CI rules — verify this file is present and current before running this test
 - Case 4 (branching strategy) is a convention-enforcement test — agent must know the project convention, not just give neutral advice
-- Case 5 requires that project's target platforms are documented (in `technical-preferences.md` or equivalent)
+- Case 5 requires that project's target platforms are documented (in `technical-preferences.toml` or equivalent)
 - No automated runner; review manually or via `$skill-test`

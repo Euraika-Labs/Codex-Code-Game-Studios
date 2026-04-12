@@ -87,7 +87,7 @@ All three must return APPROVE before proceeding. If any returns CONCERNS or REJE
 
 ## Phase 5b: QA Re-Entry Gate
 
-After approvals, determine the QA scope required before deploying the hotfix. Spawn `qa-lead` via Task with:
+After approvals, determine the QA scope required before deploying the hotfix. Spawn `qa-lead` as a subagent with:
 - The hotfix description and affected system
 - The regression test results from Phase 5
 - A list of all systems that touch the changed files (use Grep to find callers)

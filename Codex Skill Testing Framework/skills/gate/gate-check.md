@@ -15,7 +15,7 @@ critical gate-keeping skill in the pipeline.
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings (numbered Phase N or ## sections)
 - [ ] Contains verdict keywords: PASS, CONCERNS, FAIL
 - [ ] Contains "May I write" collaborative protocol language
@@ -172,7 +172,7 @@ Verified automatically by `$skill-test static` — no fixture needed.
 **Note on Case 3 correction:**
 The Case 3 assertions previously stated "Skill does not ask the user which gate to check
 if current stage is determinable." This is correct. However, the skill DOES use
-plain-text approval check to confirm the auto-detected transition before running full checks —
+plain-text decision prompt to confirm the auto-detected transition before running full checks —
 this is a confirmation step, not a gate selection. Assertions for Case 3 should not
 treat this confirmation as a failure.
 

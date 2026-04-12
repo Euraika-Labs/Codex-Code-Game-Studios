@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** Test strategy, QL-STORY-READY gate, QL-TEST-COVERAGE gate, bug severity triage, release quality gates.
 **Does NOT own:** Feature implementation (programmers), game design decisions, creative direction, production scheduling.
-**Model tier:** Sonnet (individual system analysis — story readiness and coverage assessment).
+**Model tier:** Standard (individual system analysis — story readiness and coverage assessment).
 **Gate IDs handled:** QL-STORY-READY, QL-TEST-COVERAGE.
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/qa-lead.md` frontmatter:
+Verified by reading the agent's `.codex/agents/qa-lead.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references test strategy, story readiness, coverage, bug triage — not generic)
-- [ ] `allowed-tools:` list is read-focused; may include Read for story files, test files, and coding-standards; Bash only if running test commands is required
-- [ ] Model tier is `claude-sonnet-4-6` per coordination-rules.md
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4-mini` per coordination-rules.md
 - [ ] Agent definition does not claim authority over implementation decisions or game design
 
 ---

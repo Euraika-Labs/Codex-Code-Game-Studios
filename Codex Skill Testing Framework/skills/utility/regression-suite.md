@@ -20,7 +20,7 @@ has no test).
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: FULL COVERAGE, GAPS FOUND, CRITICAL GAPS
 - [ ] Contains "May I write" language (skill may write coverage report)

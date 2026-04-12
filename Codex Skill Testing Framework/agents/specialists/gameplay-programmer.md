@@ -3,7 +3,7 @@
 ## Agent Summary
 Domain: Game mechanics code, player systems, combat implementation, and interactive features.
 Does NOT own: UI implementation (ui-programmer), AI behavior trees (ai-programmer), engine/rendering systems (engine-programmer).
-Model tier: Sonnet (default).
+Model tier: Standard (default).
 No gate IDs assigned.
 
 ---
@@ -11,8 +11,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references game mechanics / player systems)
-- [ ] `allowed-tools:` list includes Read, Write, Edit, Bash, Glob, Grep — excludes tools only needed by orchestration agents
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority over UI, AI behavior, or engine/rendering code
 
 ---

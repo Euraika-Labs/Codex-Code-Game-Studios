@@ -3,7 +3,7 @@
 ## Agent Summary
 Domain: Menu screens, HUDs, inventory screens, dialogue boxes, UI framework code, and data binding.
 Does NOT own: UX flow design (ux-designer), visual style direction (art-director / technical-artist).
-Model tier: Sonnet (default).
+Model tier: Standard (default).
 No gate IDs assigned.
 
 ---
@@ -11,8 +11,8 @@ No gate IDs assigned.
 ## Static Assertions (Structural)
 
 - [ ] `description:` field is present and domain-specific (references menus / HUDs / UI framework / data binding)
-- [ ] `allowed-tools:` list includes Read, Write, Edit, Bash, Glob, Grep
-- [ ] Model tier is Sonnet (default for specialists)
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is Standard (default for specialists)
 - [ ] Agent definition does not claim authority over UX flow design or visual art direction
 
 ---
@@ -20,7 +20,7 @@ No gate IDs assigned.
 ## Test Cases
 
 ### Case 1: In-domain request — appropriate output
-**Input:** "Implement the inventory screen from the UX spec in `design/ux/inventory-flow.md`."
+**Input:** "Implement the inventory screen from the UX spec in `design/ux/inventory-flow.toml`."
 **Expected behavior:**
 - Reads the UX spec before producing any code
 - Produces implementation using the project's configured UI framework (UI Toolkit, UGUI, UMG, or Godot Control nodes)

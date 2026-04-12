@@ -3,18 +3,18 @@
 ## Agent Summary
 **Domain owned:** Code architecture decisions, LP-FEASIBILITY gate, LP-CODE-REVIEW gate, coding standards enforcement, tech stack decisions within the approved engine.
 **Does NOT own:** Game design decisions (game-designer), creative direction (creative-director), production scheduling (producer), visual art direction (art-director).
-**Model tier:** Sonnet (implementation-level analysis of individual systems).
+**Model tier:** Standard (implementation-level analysis of individual systems).
 **Gate IDs handled:** LP-FEASIBILITY, LP-CODE-REVIEW.
 
 ---
 
 ## Static Assertions (Structural)
 
-Verified by reading the agent's `.codex/agents/lead-programmer.md` frontmatter:
+Verified by reading the agent's `.codex/agents/lead-programmer.toml` definition:
 
 - [ ] `description:` field is present and domain-specific (references code architecture, feasibility, code review, coding standards — not generic)
-- [ ] `allowed-tools:` list includes Read for source files; Bash may be included for static analysis or test runs; no write access outside `src/` without explicit delegation
-- [ ] Model tier is `claude-sonnet-4-6` per coordination-rules.md
+- [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) fit the role, and `developer_instructions` keep work inside the agent's domain
+- [ ] Model tier is `gpt-5.4-mini` per coordination-rules.md
 - [ ] Agent definition does not claim authority over game design, creative direction, or production scheduling
 
 ---

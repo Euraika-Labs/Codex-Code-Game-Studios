@@ -82,7 +82,7 @@ Delegate to **qa-tester**:
 
 ## Error Recovery Protocol
 
-If any spawned agent (via Task) returns BLOCKED, errors, or cannot complete:
+If any spawned agent (as a subagent) returns BLOCKED, errors, or cannot complete:
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
@@ -101,7 +101,7 @@ Common blockers:
 ## File Write Protocol
 
 All file writes (design documents, implementation files, test cases) are
-delegated to sub-agents spawned via Task. Each sub-agent enforces the
+delegated to sub-agents spawned as a subagent. Each sub-agent enforces the
 "May I write to [path]?" protocol. This orchestrator does not write files directly.
 
 ## Output

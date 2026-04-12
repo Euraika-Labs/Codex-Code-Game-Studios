@@ -2,7 +2,7 @@
 
 ## Skill Summary
 
-`$patch-notes` is a Haiku-tier skill that generates player-facing patch notes
+`$patch-notes` is a Fast-tier skill that generates player-facing patch notes
 from existing changelog content, stripping internal task IDs and technical
 jargon in favor of plain language. It filters entries to only those relevant
 to players (visible features and bug fixes; internal refactors are excluded).
@@ -15,7 +15,7 @@ No director gates are used. The skill asks "May I write to
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keyword: COMPLETE
 - [ ] Contains "May I write" language (skill writes patch notes file)
@@ -137,7 +137,7 @@ None. Patch notes generation is a fast compilation task; no gates are invoked.
 **Expected behavior:**
 1. Skill compiles patch notes in full mode
 2. No director gate is invoked (community review is a separate, manual step)
-3. Skill runs on Haiku model — fast compilation
+3. Skill runs on Fast model — fast compilation
 4. Skill notes in output: "Consider sharing draft with community manager before publishing"
 5. Skill asks user for approval and writes on confirmation
 
@@ -156,7 +156,7 @@ None. Patch notes generation is a fast compilation task; no gates are invoked.
 - [ ] Rewrites entries in plain language without internal IDs
 - [ ] Always asks "May I write" before writing patch notes file
 - [ ] No director gates are invoked
-- [ ] Runs on Haiku model tier (fast, low-cost)
+- [ ] Runs on Fast model tier (fast, low-cost)
 
 ---
 

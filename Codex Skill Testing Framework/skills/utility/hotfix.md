@@ -19,7 +19,7 @@ or HOTFIX BLOCKED (fix introduced regression or user declined).
 
 Verified automatically by `$skill-test static` — no fixture needed.
 
-- [ ] Has required frontmatter fields: `name`, `description`, `argument-hint`, `user-invocable`, `allowed-tools`
+- [ ] Has required Codex YAML frontmatter fields: `name`, `description`
 - [ ] Has ≥2 phase headings
 - [ ] Contains verdict keywords: HOTFIX COMPLETE, HOTFIX BLOCKED
 - [ ] Contains "May I write" language for code changes
