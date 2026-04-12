@@ -18,7 +18,7 @@ Before asking anything, silently gather context so you can tailor your guidance.
 Check:
 - **Engine configured?** Read `docs/studio/technical-preferences.md`. If the Engine field contains `[TO BE CONFIGURED]`, the engine is not set.
 - **Game concept exists?** Check for `design/gdd/game-concept.md`.
-- **Source code exists?** Glob for source files in `src/` (`*.gd`, `*.cs`, `*.cpp`, `*.h`, `*.rs`, `*.py`, `*.js`, `*.ts`).
+- **Source code exists?** Use a simple file listing under `src/` and treat files with source-code extensions (`.gd`, `.cs`, `.cpp`, `.h`, `.rs`, `.py`, `.js`, `.ts`) as implementation work. Avoid brittle nested shell quoting for this check.
 - **Prototypes exist?** Check for subdirectories in `prototypes/`.
 - **Design docs exist?** Count markdown files in `design/gdd/`.
 - **Production artifacts?** Check for files in `production/sprints/` or `production/milestones/`.
@@ -29,7 +29,7 @@ Store these findings internally to validate the user's self-assessment and tailo
 
 ## Phase 2: Ask Where the User Is
 
-This is the first thing the user sees. Use `ask the user directly in plain text` with these exact options so the user can click rather than type:
+This is the first thing the user sees. Ask the user directly in plain text with these exact options so the user can click rather than type:
 
 - **Prompt**: "Welcome to Codex Code Game Studios! Before I suggest anything, I'd like to understand where you're starting from. Where are you at with your game idea right now?"
 - **Options**:
@@ -104,8 +104,8 @@ The user needs creative exploration before anything else.
 
 #### If C: Clear concept
 
-1. Ask them to describe their concept in one sentence — genre and core mechanic. Use plain text, not ask the user directly in plain text (it's an open response).
-2. Acknowledge the concept, then use `ask the user directly in plain text` to offer two paths:
+1. Ask them to describe their concept in one sentence — genre and core mechanic. Use an open-ended plain-text question, not a multiple-choice prompt (it's an open response).
+2. Acknowledge the concept, then present two paths with a concise plain-text choice list:
    - **Prompt**: "How would you like to proceed?"
    - **Options**:
      - `Formalize it first` — Run `$brainstorm [concept]` to structure it into a proper game concept document
@@ -166,7 +166,7 @@ Check if `production/review-mode.txt` already exists.
 
 **If it exists**: Read it and show the current mode — "Review mode is set to `[current]`." — then proceed to Phase 4. Do not ask again.
 
-**If it does not exist**: Use `ask the user directly in plain text`:
+**If it does not exist**: Ask the user directly in plain text:
 
 - **Prompt**: "One setup choice: how much design review would you want as you work through the workflow?"
 - **Options**:
@@ -187,7 +187,7 @@ Create the `production/` directory if it does not exist.
 
 ## Phase 4: Confirm Before Proceeding
 
-After presenting the recommended path, use `ask the user directly in plain text` to ask the user which step they'd like to take first. Never auto-run the next skill.
+After presenting the recommended path, ask the user directly which step they'd like to take first with a concise plain-text choice list. Never auto-run the next skill.
 
 - **Prompt**: "Would you like to start with [recommended first step]?"
 - **Options**:

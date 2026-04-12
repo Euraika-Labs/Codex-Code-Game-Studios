@@ -41,7 +41,7 @@ for systems decomposition.
 
 **If the systems index already exists:**
 - Read it and present current status to the user
-- Use `ask the user directly in plain text` to ask:
+- Ask the user directly in plain text to ask:
   "The systems index already exists with [N] systems ([M] designed, [K] not started).
   What would you like to do?"
   - Options: "Update the index with new systems", "Design the next undesigned system",
@@ -93,7 +93,7 @@ Present the enumeration organized by category. For each system, show:
 - Brief description (1 sentence)
 - Whether it was explicit (from concept) or implicit (inferred)
 
-Then use `ask the user directly in plain text` to capture feedback:
+Then ask the user directly in plain text to capture feedback:
 - "Are there systems missing from this list?"
 - "Should any of these be combined or split?"
 - "Are there systems listed that this game does NOT need?"
@@ -138,7 +138,7 @@ Show the dependency map as a layered list. Highlight:
 - Any "bottleneck" systems (many others depend on them — these are high-risk)
 - Any systems with no dependents (leaf nodes — lower risk, can be designed late)
 
-Use `ask the user directly in plain text` to ask: "Does this dependency ordering look right? Any
+Ask the user directly in plain text to ask: "Does this dependency ordering look right? Any
 dependencies I'm missing or that should be removed?"
 
 **Review mode check** — apply before spawning TD-SYSTEM-BOUNDARY:
@@ -172,7 +172,7 @@ Use these heuristics for initial assignment:
 Present the priority assignments in a table. For each tier, explain why systems
 were placed there.
 
-Use `ask the user directly in plain text` to ask: "Do these priority assignments match your vision?
+Ask the user directly in plain text to ask: "Do these priority assignments match your vision?
 Which systems should be higher or lower priority?"
 
 Explain reasoning in conversation: "I placed [system] in MVP because the core loop
@@ -272,7 +272,7 @@ This phase is entered when:
   "Would you like to start designing individual systems now? The first system in
   the design order is [name]. Or would you prefer to stop here and come back later?"
 
-Use `ask the user directly in plain text` for: "Start designing [system-name] now, pick a different
+Ask the user directly in plain text for: "Start designing [system-name] now, pick a different
 system, or stop here?"
 
 ### Step 6b: Hand Off to $design-system
@@ -294,7 +294,7 @@ The `$design-system` skill handles the full GDD authoring process:
 
 ### Step 6c: Loop or Stop
 
-After `$design-system` completes, use `ask the user directly in plain text`:
+After `$design-system` completes, ask the user directly in plain text:
 - "Continue to the next system ([next system name])?"
 - "Pick a different system?"
 - "Stop here for this session?"
@@ -305,7 +305,7 @@ If continuing, return to Step 6a.
 
 ## Phase 7: Suggest Next Steps
 
-After the systems index is created (or after designing some systems), present next actions using `ask the user directly in plain text`:
+After the systems index is created (or after designing some systems), present next actions using a concise plain-text choice list:
 
 - "Systems index is written. What would you like to do next?"
   - [A] Start designing GDDs — run `$design-system [first-system-in-order]`
@@ -325,7 +325,7 @@ After any individual GDD is completed:
 This skill follows the collaborative design principle at every phase:
 
 1. **Question -> Options -> Decision -> Draft -> Approval** at every step
-2. **ask the user directly in plain text** at every decision point (Explain -> Capture pattern):
+2. **Present a concise plain-text choice list** at every decision point (Explain -> Capture pattern):
    - Phase 2: "Missing systems? Combine or split?"
    - Phase 3: "Dependency ordering correct?"
    - Phase 4: "Priority assignments match your vision?"

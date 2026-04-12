@@ -21,7 +21,7 @@ plan.
 
 ## Phase 1: Parse Scope
 
-**Argument:** `$ARGUMENTS` (blank = ask user via ask the user directly in plain text)
+**Argument:** `$ARGUMENTS` (blank = ask user via a concise plain-text choice list)
 
 Determine scope from the argument:
 
@@ -33,7 +33,7 @@ Determine scope from the argument:
   to stories whose file path or title contains the system name. Also check the
   epic index file (`EPIC.md`) in that system's directory.
 - **`story: [path]`** — validate that the path exists and load that single file.
-- **No argument** — use `ask the user directly in plain text`:
+- **No argument** — ask the user directly in plain text:
   - "What is the scope for this QA plan?"
   - Options: "Current sprint", "Specific feature (enter system name)",
     "Specific story (enter path)", "Full epic"
@@ -250,6 +250,6 @@ Next steps:
   support. If a formula is absent from the GDD, flag it rather than guessing.
 - **Playtest requirements are advisory**: the user decides whether a playtest
   is warranted for borderline Visual/Feel stories. Flag the case; do not mandate.
-- Use `ask the user directly in plain text` for scope selection when no argument is provided.
+- Ask the user directly in plain text for scope selection when no argument is provided.
   Keep all other phases non-interactive — present findings, then ask once to
   approve the write.

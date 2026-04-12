@@ -65,6 +65,15 @@ Read all inputs appropriate to the mode:
 ### Project Standards
 - `docs/studio/technical-preferences.md`
 
+**Engine configuration guard**:
+1. Read `docs/studio/technical-preferences.md` before resolving any
+   `docs/engine-reference/[engine]/...` path.
+2. If the Engine field is missing, blank, or still `[TO BE CONFIGURED]`, stop
+   and ask the user: "No engine is configured yet. Run `$setup-engine` first,
+   then re-run `$architecture-review`."
+3. Only continue to the Engine Reference reads after a concrete engine slug has
+   been resolved from `technical-preferences.md`.
+
 Report a count: "Loaded [N] GDDs, [M] ADRs, engine: [name + version]."
 
 **Also read `docs/consistency-failures.md`** if it exists. Extract entries with
@@ -446,7 +455,7 @@ FAIL: Critical gaps (Foundation/Core layer requirements uncovered),
 
 ## Phase 8: Write and Update Traceability Index
 
-Use `ask the user directly in plain text` for the write approval:
+Ask the user directly in plain text for the write approval:
 - "Review complete. What would you like to write?"
   - [A] Write all three files (review report + traceability index + TR registry)
   - [B] Write review report only — `docs/architecture/architecture-review-[date].md`
@@ -600,7 +609,7 @@ After completing the review and writing approved files, present:
 3. **Rerun trigger**: "Re-run `$architecture-review` after each new ADR is written
    to verify coverage improves"
 
-Then close with `ask the user directly in plain text`:
+Then close with a concise plain-text choice list:
 - "Architecture review complete. What would you like to do next?"
   - [A] Write a missing ADR — open a fresh session and run `$architecture-decision [system]`
   - [B] Run `$gate-check pre-production` — if all blocking gaps are resolved
@@ -614,7 +623,7 @@ If any spawned agent returns BLOCKED, errors, or fails to complete:
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" before continuing
 2. **Assess dependencies**: If the blocked agent's output is required by a later phase, do not proceed past that phase without user input
-3. **Offer options** via ask the user directly in plain text with three choices:
+3. **Offer options** via a concise plain-text choice list with three choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope (fewer GDDs, single-system focus)
    - Stop here and resolve the blocker first

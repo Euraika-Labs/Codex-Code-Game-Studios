@@ -80,7 +80,7 @@ Read `docs/architecture/control-manifest.md`. Extract the rules for this story's
 - Performance guardrails
 
 Check: does the story's embedded Manifest Version match the current manifest header date?
-If they differ, use `ask the user directly in plain text` before proceeding:
+If they differ, ask the user directly in plain text before proceeding:
 - Prompt: "Story was written against manifest v[story-date]. Current manifest is v[current-date]. New rules may apply. How do you want to proceed?"
 - Options:
   - `[A] Update story manifest version and implement with current rules (Recommended)`
@@ -98,7 +98,7 @@ After extracting the **Dependencies** list from the story file, validate each:
 1. Glob `production/epics/**/*.md` to find each dependency story file.
 2. Read its `Status:` field.
 3. If any dependency has Status other than `Complete` or `Done`:
-   - Use `ask the user directly in plain text`:
+   - Ask the user directly in plain text:
      - Prompt: "Story '[current story]' depends on '[dependency title]' which is currently [status], not Complete. How do you want to proceed?"
      - Options:
        - `[A] Proceed anyway — I accept the dependency risk`
@@ -277,7 +277,7 @@ If any spawned agent (as a subagent) returns BLOCKED, errors, or cannot complete
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via ask the user directly in plain text with choices:
+3. **Offer options** via a concise plain-text choice list with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

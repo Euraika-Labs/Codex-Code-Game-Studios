@@ -15,9 +15,15 @@ what the GDD now says, and guides the user through resolution.
 
 ## 1. Validate Argument
 
-A GDD path argument is **required**. If missing, fail with:
-> "Usage: `$propagate-design-change design/gdd/[system].md`
-> Provide the path to the GDD that was changed."
+A GDD path argument is normally required. If it is missing, ask the user with a
+concise plain-text choice list instead of failing:
+> "Which revised GDD should I analyse for architectural impact?"
+> `[A] I'll provide a system GDD path under \`design/gdd/\``
+> `[B] Stop here`
+>
+> Example: `$propagate-design-change design/gdd/combat-system.md`
+>
+> Stop after asking. Do not continue until the user answers.
 
 Verify the file exists. If not, fail with:
 > "[path] not found. Check the path and try again."
@@ -159,7 +165,7 @@ The technical-director reviews whether:
 
 Apply the verdict:
 - **APPROVE** → proceed to Phase 7 resolution workflow
-- **CONCERNS** → surface the specific ADRs or recommendations flagged; use `ask the user directly in plain text` with options: `Revise the impact assessment` / `Accept with noted concerns` / `Discuss further`
+- **CONCERNS** → surface the specific ADRs or recommendations flagged; ask the user directly in plain text with options: `Revise the impact assessment` / `Accept with noted concerns` / `Discuss further`
 - **REJECT** → do not proceed to resolution; re-analyze the impact before continuing
 
 ---

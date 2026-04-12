@@ -14,6 +14,13 @@ Parse the argument:
 
 ## Phase 1 — Context Gathering
 
+Before loading any GDD content, confirm that `design/gdd/systems-index.md`
+exists. If it does not, stop and tell the user:
+
+> "No systems index exists yet at `design/gdd/systems-index.md`, so there is no
+> auditable content plan. Run `$map-systems` first, then re-run `$content-audit`.
+> If the game concept itself is not written yet, start with `$brainstorm`."
+
 1. **Read `design/gdd/systems-index.md`** for the full list of systems, their
    categories, and MVP/priority tier.
 

@@ -30,6 +30,11 @@ status. Re-run whenever new ADRs are accepted or existing ADRs are revised.
 - Extract: naming conventions, performance budgets, approved libraries/addons,
   forbidden patterns
 
+If the Engine field is missing, blank, or still `[TO BE CONFIGURED]`, stop and
+tell the user:
+> "No engine is configured yet. Run `$setup-engine` first, then re-run
+> `$create-control-manifest`."
+
 ### Engine Reference
 - Read `docs/engine-reference/[engine]/VERSION.md` for engine + version
 - Read `docs/engine-reference/[engine]/deprecated-apis.md` — these become
@@ -37,6 +42,12 @@ status. Re-run whenever new ADRs are accepted or existing ADRs are revised.
 - Read `docs/engine-reference/[engine]/current-best-practices.md` if it exists
 
 Report: "Loaded [N] Accepted ADRs, engine: [name + version]."
+
+If no Accepted ADRs are found, stop and tell the user:
+> "No Accepted ADRs exist yet, so there is nothing meaningful to extract into a
+> control manifest. Create and accept the prerequisite ADRs first — typically
+> via `$architecture-decision` followed by `$architecture-review` — then re-run
+> `$create-control-manifest`."
 
 ---
 
@@ -131,7 +142,7 @@ The technical-director reviews whether:
 
 Apply the verdict:
 - **APPROVE** → proceed to Phase 5
-- **CONCERNS** → surface via `ask the user directly in plain text` with options: `Revise flagged rules` / `Accept and proceed` / `Discuss further`
+- **CONCERNS** → surface via a concise plain-text choice list with options: `Revise flagged rules` / `Accept and proceed` / `Discuss further`
 - **REJECT** → do not write the manifest; fix the flagged rules and re-present the summary
 
 ---

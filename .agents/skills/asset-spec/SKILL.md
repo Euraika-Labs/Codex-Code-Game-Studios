@@ -4,13 +4,21 @@ description: Generate per-asset visual specifications and AI generation prompts 
 ---
 
 If no argument is provided, check whether `design/assets/asset-manifest.md` exists:
-- If it exists: read it, find the first context (system/level/character) with any asset at status "Needed" but no spec file written yet, and use `ask the user directly in plain text`:
+- If it exists: read it, find the first context (system/level/character) with any asset at status "Needed" but no spec file written yet, and ask the user with a concise plain-text choice list:
   - Prompt: "The next unspecced context is **[target]**. Generate asset specs for it?"
   - Options: `[A] Yes — spec [target]` / `[B] Pick a different target` / `[C] Stop here`
-- If no manifest: fail with:
-  > "Usage: `$asset-spec system:<name>` — e.g., `$asset-spec system:tower-defense`
-  > Or: `$asset-spec level:iron-gate-fortress` / `$asset-spec character:frost-warden`
-  > Run after your art bible and GDDs are approved."
+  - Stop after asking. Do not continue to Phase 0 until the user answers.
+- If no manifest exists yet: ask the user with a concise plain-text choice list:
+  > "No asset manifest exists yet, so I can't auto-pick the next target.
+  > What would you like to spec?"
+  > `[A] A system — I'll provide \`system:<name>\``
+  > `[B] A level — I'll provide \`level:<name>\``
+  > `[C] A character — I'll provide \`character:<name>\``
+  > `[D] Stop here`
+  >
+  > If the art direction is not defined yet, run `$art-bible` first.
+  >
+  > Stop after asking. Do not continue to Phase 0 or Phase 1 until the user answers.
 
 ---
 
@@ -42,7 +50,7 @@ Read all source material **before** asking the user anything.
 ### Source doc reads (by target type):
 - **system**: Read `design/gdd/[target-name].md`. Extract the **Visual/Audio Requirements** section. If it doesn't exist or reads `[To be designed]`:
   > "The Visual/Audio section of `design/gdd/[target-name].md` is empty. Either run `$design-system [target-name]` to complete the GDD, or describe the visual needs manually."
-  Use `ask the user directly in plain text`: `[A] Describe needs manually` / `[B] Stop — complete the GDD first`
+  Ask the user with a concise plain-text choice list: `[A] Describe needs manually` / `[B] Stop — complete the GDD first`
 - **level**: Read `design/levels/[target-name].md`. Extract art requirements, asset list, VFX needs, and the art-director's production concept specs from Step 4.
 - **character**: Read `design/narrative/characters/[target-name].md` or search `design/narrative/` for the character profile. Extract visual description, role, and any specified distinguishing features.
 
@@ -77,7 +85,7 @@ Group assets into categories:
 - **Audio** — SFX, music tracks, ambient loops *(note: audio specs are descriptions only — no generation prompts)*
 - **3D Assets** — meshes, materials (if applicable per engine)
 
-Present the full identified list to the user. Use `ask the user directly in plain text`:
+Present the full identified list to the user. Ask the user with a concise plain-text choice list:
 - Prompt: "I identified [N] assets across [N] categories for **[target]**. Review before speccing:"
 - Show the grouped list in conversation text first
 - Options: `[A] Proceed — spec all of these` / `[B] Remove some assets` / `[C] Add assets I didn't catch` / `[D] Adjust categories`
@@ -137,7 +145,7 @@ Combine the agent outputs into a draft spec per asset. Present all specs in conv
 **Status:** Needed
 ```
 
-After presenting all specs, use `ask the user directly in plain text`:
+After presenting all specs, ask the user with a concise plain-text choice list:
 - Prompt: "Asset specs for **[target]** — [N] assets. Review complete?"
 - Options: `[A] Approve all — write to file` / `[B] Revise a specific asset` / `[C] Regenerate with different direction`
 
@@ -193,7 +201,7 @@ Ask: "May I update `design/assets/asset-manifest.md`?"
 
 ## Phase 6: Close
 
-Use `ask the user directly in plain text`:
+Ask the user with a concise plain-text choice list:
 - Prompt: "Asset specs complete for **[target]**. What's next?"
 - Options:
   - `[A] Spec another system — $asset-spec system:[next-system]`

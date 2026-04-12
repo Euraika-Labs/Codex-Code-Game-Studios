@@ -12,14 +12,20 @@ test → fix → retest → keep or revert.
 
 ## Phase 1: Parse Argument
 
-Read the skill name from the first argument. If missing, output usage and stop:
+Read the skill name from the first argument. If missing, ask the user with a
+concise plain-text choice list instead of failing:
 
 ```
-Usage: $skill-improve [skill-name]
+Which skill should I improve?
+[A] I'll provide a skill name
+[B] Stop here
+
 Example: $skill-improve tech-debt
 ```
 
-Verify `docs/studio/skills/[name]/SKILL.md` exists. If not, stop with:
+Stop after asking. Do not continue until the user answers.
+
+Verify `.agents/skills/[name]/SKILL.md` exists. If not, stop with:
 "Skill '[name]' not found."
 
 ---
@@ -64,17 +70,17 @@ If BOTH static and category baselines are 0 FAILs and 0 WARNs, stop:
 
 ## Phase 3: Diagnose
 
-Read the full skill file at `docs/studio/skills/[name]/SKILL.md`.
+Read the full skill file at `.agents/skills/[name]/SKILL.md`.
 
 For each failing or warning **static** check, identify the exact gap:
 
 - **Check 1 fail** → which frontmatter field is missing
 - **Check 2 fail** → how many phases found vs. minimum required
 - **Check 3 fail** → no verdict keywords anywhere in the skill body
-- **Check 4 fail** → Write or Edit in allowed-tools but no ask-before-write language
-- **Check 5 warn** → no follow-up or next-step section at the end
-- **Check 6 warn** → `context: fork` set but fewer than 5 phases found
-- **Check 7 warn** → argument-hint is empty or doesn't match documented modes
+- **Check 4 fail** → missing `agents/openai.yaml` metadata or one of the required keys
+- **Check 5 warn** → no ask-before-write language for a skill that edits files
+- **Check 6 warn** → no follow-up or next-step section at the end
+- **Check 7 fail/warn** → stale Codex wording (old skill paths, pseudo-tool references, or obsolete tool names)
 
 For each failing or warning **category** check (if category was assigned in Phase 2b),
 identify the exact gap in the skill's text. For example:
@@ -94,7 +100,7 @@ Write a targeted fix for each failure and warning. Show the proposed changes
 as clearly marked before/after blocks. Only change what is failing — do not
 rewrite sections that are passing.
 
-Ask: "May I write this improved version to `docs/studio/skills/[name]/SKILL.md`?"
+Ask: "May I write this improved version to `.agents/skills/[name]/SKILL.md`?"
 
 If the user says no, stop here.
 
@@ -104,7 +110,7 @@ If the user says no, stop here.
 
 Record the current content of the skill file (for revert if needed).
 
-Write the improved skill to `docs/studio/skills/[name]/SKILL.md`.
+Write the improved skill to `.agents/skills/[name]/SKILL.md`.
 
 Re-run `$skill-test static [name]` and record the new static score.
 If a category was assigned, also re-run `$skill-test category [name]` and record the new category score.
@@ -129,8 +135,9 @@ Show a summary of what was fixed in each dimension.
 **If combined score is the same or worse:**
 Report: "Combined score did not improve."
 Show what changed and why it may not have helped.
-Ask: "May I revert `docs/studio/skills/[name]/SKILL.md` using git checkout?"
-If yes: run `git checkout -- .agents/skills/[name]/SKILL.md`
+Ask: "May I revert `.agents/skills/[name]/SKILL.md` to HEAD?"
+If yes: restore the pre-edit snapshot you saved at the start of Phase 5 using
+`apply_patch`. Do not use destructive git checkout commands.
 
 ---
 

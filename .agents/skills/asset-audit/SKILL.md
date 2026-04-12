@@ -11,6 +11,19 @@ Read the art bible or asset standards from the relevant design docs and the AGEN
 
 ## Phase 2: Scan Asset Directories
 
+Before the deep scan, check whether any real asset directories exist beyond
+template guidance files such as `AGENTS.md`.
+
+If none of `assets/art/`, `assets/audio/`, `assets/vfx/`, `assets/shaders/`, or
+`assets/data/` contain real asset files yet, stop and tell the user:
+
+> "No real asset directories or asset files are present yet, so there is nothing
+> meaningful to audit. Create or import assets first, then re-run `$asset-audit`.
+> If the asset pipeline is not defined yet, run `$art-bible` and `$asset-spec`
+> before auditing."
+
+Treat `AGENTS.md` files as guidance only — they do not count as auditable assets.
+
 Scan the target asset directory using Glob:
 
 - `assets/art/**/*` for art assets
@@ -88,3 +101,4 @@ This skill is read-only — it produces a report but does not write files.
 - Fix naming violations using the patterns defined in AGENTS.md.
 - Delete confirmed orphaned assets after manual review.
 - Run `$content-audit` to cross-check asset counts against GDD-specified requirements.
+- If no assets were present, run `$art-bible` and `$asset-spec` first, then audit again after importing the first asset batch.

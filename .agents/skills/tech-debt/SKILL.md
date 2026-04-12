@@ -13,6 +13,17 @@ Determine the mode from the argument:
 - `report` — Generate a summary report of current debt status
 
 If no subcommand is provided, output usage and stop. Verdict: **FAIL** — missing required subcommand.
+If no subcommand is provided, ask the user with a concise plain-text choice list
+instead of failing:
+
+> "Which tech-debt workflow do you want?"
+> `[A] scan — inspect the codebase for debt indicators`
+> `[B] add — record a debt item manually`
+> `[C] prioritize — re-rank the debt register`
+> `[D] report — summarize the current register`
+> `[E] Stop here`
+>
+> Stop after asking. Do not continue until the user answers.
 
 ---
 

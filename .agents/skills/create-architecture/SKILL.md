@@ -34,7 +34,14 @@ Before anything else, load the full project context in this order:
 
 ### 0a. Engine Context (Critical)
 
-Read the engine reference library completely:
+Read `docs/studio/technical-preferences.md` first to resolve the configured
+engine. If the Engine field is missing, blank, or still `[TO BE CONFIGURED]`,
+stop and prompt:
+> "No engine is configured. Run `$setup-engine` first. Architecture cannot be
+> written without knowing which engine and version you are targeting."
+
+Only after a concrete engine slug is configured, read the engine reference
+library completely:
 
 1. `docs/engine-reference/[engine]/VERSION.md`
    → Extract: engine name, version, LLM cutoff, post-cutoff risk levels
@@ -47,13 +54,20 @@ Read the engine reference library completely:
 5. All files in `docs/engine-reference/[engine]/modules/`
    → Extract: current API patterns per domain
 
-If no engine is configured, stop and prompt:
-> "No engine is configured. Run `$setup-engine` first. Architecture cannot be
-> written without knowing which engine and version you are targeting."
-
 ### 0b. Design Context + Technical Requirements Extraction
 
 Read all approved design documents and extract technical requirements from each:
+
+Before reading the design docs, confirm that both `design/gdd/game-concept.md`
+and `design/gdd/systems-index.md` exist.
+
+If `design/gdd/game-concept.md` is missing, stop and tell the user:
+> "No game concept exists yet. Run `$brainstorm` first, then re-run
+> `$create-architecture`."
+
+If `design/gdd/systems-index.md` is missing, stop and tell the user:
+> "No systems index exists yet. Run `$map-systems` first, then re-run
+> `$create-architecture`."
 
 1. `design/gdd/game-concept.md` — game pillars, genre, core loop
 2. `design/gdd/systems-index.md` — all systems, dependencies, priority tiers
@@ -348,7 +362,7 @@ Pass: architecture document path, technical requirements baseline summary, ADR l
 
 Show the Technical Director assessment and Lead Programmer verdict side by side.
 
-Use `ask the user directly in plain text` — "Technical Director and Lead Programmer have reviewed the architecture. How would you like to proceed?"
+Ask the user directly in plain text — "Technical Director and Lead Programmer have reviewed the architecture. How would you like to proceed?"
 Options: `Accept — proceed to handoff` / `Revise flagged items first` / `Discuss specific concerns`
 
 **Step 4 — Record sign-off in the architecture document:**

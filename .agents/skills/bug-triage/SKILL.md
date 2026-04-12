@@ -40,9 +40,9 @@ Glob for bug reports in priority order:
 3. Any `production/qa/qa-plan-*.md` "Bugs Found" table (last resort)
 
 If no bug files found:
-> "No bug files found in `production/qa/bugs/`. If bugs are tracked in a
-> different location, adjust the glob pattern. If no bugs exist yet, there is
-> nothing to triage."
+> "No bug backlog exists yet in `production/qa/bugs/`, so there is nothing to
+> triage. File bugs first via `$team-qa` or add reports under `production/qa/bugs/`,
+> then re-run `$bug-triage`."
 
 Stop and report. Do not proceed if no bugs exist.
 

@@ -23,12 +23,20 @@ AGENTS_DIR = REPO_ROOT / ".codex" / "agents"
 CONFIG_PATH = REPO_ROOT / ".codex" / "config.toml"
 HOOKS_CONFIG_PATH = REPO_ROOT / ".codex" / "hooks.json"
 HOOKS_DIR = REPO_ROOT / ".codex" / "hooks"
+FRAMEWORK_AGENTS_PATH = REPO_ROOT / "Codex Skill Testing Framework" / "AGENTS.md"
 SUPPORTED_HOOK_EVENTS = {
     "SessionStart",
     "PreToolUse",
     "PostToolUse",
     "UserPromptSubmit",
     "Stop",
+}
+STALE_RUNTIME_PATTERNS = {
+    "docs/studio/skills/": "repo skills now live under .agents/skills/",
+    ".claude/skills/": "Claude skill paths are not valid in this Codex-native repo",
+    ".claude/agents/": "Claude agent paths are not valid in this Codex-native repo",
+    "`ask the user directly in plain text`": "pseudo-tool references should be plain-text instructions instead",
+    "Write/Edit tools": "refer to file edits or apply_patch, not obsolete Write/Edit tool names",
 }
 
 
@@ -276,12 +284,25 @@ def validate_hooks(errors: list[str]) -> None:
                 )
 
 
+def validate_runtime_wording(errors: list[str]) -> None:
+    runtime_files = sorted(SKILLS_DIR.glob("*/SKILL.md")) + sorted(AGENTS_DIR.glob("*.toml"))
+    if FRAMEWORK_AGENTS_PATH.exists():
+        runtime_files.append(FRAMEWORK_AGENTS_PATH)
+
+    for path in runtime_files:
+        text = path.read_text(encoding="utf-8")
+        for needle, explanation in STALE_RUNTIME_PATTERNS.items():
+            if needle in text:
+                fail(errors, f"{path}: stale runtime wording '{needle}' ({explanation})")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_skills(errors)
     validate_agents(errors)
     validate_project_config(errors)
     validate_hooks(errors)
+    validate_runtime_wording(errors)
 
     if errors:
         print("Codex-native validation failed:")

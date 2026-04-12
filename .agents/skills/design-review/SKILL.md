@@ -182,7 +182,7 @@ This skill is read-only — no files are written during Phase 4.
 
 ## Phase 5: Next Steps
 
-Use `ask the user directly in plain text` for ALL closing interactions. Never plain text.
+Ask the user directly in plain text for ALL closing interactions. Never plain text.
 
 **First widget — what to do next:**
 
@@ -195,9 +195,9 @@ If NEEDS REVISION or MAJOR REVISION NEEDED, options:
 
 **If user selects [A] — Revise now:**
 
-Work through all blocking items, asking for design decisions only where you cannot resolve the issue from the GDD and existing docs alone. Group all design-decision questions into a single multi-tab `ask the user directly in plain text` before making any edits — do not interrupt mid-revision for each blocker individually.
+Work through all blocking items, asking for design decisions only where you cannot resolve the issue from the GDD and existing docs alone. Group all design-decision questions into a single multi-tab a concise plain-text choice list before making any edits — do not interrupt mid-revision for each blocker individually.
 
-After all revisions are complete, show a summary table (blocker → fix applied) and use `ask the user directly in plain text` for a **post-revision closing widget**:
+After all revisions are complete, show a summary table (blocker → fix applied) and ask the user directly in plain text for a **post-revision closing widget**:
 
 - Prompt: "Revisions complete — [N] blockers resolved. What next?"
 - Note current context usage: if context is above ~50%, add: "(Recommended: /clear before re-review — this session has used X% context. A full re-review runs 5 agents and needs clean context.)"
@@ -211,13 +211,13 @@ Never end the revision flow with plain text. Always close with this widget.
 
 **Second widget — systems index update (always show this separately):**
 
-Use a second `ask the user directly in plain text`:
+Use a second a concise plain-text choice list:
 - Prompt: "May I update `design/gdd/systems-index.md` to mark [system] as [In Review / Approved]?"
 - Options: `[A] Yes — update it` / `[B] No — leave it as-is`
 
 **Third widget — review log (always offer):**
 
-Use a third `ask the user directly in plain text`:
+Use a third a concise plain-text choice list:
 - Prompt: "May I append this review summary to `design/gdd/reviews/[doc-name]-review-log.md`? This creates a revision history so future re-reviews can track what changed."
 - Options: `[A] Yes — append to review log` / `[B] No — skip`
 
@@ -235,7 +235,7 @@ Prior verdict resolved: [Yes / No / First review]
 
 **Final closing widget — always show after all file writes complete:**
 
-Once the systems-index and review-log widgets are answered, check project state and show one final `ask the user directly in plain text`:
+Once the systems-index and review-log widgets are answered, check project state and show one final a concise plain-text choice list:
 
 Before building options, read:
 - `design/gdd/systems-index.md` — find any system with Status: In Review or NEEDS REVISION (other than the one just reviewed)

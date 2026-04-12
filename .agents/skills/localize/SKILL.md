@@ -23,7 +23,23 @@ RTL layout testing, and localization QA sign-off.
 - `freeze` — Enforce string freeze; lock source strings before translation begins
 - `qa` — Run the full localization QA cycle before release
 
-If no subcommand is provided, output usage and stop. Verdict: **FAIL** — missing required subcommand.
+If no subcommand is provided, ask the user with a concise plain-text choice list
+instead of failing:
+
+> "Which localization workflow do you want to run?"
+> `[A] scan — find hardcoded strings and anti-patterns`
+> `[B] extract — build or extend the source string table`
+> `[C] validate — check locale files for completeness and placeholder issues`
+> `[D] status — show localization coverage by locale`
+> `[E] brief — generate a translator briefing document`
+> `[F] cultural-review — audit content for cultural sensitivity`
+> `[G] vo-pipeline — plan voice-over localization`
+> `[H] rtl-check — validate RTL readiness`
+> `[I] freeze — enforce string freeze`
+> `[J] qa — run localization QA`
+> `[K] Stop here`
+>
+> Stop after asking. Do not continue until the user answers.
 
 ---
 
@@ -327,7 +343,7 @@ Pre-Freeze Checklist
 [ ] Marketing strings (store description, achievements) are final
 ```
 
-Use `ask the user directly in plain text`:
+Ask the user directly in plain text:
 - Prompt: "Are all items above confirmed? Calling string freeze locks the source table."
 - Options: `[A] Yes — call string freeze now` / `[B] No — I still have strings to add`
 

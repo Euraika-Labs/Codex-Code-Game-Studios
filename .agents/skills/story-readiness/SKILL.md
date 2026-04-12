@@ -31,7 +31,7 @@ See `docs/studio/director-gates.md` for the full check pattern and mode definiti
 
 ## 1. Parse Arguments
 
-**Scope:** `$ARGUMENTS[0]` (blank = ask user via ask the user directly in plain text)
+**Scope:** `$ARGUMENTS[0]` (blank = ask user via a concise plain-text choice list)
 
 - **Specific path** (e.g., `$story-readiness production/epics/combat/story-001-basic-attack.md`):
   validate that single story file.
@@ -41,7 +41,7 @@ See `docs/studio/director-gates.md` for the full check pattern and mode definiti
   validate every story file found.
 - **No argument**: ask the user which scope to validate.
 
-If no argument is given, use `ask the user directly in plain text`:
+If no argument is given, ask the user directly in plain text:
 - "What would you like to validate?"
   - Options: "A specific story file", "All stories in the current sprint",
     "All stories in production/epics/", "Stories for a specific epic"
@@ -331,7 +331,7 @@ Pass the following context:
 
 Handle the verdict per standard rules in `director-gates.md`:
 - **ADEQUATE** → story is cleared. Proceed to close.
-- **GAPS [list]** → surface the specific gaps to the user via `ask the user directly in plain text`:
+- **GAPS [list]** → surface the specific gaps to the user via a concise plain-text choice list:
   options: `Update story with suggested gaps` / `Accept and proceed anyway` / `Discuss further`.
 - **INADEQUATE** → surface the specific gaps; ask user whether to update the story or proceed anyway.
 

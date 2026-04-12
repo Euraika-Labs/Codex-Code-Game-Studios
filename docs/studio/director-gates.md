@@ -53,7 +53,7 @@ $architecture-decision --review solo     → skips all gates this run
 Before spawning gate [GATE-ID]:
 1. If skill was called with --review [mode], use that
 2. Else read production/review-mode.txt
-3. Else default to full
+3. Else default to lean
 
 Apply the resolved mode:
 - solo → skip all gates. Note: "[GATE-ID] skipped — Solo mode"

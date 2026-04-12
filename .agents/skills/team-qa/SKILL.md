@@ -5,7 +5,7 @@ description: "Orchestrate the QA team through a full testing cycle. Coordinates 
 
 When this skill is invoked, orchestrate the QA team through a structured testing cycle.
 
-**Decision Points:** At each phase transition, use `ask the user directly in plain text` to present
+**Decision Points:** At each phase transition, present a concise plain-text choice list to
 the user with the subagent's proposals as selectable options. Write the agent's
 full analysis in conversation, then capture the decision with concise labels.
 The user must approve before moving to the next phase.
@@ -34,7 +34,17 @@ Before doing anything else, gather the full scope:
    - If argument is `feature: [system-name]`: glob story files tagged for that system
    - If no argument: read `production/session-state/active.md` and `production/sprint-status.yaml` (if present) to infer the active sprint
 
+If no argument is provided and `production/session-state/active.md` is missing,
+stop and tell the user:
+> "No active production context exists yet, so I can't infer a QA scope. Run
+> `$start` first or re-run `$team-qa` with an explicit sprint or feature
+> argument."
+
 2. Read `production/stage.txt` to confirm the current project phase.
+
+If `production/stage.txt` is missing, stop and tell the user:
+> "No project stage is recorded yet in `production/stage.txt`. Run `$start`
+> first, then re-run `$team-qa`."
 
 3. Count stories found and report to the user:
    > "QA cycle starting for [sprint/feature]. Found [N] stories. Current stage: [stage]. Ready to begin QA strategy?"
@@ -59,7 +69,7 @@ Prompt the qa-lead to:
 
 If the smoke check result is **FAIL**, the qa-lead must list the failures prominently. QA cannot proceed past the strategy phase with a failed smoke check.
 
-Present the qa-lead's full strategy to the user, then use `ask the user directly in plain text`:
+Present the qa-lead's full strategy to the user, then ask the user directly in plain text:
 
 ```
 question: "QA Strategy Review"
@@ -113,7 +123,7 @@ Each test case set should include:
 
 Present the test cases to the user for review before execution. Group by story.
 
-Use `ask the user directly in plain text` per story group (batched 3-4 at a time):
+Ask the user directly in plain text per story group (batched 3-4 at a time):
 
 ```
 question: "Test cases ready for [Story Group]. Review before manual QA begins?"
@@ -127,7 +137,7 @@ options:
 
 Walk through each story in the approved manual QA list.
 
-Batch stories into groups of 3-4 and use `ask the user directly in plain text` for each:
+Batch stories into groups of 3-4 and ask the user directly in plain text for each:
 
 ```
 question: "Manual QA — [Story Title]\n[brief description of what to test]"
@@ -138,7 +148,7 @@ options:
   - "BLOCKED — cannot test yet (reason)"
 ```
 
-After each FAIL result: use `ask the user directly in plain text` to collect the failure description, then spawn `qa-tester` as a subagent to write a formal bug report in `production/qa/bugs/`.
+After each FAIL result: ask the user directly in plain text to collect the failure description, then spawn `qa-tester` as a subagent to write a formal bug report in `production/qa/bugs/`.
 
 Bug report naming: `BUG-[NNN]-[short-slug].md` (increment NNN from existing bugs in the directory).
 
@@ -198,7 +208,7 @@ If any spawned agent (as a subagent) returns BLOCKED, errors, or cannot complete
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via ask the user directly in plain text with choices:
+3. **Offer options** via a concise plain-text choice list with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

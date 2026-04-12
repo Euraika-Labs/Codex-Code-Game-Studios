@@ -5,7 +5,7 @@ description: "Validate skill files for structural compliance and behavioral corr
 
 # Skill Test
 
-Validates `docs/studio/skills/*/SKILL.md` files for structural compliance and
+Validates `.agents/skills/*/SKILL.md` files for structural compliance and
 behavioral correctness. No external dependencies — runs entirely within the
 existing skill/hook/template architecture.
 
@@ -25,13 +25,14 @@ existing skill/hook/template architecture.
 Determine mode from the first argument:
 
 - `static [name]` → run 7 structural checks on one skill
-- `static all` → run 7 structural checks on all skills (Glob `docs/studio/skills/*/SKILL.md`)
+- `static all` → run 7 structural checks on all skills (Glob `.agents/skills/*/SKILL.md`)
 - `spec [name]` → read skill + test spec, evaluate assertions
 - `category [name]` → run category-specific rubric from `Codex Skill Testing Framework/quality-rubric.md`
 - `category all` → run category rubric for every skill that has a `category:` in catalog
 - `audit` (or no argument) → read catalog, list all skills and agents, show coverage
 
-If argument is missing or unrecognized, output usage and stop.
+If the argument is missing, default to `audit`.
+If the argument is unrecognized, output usage and stop.
 
 ---
 
@@ -43,13 +44,19 @@ For each skill being tested, read its `SKILL.md` fully and run all 7 checks:
 The file must contain all of these in the YAML frontmatter block:
 - `name:`
 - `description:`
-- `argument-hint:`
-- `invocation:`
-- `allowed-tools:`
 
 **FAIL** if any are absent.
 
-### Check 2 — Multiple Phases
+### Check 2 — Codex Metadata
+The skill directory must contain `agents/openai.yaml` with all of:
+- `interface.display_name`
+- `interface.short_description`
+- `interface.default_prompt`
+- `policy.allow_implicit_invocation`
+
+**FAIL** if the file is missing or any required key is absent.
+
+### Check 3 — Multiple Phases
 The skill must have ≥2 numbered phase headings. Look for patterns like:
 - `## Phase N` or `## Phase N:`
 - `## N.` (numbered top-level sections)
@@ -57,22 +64,21 @@ The skill must have ≥2 numbered phase headings. Look for patterns like:
 
 **FAIL** if fewer than 2 phase-like headings are found.
 
-### Check 3 — Verdict Keywords
+### Check 4 — Verdict Keywords
 The skill must contain at least one of: `PASS`, `FAIL`, `CONCERNS`, `APPROVED`,
 `BLOCKED`, `COMPLETE`, `READY`, `COMPLIANT`, `NON-COMPLIANT`
 
 **FAIL** if none are present.
 
-### Check 4 — Collaborative Protocol Language
+### Check 5 — Collaborative Protocol Language
 The skill must contain ask-before-write language. Look for:
 - `"May I write"` (canonical form)
 - `"before writing"` or `"approval"` near file-write instructions
 - `"ask"` + `"write"` in close proximity (within same section)
 
 **WARN** if absent (some read-only skills legitimately skip this).
-**FAIL** if `allowed-tools` includes `Write` or `Edit` but no ask-before-write language is found.
 
-### Check 5 — Next-Step Handoff
+### Check 6 — Next-Step Handoff
 The skill must end with a recommended next action or follow-up path. Look for:
 - A final section mentioning another skill (e.g., `$story-done`, `$gate-check`)
 - "Recommended next" or "next step" phrasing
@@ -80,19 +86,14 @@ The skill must end with a recommended next action or follow-up path. Look for:
 
 **WARN** if absent.
 
-### Check 6 — Fork Context Complexity
-If frontmatter contains `context: fork`, the skill should have ≥5 phase headings
-(`##` level or numbered Phase N headers). Fork context is for complex multi-phase
-skills; simple skills should not use it.
+### Check 7 — Runtime Wording Hygiene
+The skill must not contain stale Codex-incompatible references such as:
+- legacy repo-skill paths instead of `.agents/skills/`
+- legacy Claude skill or agent directories
+- backticked pseudo-tool references for plain-text choice widgets
+- obsolete file-edit tool naming instead of generic file-edit language
 
-**WARN** if `context: fork` is set but fewer than 5 phases found.
-
-### Check 7 — Argument Hint Plausibility
-`argument-hint` must be non-empty. If the skill body mentions multiple modes
-(e.g., "Mode A | Mode B"), the hint should reflect them. Cross-reference the
-hint against the first phase's "Parse Arguments" section.
-
-**WARN** if hint is `""` or if documented modes don't match hint.
+**FAIL** if any stale runtime wording remains.
 
 ---
 
@@ -103,12 +104,12 @@ For a single skill:
 === Skill Static Check: /[name] ===
 
 Check 1 — Frontmatter Fields:    PASS
-Check 2 — Multiple Phases:       PASS (7 phases found)
-Check 3 — Verdict Keywords:      PASS (PASS, FAIL, CONCERNS)
-Check 4 — Collaborative Protocol: PASS ("May I write" found)
-Check 5 — Next-Step Handoff:     WARN (no follow-up section found)
-Check 6 — Fork Context Complexity: PASS (8 phases, context: fork set)
-Check 7 — Argument Hint:         PASS
+Check 2 — Codex Metadata:        PASS
+Check 3 — Multiple Phases:       PASS (7 phases found)
+Check 4 — Verdict Keywords:      PASS (PASS, FAIL, CONCERNS)
+Check 5 — Collaborative Protocol: PASS ("May I write" found)
+Check 6 — Next-Step Handoff:     WARN (no follow-up section found)
+Check 7 — Runtime Wording:       PASS
 
 Verdict: WARNINGS (1 warning, 0 failures)
 Recommended: Add a "Follow-Up Actions" section at the end of the skill.
@@ -116,7 +117,7 @@ Recommended: Add a "Follow-Up Actions" section at the end of the skill.
 
 For `static all`, produce a summary table then list any non-compliant skills:
 ```
-=== Skill Static Check: All 52 Skills ===
+=== Skill Static Check: All 72 Skills ===
 
 Skill                  | Result       | Issues
 -----------------------|--------------|-------
@@ -135,12 +136,12 @@ Aggregate Verdict: N WARNINGS / N FAILURES
 
 ### Step 1 — Locate Files
 
-Find skill at `docs/studio/skills/[name]/SKILL.md`.
+Find skill at `.agents/skills/[name]/SKILL.md`.
 Look up the spec path from `Codex Skill Testing Framework/catalog.yaml` — use the
 `spec:` field for the matching skill entry.
 
 If either is missing:
-- Missing skill: "Skill '[name]' not found in `docs/studio/skills/`."
+- Missing skill: "Skill '[name]' not found in `.agents/skills/`."
 - Missing spec path in catalog: "No spec path set for '[name]' in catalog.yaml."
 - Spec file not found at path: "Spec file missing at [path]. Run `$skill-test audit`
   to see coverage gaps."
@@ -216,7 +217,7 @@ If yes:
 
 ### Step 1 — Locate Skill and Category
 
-Find skill at `docs/studio/skills/[name]/SKILL.md`.
+Find skill at `.agents/skills/[name]/SKILL.md`.
 Look up `category:` field in `Codex Skill Testing Framework/catalog.yaml`.
 
 If skill not found: "Skill '[name]' not found."
@@ -277,7 +278,7 @@ yet (first-run state).
 
 ### Step 2 — Enumerate All Skills and Agents
 
-Glob `docs/studio/skills/*/SKILL.md` to get the complete list of skills.
+Glob `.agents/skills/*/SKILL.md` to get the complete list of skills.
 Extract skill name from each path (directory name).
 
 Also read the `agents:` section from `Codex Skill Testing Framework/catalog.yaml` to get the

@@ -32,7 +32,7 @@ read that file directly.
 1. Check `production/session-state/active.md` for the currently active story.
 2. If not found there, read the most recent file in `production/sprints/` and
    look for stories marked IN PROGRESS.
-3. If multiple in-progress stories are found, use `ask the user directly in plain text`:
+3. If multiple in-progress stories are found, ask the user directly in plain text:
    - "Which story are we completing?"
    - Options: list the in-progress story file names.
 4. If no story can be found, ask the user to provide the path.
@@ -82,13 +82,13 @@ three methods:
   that should be in localization files.
 - **Dependency check**: if a criterion says "depends on X", check that X exists.
 
-### Manual verification with confirmation (use `ask the user directly in plain text`)
+### Manual verification with confirmation (ask the user directly in plain text)
 
 - Criteria about subjective qualities ("feels responsive", "animations play correctly")
 - Criteria about gameplay behaviour ("player takes damage when...", "enemy responds to...")
 - Performance criteria ("completes within Xms") — ask if profiled or accept as assumed
 
-Batch up to 4 manual verification questions into a single `ask the user directly in plain text` call:
+Batch up to 4 manual verification questions into a single a concise plain-text choice list call:
 
 ```
 question: "Does [criterion]?"
@@ -112,7 +112,7 @@ For each acceptance criterion in the story:
    - **Unit test**: check `tests/unit/` for a test file or function name that
      matches the criterion's subject (use `Glob` and `Grep`)
    - **Integration test**: check `tests/integration/` similarly
-   - **Manual confirmation**: if the criterion was verified via `ask the user directly in plain text`
+   - **Manual confirmation**: if the criterion was verified via a concise plain-text choice list
      above with a "Yes — passes" answer, count that as a manual test
 
 2. Produce a traceability table:
@@ -259,7 +259,7 @@ Spawn `lead-programmer` as a subagent using gate **LP-CODE-REVIEW** (`docs/studi
 
 Pass: implementation file paths, story file path, relevant GDD section, governing ADR.
 
-Present the verdict to the user. If CONCERNS, surface them via `ask the user directly in plain text`:
+Present the verdict to the user. If CONCERNS, surface them via a concise plain-text choice list:
 - Options: `Revise flagged issues` / `Accept and proceed` / `Discuss further`
 If REJECT, do not proceed to Phase 6 verdict until the issues are resolved.
 
@@ -413,7 +413,7 @@ If no more stories are ready but Must Have stories are still In Progress (not Co
   decides if they are acceptable.
 - **BLOCKED verdict is advisory** — the user can override and mark complete
   anyway; document the risk explicitly if they do.
-- Use `ask the user directly in plain text` for the code review prompt and for batching manual
+- Ask the user directly in plain text for the code review prompt and for batching manual
   criteria confirmations.
 
 ---
