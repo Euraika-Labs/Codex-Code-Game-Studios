@@ -1,0 +1,66 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.codex/hooks/session-start.sh",
+            "timeout_sec": 10
+          },
+          {
+            "type": "command",
+            "command": "./.codex/hooks/detect-gaps.sh",
+            "timeout_sec": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^Bash$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.codex/hooks/validate-commit.sh",
+            "timeout_sec": 10
+          },
+          {
+            "type": "command",
+            "command": "./.codex/hooks/validate-push.sh",
+            "timeout_sec": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.codex/hooks/validate-assets.sh",
+            "timeout_sec": 10
+          },
+          {
+            "type": "command",
+            "command": "./.codex/hooks/validate-skill-change.sh",
+            "timeout_sec": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.codex/hooks/session-stop.sh",
+            "timeout_sec": 10
+          }
+        ]
+      }
+    ]
+  }
+}

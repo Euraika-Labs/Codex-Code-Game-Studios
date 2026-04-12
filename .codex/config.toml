@@ -1,0 +1,13 @@
+# Shared Codex defaults for this studio template.
+# Personal overrides belong in ~/.codex/config.toml.
+
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+tool_output_token_limit = 20000
+
+[features]
+skills = true
+apply_patch_freeform = true
+web_search_request = true

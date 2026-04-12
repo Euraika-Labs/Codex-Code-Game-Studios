@@ -1,0 +1,12 @@
+# CODEOWNERS — auto-assigns reviewers to PRs by path
+# Format: <pattern> <@github-username or @org/team>
+# Last match wins. Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+*                           @Donchitos
+
+# Core configuration — owner review required
+AGENTS.md                   @Donchitos
+.agents/                    @Donchitos
+.codex/                     @Donchitos
+docs/studio/                @Donchitos

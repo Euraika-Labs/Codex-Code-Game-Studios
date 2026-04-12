@@ -1,0 +1,157 @@
+<p align="center">
+  <h1 align="center">Codex Code Game Studios</h1>
+  <p align="center">
+    Turn a single Codex CLI session into a structured game development studio.
+    <br />
+    49 custom agents. 72 reusable skills. One consistent workflow.
+  </p>
+</p>
+
+<p align="center">
+  <a href=".codex/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 agents"></a>
+  <a href=".agents/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 skills"></a>
+  <a href="docs/studio/hooks-reference.md"><img src="https://img.shields.io/badge/supported%20hooks-5-orange" alt="5 supported hooks"></a>
+  <a href="docs/studio/rules-reference.md"><img src="https://img.shields.io/badge/path%20guides-11-red" alt="11 path guides"></a>
+  <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/built%20for-Codex%20CLI-black" alt="Built for Codex CLI"></a>
+</p>
+
+---
+
+## What This Repo Is
+
+This repository is a Codex-native port of the original studio framework that
+was built for Claude Code. The core idea is unchanged: instead of one generic
+AI session, you work with a full studio model that has directors, leads,
+specialists, reusable workflows, document templates, and lightweight
+automation.
+
+What changed is the surface area:
+
+| Original concept | Codex-native equivalent |
+| --- | --- |
+| `CLAUDE.md` | `AGENTS.md` |
+| `.claude/skills/*/SKILL.md` | `.agents/skills/*/SKILL.md` |
+| `.claude/agents/*.md` | `.codex/agents/*.toml` |
+| `.claude/rules/*.md` | nested `AGENTS.md` files near the relevant paths |
+| `.claude/hooks/*` | `.codex/hooks/*` plus `.codex/hooks.json` |
+| Claude-only prompts like `AskUserQuestion` | direct Codex conversation flow with explicit option-setting in skills |
+
+## What Is Included
+
+| Category | Count | Notes |
+| --- | --- | --- |
+| Custom agents | 49 | Directors, department leads, specialists, and engine experts |
+| Skills | 72 | Reusable repo skills for design, engineering, QA, release, and orchestration |
+| Supported hooks | 5 events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` are the current Codex hook surfaces |
+| Path guides | 11 | Nested `AGENTS.md` files for code, docs, shaders, data, tests, and prototypes |
+| Studio docs | 60+ | Workflow docs, templates, gate definitions, and references |
+
+## Codex-Native Layout
+
+```text
+/
+├── AGENTS.md                     # Root operating guide for Codex
+├── .agents/
+│   └── skills/                  # 72 repo skills
+├── .codex/
+│   ├── agents/                  # 49 custom agent definitions (.toml)
+│   ├── hooks/                   # Hook scripts kept in repo
+│   ├── config.toml              # Project defaults for Codex
+│   └── hooks.json               # Hook registration file
+├── docs/
+│   └── studio/                  # Workflow docs, templates, references
+├── design/                      # GDDs, UX, narrative, level docs
+├── src/                         # Game source code
+├── assets/                      # Art, audio, shaders, data
+├── tests/                       # QA and automated tests
+├── prototypes/                  # Isolated throwaway experiments
+└── production/                  # Sprints, milestones, release tracking
+```
+
+## Getting Started
+
+### 1. Install Codex CLI
+
+```bash
+npm install -g @openai/codex
+```
+
+You can also install via Homebrew or a release binary from the official
+[OpenAI Codex repository](https://github.com/openai/codex).
+
+### 2. Clone the Repo
+
+```bash
+git clone <your-repo-url> my-game
+cd my-game
+```
+
+### 3. Start Codex in the Project Root
+
+```bash
+codex
+```
+
+### 4. Kick Off the Workflow
+
+Mention a repo skill directly in your prompt:
+
+- `$start` for first-time routing
+- `$help` for “what should I do next?”
+- `$brainstorm` to shape a new concept
+- `$project-stage-detect` to audit an existing game project
+- `$setup-engine godot 4.6` or another engine-specific setup
+
+The skills live in `.agents/skills/`, so you can inspect or customize them just
+like any other part of the project.
+
+## How This Repo Uses Codex
+
+- Root guidance lives in `AGENTS.md`.
+- Path-specific rules live in nested `AGENTS.md` files, so Codex picks up the
+  closest instructions for gameplay code, shaders, tests, narrative docs, and
+  other domains.
+- Custom agent definitions live in `.codex/agents/*.toml`.
+- Project hooks are wired from `.codex/hooks.json`.
+- Project defaults are stored in `.codex/config.toml`.
+
+Only hook events supported by current Codex releases are wired by default.
+Legacy compatibility scripts are still kept under `.codex/hooks/` for reference,
+but unsupported Claude-specific hook events are not registered.
+
+## Workflow Overview
+
+The studio model is organized around seven phases:
+
+1. Concept
+2. Systems Design
+3. Technical Setup
+4. Pre-Production
+5. Production
+6. Polish
+7. Release
+
+The docs that drive those phases live in:
+
+- `docs/studio/quick-start.md`
+- `docs/WORKFLOW-GUIDE.md`
+- `docs/studio/workflow-catalog.yaml`
+- `docs/studio/director-gates.md`
+
+## Customizing the Studio
+
+- Edit `AGENTS.md` to change the repo-wide operating model.
+- Edit nested `AGENTS.md` files to change domain-specific standards.
+- Add or refine workflows in `.agents/skills/`.
+- Tune project defaults in `.codex/config.toml`.
+- Add or remove supported hooks in `.codex/hooks.json`.
+
+## Attribution
+
+This repository preserves the studio architecture and workflow intent of the
+original `Claude-Code-Game-Studios` project while translating it to Codex CLI
+concepts and project structure.
+
+## License
+
+Released under the [MIT License](LICENSE).
