@@ -1,0 +1,29 @@
+{
+  "name": "tech-debt-scan",
+  "fixture": "blank-project",
+  "turns": [
+    {
+      "prompt": "Use the `$tech-debt` skill for this repository.",
+      "expect_regex": "Which tech-debt workflow do you want\\?|\\[A\\].*scan"
+    },
+    {
+      "prompt": "scan",
+      "expect_regex": "May I write these findings to `docs/tech-debt-register\\.md`\\?|tech-debt-register\\.md"
+    },
+    {
+      "prompt": "Yes, write the register.",
+      "expect_regex": "COMPLETE|tech-debt-register\\.md|Technical Debt Register"
+    }
+  ],
+  "assertions": [
+    {
+      "type": "path_exists",
+      "path": "docs/tech-debt-register.md"
+    },
+    {
+      "type": "file_contains",
+      "path": "docs/tech-debt-register.md",
+      "contains": "## Technical Debt Register"
+    }
+  ]
+}

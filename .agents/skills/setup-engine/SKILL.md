@@ -401,19 +401,28 @@ Godot to Unity), update it.
 
 ---
 
-## 9. Update Agent Instructions
+## 9. Audit Agent Instructions
 
-Ask: "May I add a Version Awareness section to the engine specialist agent files?" before making any edits.
+Treat `.codex/agents/*.toml` as studio infrastructure, not normal project output.
+During `$setup-engine`, you should usually **audit** those files and report their
+status, not edit them.
 
-For the chosen engine's specialist agents, verify they have a
-"Version Awareness" section. If not, add one following the pattern in
-the existing Godot specialist agents.
+For the chosen engine's specialist agents:
 
-The section should instruct the agent to:
-1. Read `docs/engine-reference/<engine>/VERSION.md`
-2. Check deprecated APIs before suggesting code
-3. Check breaking changes for relevant version transitions
-4. Use WebSearch to verify uncertain APIs
+1. Verify they already contain a semantic equivalent of a `Version Awareness`
+   section.
+2. Consider the section valid if it tells the agent to read the pinned engine
+   version file plus the relevant breaking-change/deprecation docs before
+   suggesting code.
+3. If the guardrail is already present, report that the engine specialists are
+   aligned and continue without proposing any hidden-file edits.
+4. If the guardrail is missing, explain the gap and recommend a follow-up studio
+   maintenance task to update `.codex/agents/*.toml`.
+
+Only offer to edit `.codex/agents/*.toml` if the user explicitly says they want
+to maintain Codex studio infrastructure as part of this run. If the runtime or
+sandbox blocks hidden config writes, treat that as expected and fall back to a
+report-only result instead of retrying.
 
 ---
 

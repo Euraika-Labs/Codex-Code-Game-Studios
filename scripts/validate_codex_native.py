@@ -23,6 +23,8 @@ AGENTS_DIR = REPO_ROOT / ".codex" / "agents"
 CONFIG_PATH = REPO_ROOT / ".codex" / "config.toml"
 HOOKS_CONFIG_PATH = REPO_ROOT / ".codex" / "hooks.json"
 HOOKS_DIR = REPO_ROOT / ".codex" / "hooks"
+SCENARIOS_DIR = REPO_ROOT / "fixtures" / "e2e" / "scenarios"
+STATES_DIR = REPO_ROOT / "fixtures" / "e2e" / "states"
 FRAMEWORK_AGENTS_PATH = REPO_ROOT / "Codex Skill Testing Framework" / "AGENTS.md"
 SUPPORTED_HOOK_EVENTS = {
     "SessionStart",
@@ -296,6 +298,72 @@ def validate_runtime_wording(errors: list[str]) -> None:
                 fail(errors, f"{path}: stale runtime wording '{needle}' ({explanation})")
 
 
+def validate_scenarios(errors: list[str]) -> None:
+    if not SCENARIOS_DIR.exists():
+        return
+
+    scenario_count = 0
+    for scenario_path in sorted(SCENARIOS_DIR.glob("*.json")):
+        scenario_count += 1
+        try:
+            spec = json.loads(scenario_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            fail(errors, f"{scenario_path}: JSON parse error: {exc}")
+            continue
+
+        for key in ("name", "fixture", "turns"):
+            if key not in spec:
+                fail(errors, f"{scenario_path}: missing required key '{key}'")
+
+        turns = spec.get("turns")
+        if not isinstance(turns, list) or not turns:
+            fail(errors, f"{scenario_path}: turns must be a non-empty list")
+        else:
+            for index, turn in enumerate(turns, start=1):
+                if not isinstance(turn, dict):
+                    fail(errors, f"{scenario_path}: turn {index} must be an object")
+                    continue
+                prompt = turn.get("prompt")
+                if not isinstance(prompt, str) or not prompt.strip():
+                    fail(errors, f"{scenario_path}: turn {index} missing prompt")
+                expect_regex = turn.get("expect_regex")
+                if expect_regex is not None and not isinstance(expect_regex, str):
+                    fail(errors, f"{scenario_path}: turn {index} expect_regex must be a string")
+                if isinstance(expect_regex, str):
+                    try:
+                        re.compile(expect_regex)
+                    except re.error as exc:
+                        fail(errors, f"{scenario_path}: turn {index} invalid expect_regex: {exc}")
+
+        fixture_name = spec.get("fixture")
+        if isinstance(fixture_name, str):
+            fixture_dir = STATES_DIR / fixture_name
+            if not fixture_dir.exists():
+                fail(errors, f"{scenario_path}: missing fixture state {fixture_dir}")
+        else:
+            fail(errors, f"{scenario_path}: fixture must be a string")
+
+        assertions = spec.get("assertions", [])
+        if not isinstance(assertions, list):
+            fail(errors, f"{scenario_path}: assertions must be a list")
+        else:
+            for index, assertion in enumerate(assertions, start=1):
+                if not isinstance(assertion, dict):
+                    fail(errors, f"{scenario_path}: assertion {index} must be an object")
+                    continue
+                assertion_type = assertion.get("type")
+                if assertion_type not in {
+                    "path_exists",
+                    "path_not_exists",
+                    "file_contains",
+                    "glob_count",
+                }:
+                    fail(errors, f"{scenario_path}: assertion {index} uses unsupported type '{assertion_type}'")
+
+    if scenario_count == 0:
+        fail(errors, f"{SCENARIOS_DIR}: no scenario JSON files found")
+
+
 def main() -> int:
     errors: list[str] = []
     validate_skills(errors)
@@ -303,6 +371,7 @@ def main() -> int:
     validate_project_config(errors)
     validate_hooks(errors)
     validate_runtime_wording(errors)
+    validate_scenarios(errors)
 
     if errors:
         print("Codex-native validation failed:")
@@ -314,6 +383,7 @@ def main() -> int:
     print(f"Skills checked: {len(list(SKILLS_DIR.glob('*/SKILL.md')))}")
     print(f"Agents checked: {len(list(AGENTS_DIR.glob('*.toml')))}")
     print(f"Hooks checked: {len(list(HOOKS_DIR.glob('*.sh')))}")
+    print(f"Scenarios checked: {len(list(SCENARIOS_DIR.glob('*.json')))}")
     return 0
 
 

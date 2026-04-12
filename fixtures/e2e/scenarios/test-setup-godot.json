@@ -1,0 +1,41 @@
+{
+  "name": "test-setup-godot",
+  "fixture": "post-setup-engine-godot",
+  "turns": [
+    {
+      "prompt": "Use the `$test-setup` skill for this repository. The engine is already configured for Godot 4.6 and you already have user approval to create the planned test infrastructure files if the plan is valid. Complete the workflow and stop when the test setup is fully written.",
+      "expect_regex": "tests/README\\.md|tests\\.yml|Test Infrastructure|COMPLETE|Next Steps"
+    }
+  ],
+  "assertions": [
+    {
+      "type": "path_exists",
+      "path": "tests/README.md"
+    },
+    {
+      "type": "path_exists",
+      "path": "tests/unit"
+    },
+    {
+      "type": "path_exists",
+      "path": "tests/integration"
+    },
+    {
+      "type": "path_exists",
+      "path": "tests/smoke"
+    },
+    {
+      "type": "path_exists",
+      "path": "tests/evidence"
+    },
+    {
+      "type": "path_exists",
+      "path": ".github/workflows/tests.yml"
+    },
+    {
+      "type": "file_contains",
+      "path": "tests/README.md",
+      "regex": "\\*\\*Engine\\*\\*:\\s*Godot 4\\.6"
+    }
+  ]
+}

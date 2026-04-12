@@ -176,6 +176,14 @@ python3 scripts/sync_codex_metadata.py
 python3 scripts/validate_codex_native.py
 ```
 
+For higher-fidelity workflow testing in throwaway repo copies, run:
+
+```bash
+python3 scripts/run_codex_scenarios.py
+```
+
+The fixture overlays and scenario definitions live under `fixtures/e2e/`.
+
 ## Attribution
 
 This repository preserves the studio architecture and workflow intent of the
