@@ -1,0 +1,6 @@
+interface:
+  display_name: "Architecture Review"
+  short_description: "Validates completeness and consistency of the project architecture…"
+  default_prompt: "Use $architecture-review to validates completeness and consistency of the project architecture against all GDDs. Builds a traceability matrix mapping every GDD technical requirement to ADRs, identifies coverage gaps, detects cross-ADR conflicts, verifies engine compatibility consistency across all decisions, and produces a PASS/CONCERNS/FAIL verdict. The architecture equivalent of $design-review."
+policy:
+  allow_implicit_invocation: true

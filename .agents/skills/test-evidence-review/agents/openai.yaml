@@ -1,0 +1,6 @@
+interface:
+  display_name: "Test Evidence Review"
+  short_description: "Quality review of test files and manual evidence documents. Goes…"
+  default_prompt: "Use $test-evidence-review to quality review of test files and manual evidence documents. Goes beyond existence checks — evaluates assertion coverage, edge case handling, naming conventions, and evidence completeness. Produces ADEQUATE/INCOMPLETE/MISSING verdict per story. Run before QA sign-off or on demand."
+policy:
+  allow_implicit_invocation: true

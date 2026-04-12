@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Stories"
+  short_description: "Break a single epic into implementable story files. Reads the epic…"
+  default_prompt: "Use $create-stories to break a single epic into implementable story files. Reads the epic, its GDD, governing ADRs, and control manifest. Each story embeds its GDD requirement TR-ID, ADR guidance, acceptance criteria, story type, and test evidence path. Run after $create-epics for each epic."
+policy:
+  allow_implicit_invocation: false

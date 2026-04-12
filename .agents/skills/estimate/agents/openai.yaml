@@ -1,0 +1,6 @@
+interface:
+  display_name: "Estimate"
+  short_description: "Estimates task effort by analyzing complexity, dependencies…"
+  default_prompt: "Use $estimate to estimates task effort by analyzing complexity, dependencies, historical velocity, and risk factors. Produces a structured estimate with confidence levels."
+policy:
+  allow_implicit_invocation: true

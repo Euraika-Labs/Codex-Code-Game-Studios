@@ -33,7 +33,9 @@ if [ -z "$SKILL_NAME" ]; then
 fi
 
 echo "=== Skill Modified: $SKILL_NAME ===" >&2
-echo "Run "'$skill-test static '"$SKILL_NAME"' to validate structural compliance.' >&2
+echo "Run: python3 scripts/sync_codex_metadata.py" >&2
+echo "Run: python3 scripts/validate_codex_native.py" >&2
+echo "Run: "'$skill-test static '"$SKILL_NAME"' to validate structural compliance.' >&2
 echo "====================================" >&2
 
 exit 0

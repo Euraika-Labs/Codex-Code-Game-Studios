@@ -7,6 +7,8 @@ domain lead) should delegate to specialists.
 
 The model values below reflect the current `.codex/agents/*.toml` files. If a
 TOML file changes, treat the file as the source of truth and update this roster.
+Each agent file also declares `sandbox_mode` and `nickname_candidates` so
+spawned sessions have explicit runtime defaults and more readable thread labels.
 
 ## Tier 1 -- Leadership Agents (`gpt-5.4`)
 

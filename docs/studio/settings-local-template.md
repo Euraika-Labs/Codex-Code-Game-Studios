@@ -18,8 +18,22 @@ model_reasoning_effort = "high"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
+[agents]
+max_threads = 4
+max_depth = 1
+
+[tui]
+alternate_screen = "never"
+
+[tools.web_search]
+context_size = "medium"
+
 [projects."/absolute/path/to/Codex-Code-Game-Studios"]
 trust_level = "trusted"
+
+[[skills.config]]
+name = "team-ui"
+enabled = false
 ```
 
 Run the project with that profile using:
@@ -42,7 +56,17 @@ Use user `~/.codex/config.toml` for settings only you should control:
 - personal profiles
 - local model-provider choices
 - personal approval preferences
+- personal skill enables/disables via `[[skills.config]]`
+- terminal UI preferences such as `tui.alternate_screen`
+- personal subagent tuning such as `[agents].max_threads`
 
 Use project `.codex/hooks.json` for hooks that should run for everyone in the
 repo. Use user `~/.codex/hooks.json` for private notifications or local-only
 automation.
+
+Notes:
+
+- `skills.config` is user-level on purpose. Use it when a repo ships useful
+  skills that you do not want implicitly active in your personal workflow.
+- `tui.alternate_screen = "never"` is helpful in Zellij or other multiplexers
+  where you want reliable scrollback.

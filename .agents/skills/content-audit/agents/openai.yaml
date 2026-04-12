@@ -1,0 +1,6 @@
+interface:
+  display_name: "Content Audit"
+  short_description: "Audit GDD-specified content counts against implemented content.…"
+  default_prompt: "Use $content-audit to audit GDD-specified content counts against implemented content. Identifies what's planned vs built."
+policy:
+  allow_implicit_invocation: true

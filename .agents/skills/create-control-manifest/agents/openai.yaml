@@ -1,0 +1,6 @@
+interface:
+  display_name: "Create Control Manifest"
+  short_description: "After architecture is complete, produces a flat actionable rules sheet…"
+  default_prompt: "Use $create-control-manifest to after architecture is complete, produces a flat actionable rules sheet for programmers — what you must do, what you must never do, per system and per layer. Extracted from all Accepted ADRs, technical preferences, and engine reference docs. More immediately actionable than ADRs (which explain why)."
+policy:
+  allow_implicit_invocation: false

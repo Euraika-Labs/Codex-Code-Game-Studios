@@ -19,6 +19,7 @@ delegates vs. handles directly. Include which gates it triggers (if any).]
 
 - [ ] Agent file exists at `.codex/agents/[name].toml`
 - [ ] TOML definition has `name`, `description`, and `developer_instructions`
+- [ ] TOML definition includes `nickname_candidates` and `sandbox_mode`
 - [ ] Optional runtime fields (`model`, `model_reasoning_effort`, `sandbox_mode`) are appropriate for the role
 - [ ] Domain clearly stated
 - [ ] Escalation path documented

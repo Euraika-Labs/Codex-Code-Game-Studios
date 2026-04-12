@@ -42,6 +42,14 @@ or project-scoped custom agents from `.codex/agents/`. Subagents inherit the
 parent session's approval, sandbox, and most runtime context unless a custom
 agent overrides specific settings.
 
+Project default subagent guardrails live in `.codex/config.toml`:
+
+- `agents.max_threads = 6`
+- `agents.max_depth = 1`
+
+This matches current Codex guidance: allow direct child delegation, but avoid
+deeper recursive fan-out unless a project has a specific reason to raise it.
+
 **When to run subagents in parallel**: If two subagents can begin without each
 other's output, start both before waiting. Example: independent review phases
 that inspect different artifacts.

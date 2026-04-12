@@ -1,0 +1,6 @@
+interface:
+  display_name: "Map Systems"
+  short_description: "Decompose a game concept into individual systems, map dependencies…"
+  default_prompt: "Use $map-systems to decompose a game concept into individual systems, map dependencies, prioritize design order, and create the systems index."
+policy:
+  allow_implicit_invocation: false

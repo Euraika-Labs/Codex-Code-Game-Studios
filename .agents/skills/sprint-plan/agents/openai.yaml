@@ -1,0 +1,6 @@
+interface:
+  display_name: "Sprint Plan"
+  short_description: "Generates a new sprint plan or updates an existing one based on the…"
+  default_prompt: "Use $sprint-plan to generates a new sprint plan or updates an existing one based on the current milestone, completed work, and available capacity. Pulls context from production documents and design backlogs."
+policy:
+  allow_implicit_invocation: false

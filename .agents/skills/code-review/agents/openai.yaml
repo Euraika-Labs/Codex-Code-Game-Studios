@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Performs an architectural and quality code review on a specified file…"
+  default_prompt: "Use $code-review to performs an architectural and quality code review on a specified file or set of files. Checks for coding standard compliance, architectural pattern adherence, SOLID principles, testability, and performance concerns."
+policy:
+  allow_implicit_invocation: true

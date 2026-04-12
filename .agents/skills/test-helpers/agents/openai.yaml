@@ -1,0 +1,6 @@
+interface:
+  display_name: "Test Helpers"
+  short_description: "Generate engine-specific test helper libraries for the project's test…"
+  default_prompt: "Use $test-helpers to generate engine-specific test helper libraries for the project's test suite. Reads existing test patterns and produces tests/helpers/ with assertion utilities, factory functions, and mock objects tailored to the project's systems. Reduces boilerplate in new test files."
+policy:
+  allow_implicit_invocation: false

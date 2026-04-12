@@ -18,13 +18,19 @@ codex
 
 ## 2. Start With the Right Skill
 
-Mention the workflow you want directly in your prompt:
+Mention the workflow you want directly in your prompt. In Codex CLI you can use
+`/skills`, type `$`, or mention the workflow by name:
 
 - `$start` if this is a fresh project or you want guided routing
 - `$help` if you want the next best step
 - `$brainstorm` if you only have a rough concept
 - `$project-stage-detect` if you already have code or docs
 - `$setup-engine unity 6` or another engine/version if setup is already clear
+
+Most heavy studio workflows are now **explicit-only** in `agents/openai.yaml`.
+That keeps large authoring and orchestration skills from auto-triggering during
+small requests, while lightweight review/analysis skills stay implicitly
+available when their descriptions match.
 
 ## 3. Use the Studio Flow
 
@@ -81,3 +87,15 @@ re-explaining the workflow every time. If you are about to ask for:
 
 For personal overrides, use `~/.codex/config.toml` and `~/.codex/hooks.json`
 instead of editing shared project files.
+
+## 7. Validate Codex Contracts
+
+After changing repo skills or custom agents, run:
+
+```bash
+python3 scripts/sync_codex_metadata.py
+python3 scripts/validate_codex_native.py
+```
+
+This keeps `agents/openai.yaml`, agent nicknames, sandbox declarations, and
+project defaults aligned with the Codex-native contract the repo expects.

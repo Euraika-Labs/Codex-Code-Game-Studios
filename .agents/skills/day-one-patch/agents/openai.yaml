@@ -1,0 +1,6 @@
+interface:
+  display_name: "Day One Patch"
+  short_description: "Prepare a day-one patch for a game launch. Scopes, prioritises…"
+  default_prompt: "Use $day-one-patch to prepare a day-one patch for a game launch. Scopes, prioritises, implements, and QA-gates a focused patch addressing known issues discovered after gold master but before or immediately after public launch. Treats the patch as a mini-sprint with its own QA gate and rollback plan."
+policy:
+  allow_implicit_invocation: false

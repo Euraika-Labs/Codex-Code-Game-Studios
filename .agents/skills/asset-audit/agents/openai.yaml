@@ -1,0 +1,6 @@
+interface:
+  display_name: "Asset Audit"
+  short_description: "Audits game assets for compliance with naming conventions, file size…"
+  default_prompt: "Use $asset-audit to audits game assets for compliance with naming conventions, file size budgets, format standards, and pipeline requirements. Identifies orphaned assets, missing references, and standard violations."
+policy:
+  allow_implicit_invocation: true

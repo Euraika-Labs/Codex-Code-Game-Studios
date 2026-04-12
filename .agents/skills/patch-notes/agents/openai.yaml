@@ -1,0 +1,6 @@
+interface:
+  display_name: "Patch Notes"
+  short_description: "Generate player-facing patch notes from git history, sprint data, and…"
+  default_prompt: "Use $patch-notes to generate player-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging player communication."
+policy:
+  allow_implicit_invocation: false

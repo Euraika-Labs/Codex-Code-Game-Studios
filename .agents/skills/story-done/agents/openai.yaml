@@ -1,0 +1,6 @@
+interface:
+  display_name: "Story Done"
+  short_description: "End-of-story completion review. Reads the story file, verifies each…"
+  default_prompt: "Use $story-done to end-of-story completion review. Reads the story file, verifies each acceptance criterion against the implementation, checks for GDD/ADR deviations, prompts code review, updates story status to Complete, and surfaces the next ready story from the sprint."
+policy:
+  allow_implicit_invocation: true

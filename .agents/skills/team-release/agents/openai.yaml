@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team Release"
+  short_description: "Orchestrate the release team: coordinates release-manager, qa-lead…"
+  default_prompt: "Use $team-release to orchestrate the release team: coordinates release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to deployment."
+policy:
+  allow_implicit_invocation: false

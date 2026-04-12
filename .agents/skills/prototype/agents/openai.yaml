@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prototype"
+  short_description: "Rapid prototyping workflow. Skips normal standards to quickly validate…"
+  default_prompt: "Use $prototype to rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report."
+policy:
+  allow_implicit_invocation: false

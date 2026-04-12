@@ -1,0 +1,6 @@
+interface:
+  display_name: "Reverse Document"
+  short_description: "Generate design or architecture documents from existing…"
+  default_prompt: "Use $reverse-document to generate design or architecture documents from existing implementation. Works backwards from code/prototypes to create missing planning docs."
+policy:
+  allow_implicit_invocation: false

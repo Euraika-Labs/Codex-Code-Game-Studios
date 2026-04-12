@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review All GDDs"
+  short_description: "Holistic cross-GDD consistency and game design review. Reads all…"
+  default_prompt: "Use $review-all-gdds to holistic cross-GDD consistency and game design review. Reads all system GDDs simultaneously and checks for contradictions between them, stale references, ownership conflicts, formula incompatibilities, and game design theory violations (dominant strategies, economic imbalance, cognitive overload, pillar drift). Run after all MVP GDDs are written, before architecture begins."
+policy:
+  allow_implicit_invocation: true

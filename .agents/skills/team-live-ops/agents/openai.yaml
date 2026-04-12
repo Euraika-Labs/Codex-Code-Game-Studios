@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team Live Ops"
+  short_description: "Orchestrate the live-ops team for post-launch content planning…"
+  default_prompt: "Use $team-live-ops to orchestrate the live-ops team for post-launch content planning: coordinates live-ops-designer, economy-designer, analytics-engineer, community-manager, writer, and narrative-director to design and plan a season, event, or live content update."
+policy:
+  allow_implicit_invocation: false

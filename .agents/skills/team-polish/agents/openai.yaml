@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team Polish"
+  short_description: "Orchestrate the polish team: coordinates performance-analyst…"
+  default_prompt: "Use $team-polish to orchestrate the polish team: coordinates performance-analyst, technical-artist, sound-designer, and qa-tester to optimize, polish, and harden a feature or area for release quality."
+policy:
+  allow_implicit_invocation: false

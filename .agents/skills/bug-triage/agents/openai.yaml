@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bug Triage"
+  short_description: "Read all open bugs in production/qa/bugs/, re-evaluate priority vs.…"
+  default_prompt: "Use $bug-triage to read all open bugs in production/qa/bugs/, re-evaluate priority vs. severity, assign to sprints, surface systemic trends, and produce a triage report. Run at sprint start or when the bug count grows enough to need re-prioritization."
+policy:
+  allow_implicit_invocation: true

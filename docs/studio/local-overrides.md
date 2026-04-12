@@ -20,8 +20,22 @@ model_reasoning_effort = "high"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
+[agents]
+max_threads = 4
+max_depth = 1
+
+[tui]
+alternate_screen = "never"
+
+[tools.web_search]
+context_size = "medium"
+
 [projects."/absolute/path/to/Codex-Code-Game-Studios"]
 trust_level = "trusted"
+
+[[skills.config]]
+name = "team-ui"
+enabled = false
 ```
 
 Then launch the project with:
@@ -29,3 +43,9 @@ Then launch the project with:
 ```bash
 codex -p game-studio
 ```
+
+Use this layer for personal-only Codex ergonomics:
+
+- disable repo skills you do not want implicitly available with `[[skills.config]]`
+- lower or raise `[agents].max_threads` for your machine and plan limits
+- set `tui.alternate_screen = "never"` if you prefer preserved scrollback

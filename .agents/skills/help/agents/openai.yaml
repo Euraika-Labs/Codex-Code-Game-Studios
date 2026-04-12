@@ -1,0 +1,6 @@
+interface:
+  display_name: "Help"
+  short_description: "Analyzes what is done and the users query and offers advice on what to…"
+  default_prompt: "Use $help to analyzes what is done and the users query and offers advice on what to do next. Use if user says what should I do next or what do I do now or I'm stuck or I don't know what to do."
+policy:
+  allow_implicit_invocation: true

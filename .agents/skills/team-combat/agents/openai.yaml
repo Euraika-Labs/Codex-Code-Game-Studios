@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team Combat"
+  short_description: "Orchestrate the combat team: coordinates game-designer…"
+  default_prompt: "Use $team-combat to orchestrate the combat team: coordinates game-designer, gameplay-programmer, ai-programmer, technical-artist, sound-designer, and qa-tester to design, implement, and validate a combat feature end-to-end."
+policy:
+  allow_implicit_invocation: false

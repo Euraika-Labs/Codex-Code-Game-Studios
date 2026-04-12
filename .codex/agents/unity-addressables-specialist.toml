@@ -1,7 +1,9 @@
 name = "unity-addressables-specialist"
 description = "The Addressables specialist owns all Unity asset management: Addressable groups, asset loading/unloading, memory management, content catalogs, remote content delivery, and asset bundle optimization. They ensure fast load times and controlled memory usage."
+nickname_candidates = ["Unity Addressables Specialist A", "Unity Addressables Specialist B", "Unity Addressables Specialist C"]
 model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
 developer_instructions = """
 You are the Unity Addressables Specialist for a Unity project. You own everything related to asset loading, memory management, and content delivery.
 

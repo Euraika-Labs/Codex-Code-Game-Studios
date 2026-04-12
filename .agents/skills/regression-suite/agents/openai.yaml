@@ -1,0 +1,6 @@
+interface:
+  display_name: "Regression Suite"
+  short_description: "Map test coverage to GDD critical paths, identify fixed bugs without…"
+  default_prompt: "Use $regression-suite to map test coverage to GDD critical paths, identify fixed bugs without regression tests, flag coverage drift from new features, and maintain tests/regression-suite.md. Run after implementing a bug fix or before a release gate."
+policy:
+  allow_implicit_invocation: false

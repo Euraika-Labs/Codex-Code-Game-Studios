@@ -1,0 +1,6 @@
+interface:
+  display_name: "UX Design"
+  short_description: "Guided, section-by-section UX spec authoring for a screen, flow, or…"
+  default_prompt: "Use $ux-design to guided, section-by-section UX spec authoring for a screen, flow, or HUD. Reads game concept, player journey, and relevant GDDs to provide context-aware design guidance. Produces ux-spec.md (per screen/flow) or hud-design.md using the studio templates."
+policy:
+  allow_implicit_invocation: false

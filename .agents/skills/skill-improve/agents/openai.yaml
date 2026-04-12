@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Improve"
+  short_description: "Improve a skill using a test-fix-retest loop. Runs static checks…"
+  default_prompt: "Use $skill-improve to improve a skill using a test-fix-retest loop. Runs static checks, proposes targeted fixes, rewrites the skill, re-tests, and keeps or reverts based on score change."
+policy:
+  allow_implicit_invocation: false

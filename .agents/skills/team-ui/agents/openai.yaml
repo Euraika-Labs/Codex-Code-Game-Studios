@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team UI"
+  short_description: "Orchestrate the UI team through the full UX pipeline: from UX spec…"
+  default_prompt: "Use $team-ui to orchestrate the UI team through the full UX pipeline: from UX spec authoring through visual design, implementation, review, and polish. Integrates with $ux-design, $ux-review, and studio UX templates."
+policy:
+  allow_implicit_invocation: false

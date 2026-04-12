@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Test"
+  short_description: "Validate skill files for structural compliance and behavioral…"
+  default_prompt: "Use $skill-test to validate skill files for structural compliance and behavioral correctness. Three modes: static (linter), spec (behavioral), audit (coverage report)."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Localize"
+  short_description: "Full localization pipeline: scan for hardcoded strings, extract and…"
+  default_prompt: "Use $localize to full localization pipeline: scan for hardcoded strings, extract and manage string tables, validate translations, generate translator briefings, run cultural/sensitivity review, manage VO localization, test RTL/platform requirements, enforce string freeze, and report coverage."
+policy:
+  allow_implicit_invocation: false

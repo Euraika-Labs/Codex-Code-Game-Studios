@@ -1,0 +1,6 @@
+interface:
+  display_name: "Consistency Check"
+  short_description: "Scan all GDDs against the entity registry to detect cross-document…"
+  default_prompt: "Use $consistency-check to scan all GDDs against the entity registry to detect cross-document inconsistencies: same entity with different stats, same item with different values, same formula with different variables. Grep-first approach — reads registry then targets only conflicting GDD sections rather than full document reads."
+policy:
+  allow_implicit_invocation: true

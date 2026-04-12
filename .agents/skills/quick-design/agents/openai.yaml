@@ -1,0 +1,6 @@
+interface:
+  display_name: "Quick Design"
+  short_description: "Lightweight design spec for small changes — tuning adjustments, minor…"
+  default_prompt: "Use $quick-design to lightweight design spec for small changes — tuning adjustments, minor mechanics, balance tweaks. Skips full GDD authoring when a system GDD already exists or the change is too small to warrant one. Produces a Quick Design Spec that embeds directly into story files."
+policy:
+  allow_implicit_invocation: false

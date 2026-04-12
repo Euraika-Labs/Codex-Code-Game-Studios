@@ -1,0 +1,6 @@
+interface:
+  display_name: "Changelog"
+  short_description: "Auto-generates a changelog from git commits, sprint data, and design…"
+  default_prompt: "Use $changelog to auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and player-facing versions."
+policy:
+  allow_implicit_invocation: false

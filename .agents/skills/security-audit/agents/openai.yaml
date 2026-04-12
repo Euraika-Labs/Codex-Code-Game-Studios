@@ -1,0 +1,6 @@
+interface:
+  display_name: "Security Audit"
+  short_description: "Audit the game for security vulnerabilities: save tampering, cheat…"
+  default_prompt: "Use $security-audit to audit the game for security vulnerabilities: save tampering, cheat vectors, network exploits, data exposure, and input validation gaps. Produces a prioritised security report with remediation guidance. Run before any public release or multiplayer launch."
+policy:
+  allow_implicit_invocation: true

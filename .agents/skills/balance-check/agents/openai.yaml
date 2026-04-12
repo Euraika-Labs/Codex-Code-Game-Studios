@@ -1,0 +1,6 @@
+interface:
+  display_name: "Balance Check"
+  short_description: "Analyzes game balance data files, formulas, and configuration to…"
+  default_prompt: "Use $balance-check to analyzes game balance data files, formulas, and configuration to identify outliers, broken progressions, degenerate strategies, and economy imbalances. Use after modifying any balance-related data or design. Use when user says 'balance report', 'check game balance', 'run a balance check'."
+policy:
+  allow_implicit_invocation: true

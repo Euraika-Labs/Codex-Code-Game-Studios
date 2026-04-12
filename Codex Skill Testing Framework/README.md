@@ -32,6 +32,7 @@ Codex Skill Testing Framework/
 ### Structural validation
 
 ```text
+$ python3 scripts/validate_codex_native.py
 $skill-test static [skill-name]
 $skill-test static all
 ```
@@ -68,4 +69,7 @@ $skill-improve gate-check
 
 - The framework assumes Codex-native repo skills in `.agents/skills/`.
 - The framework assumes Codex-native custom agents in `.codex/agents/`.
+- The framework assumes each skill also ships `agents/openai.yaml`.
+- The framework assumes each agent TOML declares `sandbox_mode` and
+  `nickname_candidates`.
 - If you rename or remove skills, update `catalog.yaml` to keep coverage honest.

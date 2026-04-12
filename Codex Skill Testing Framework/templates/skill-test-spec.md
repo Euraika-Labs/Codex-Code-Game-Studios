@@ -15,6 +15,8 @@
 These should pass before any behavioral testing:
 
 - [ ] YAML YAML frontmatter has the required Codex fields (`name`, `description`)
+- [ ] `agents/openai.yaml` exists with `display_name`, `short_description`, and `default_prompt`
+- [ ] `agents/openai.yaml` includes an explicit `allow_implicit_invocation` policy
 - [ ] 2+ phase headings found
 - [ ] At least one verdict keyword present (`PASS`, `FAIL`, `CONCERNS`, `APPROVED`, `BLOCKED`, `COMPLETE`, `READY`)
 - [ ] If the skill writes project files, `"May I write"` language is present

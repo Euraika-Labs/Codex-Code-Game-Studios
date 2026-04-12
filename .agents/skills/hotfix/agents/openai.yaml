@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hotfix"
+  short_description: "Emergency fix workflow that bypasses normal sprint processes with a…"
+  default_prompt: "Use $hotfix to emergency fix workflow that bypasses normal sprint processes with a full audit trail. Creates hotfix branch, tracks approvals, and ensures the fix is backported correctly."
+policy:
+  allow_implicit_invocation: false

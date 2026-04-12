@@ -119,6 +119,20 @@ Only hook events supported by current Codex releases are wired by default.
 Legacy compatibility scripts are still kept under `.codex/hooks/` for reference,
 but unsupported Claude-specific hook events are not registered.
 
+## Codex-Native Ergonomics
+
+- Every repo skill now ships `agents/openai.yaml`, so Codex can use metadata for
+  UI labels, default prompts, and invocation policy.
+- Heavy orchestration workflows are marked explicit-only by default. Lightweight
+  review and analysis skills remain eligible for implicit triggering.
+- Every custom agent TOML now declares `sandbox_mode` and
+  `nickname_candidates`, which makes spawned threads more predictable and easier
+  to distinguish in the UI.
+- Project defaults now pin `[agents].max_threads = 6` and `max_depth = 1` to
+  match current Codex guidance for predictable fan-out.
+- Run `python3 scripts/validate_codex_native.py` after repo-level skill or
+  agent changes to catch contract drift early.
+
 ## Workflow Overview
 
 The studio model is organized around seven phases:
@@ -145,6 +159,13 @@ The docs that drive those phases live in:
 - Add or refine workflows in `.agents/skills/`.
 - Tune project defaults in `.codex/config.toml`.
 - Add or remove supported hooks in `.codex/hooks.json`.
+
+If you change a skill description, invocation policy, or agent metadata, run:
+
+```bash
+python3 scripts/sync_codex_metadata.py
+python3 scripts/validate_codex_native.py
+```
 
 ## Attribution
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Gate Check"
+  short_description: "Validate readiness to advance between development phases. Produces a…"
+  default_prompt: "Use $gate-check to validate readiness to advance between development phases. Produces a PASS/CONCERNS/FAIL verdict with specific blockers and required artifacts. Use when user says 'are we ready to move to X', 'can we advance to production', 'check if we can start the next phase', 'pass the gate'."
+policy:
+  allow_implicit_invocation: true

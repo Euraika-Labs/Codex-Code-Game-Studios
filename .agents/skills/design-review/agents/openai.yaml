@@ -1,0 +1,6 @@
+interface:
+  display_name: "Design Review"
+  short_description: "Reviews a game design document for completeness, internal consistency…"
+  default_prompt: "Use $design-review to reviews a game design document for completeness, internal consistency, implementability, and adherence to project design standards. Run this before handing a design document to programmers."
+policy:
+  allow_implicit_invocation: true

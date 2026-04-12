@@ -1,0 +1,6 @@
+interface:
+  display_name: "Team Audio"
+  short_description: "Orchestrate audio team: audio-director + sound-designer +…"
+  default_prompt: "Use $team-audio to orchestrate audio team: audio-director + sound-designer + technical-artist + gameplay-programmer for full audio pipeline from direction to implementation."
+policy:
+  allow_implicit_invocation: false

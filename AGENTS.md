@@ -49,6 +49,9 @@ docs/studio/coding-standards.md
 ## Working Style
 
 - Treat skills as the preferred entry point for recurring workflows.
+- Keep repo skills Codex-native: if you edit a skill, sync and validate its
+  metadata with `python3 scripts/sync_codex_metadata.py` and
+  `python3 scripts/validate_codex_native.py`.
 - Keep design intent in `design/`, technical decisions in `docs/architecture/`,
   delivery state in `production/`, and implementation in `src/`.
 - Do not silently make cross-discipline decisions when design, technical, and

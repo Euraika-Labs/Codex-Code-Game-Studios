@@ -1,0 +1,6 @@
+interface:
+  display_name: "Sprint Status"
+  short_description: "Fast sprint status check. Reads the current sprint plan, scans story…"
+  default_prompt: "Use $sprint-status to fast sprint status check. Reads the current sprint plan, scans story files for status, and produces a concise progress snapshot with burndown assessment and emerging risks. Run at any time during a sprint for quick situational awareness. Use when user asks 'how is the sprint going', 'sprint update', 'show sprint progress'."
+policy:
+  allow_implicit_invocation: false

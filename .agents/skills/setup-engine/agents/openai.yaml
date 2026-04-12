@@ -1,0 +1,6 @@
+interface:
+  display_name: "Setup Engine"
+  short_description: "Configure the project's game engine and version. Pins the engine in…"
+  default_prompt: "Use $setup-engine to configure the project's game engine and version. Pins the engine in AGENTS.md, detects knowledge gaps, and populates engine reference docs via WebSearch when the version is beyond the LLM's training data."
+policy:
+  allow_implicit_invocation: true

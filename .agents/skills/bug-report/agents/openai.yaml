@@ -1,0 +1,6 @@
+interface:
+  display_name: "Bug Report"
+  short_description: "Creates a structured bug report from a description, or analyzes code…"
+  default_prompt: "Use $bug-report to creates a structured bug report from a description, or analyzes code to identify potential bugs. Ensures every bug report has full reproduction steps, severity assessment, and context."
+policy:
+  allow_implicit_invocation: true
