@@ -4,8 +4,8 @@ This documents the Codex hook payloads this repository actually relies on.
 
 ## PreToolUse
 
-Fired before a tool is executed. `PreToolUse` hooks can allow execution with
-exit code `0` or block execution with exit code `2`.
+Fired before a tool is executed. In current Codex releases, `PreToolUse`
+intercepts Bash commands only.
 
 ### Example: Bash
 
@@ -20,71 +20,61 @@ exit code `0` or block execution with exit code `2`.
 }
 ```
 
-### Example: Write
-
-```json
-{
-  "tool_name": "Write",
-  "tool_input": {
-    "file_path": "src/gameplay/health.gd",
-    "content": "extends Node\n..."
-  }
-}
-```
-
-### Example: Edit
-
-```json
-{
-  "tool_name": "Edit",
-  "tool_input": {
-    "file_path": "src/gameplay/health.gd",
-    "old_string": "var health = 100",
-    "new_string": "var health: int = 100"
-  }
-}
-```
-
 ## PostToolUse
 
-Fired after a tool completes. These hooks are advisory in this repo.
+Fired after a tool completes. In current Codex releases, `PostToolUse`
+currently emits `tool_name = "Bash"` only.
 
-### Example: Write
-
-```json
-{
-  "tool_name": "Write",
-  "tool_input": {
-    "file_path": "assets/data/enemy_stats.json",
-    "content": "{\"goblin\": {\"health\": 50}}"
-  },
-  "tool_output": "File written successfully"
-}
-```
-
-### Example: Edit
+### Example: Bash
 
 ```json
 {
-  "tool_name": "Edit",
+  "tool_name": "Bash",
   "tool_input": {
-    "file_path": "assets/data/enemy_stats.json",
-    "old_string": "\"health\": 50",
-    "new_string": "\"health\": 75"
+    "command": "git status --short"
   },
-  "tool_output": "File edited successfully"
+  "tool_output": " M README.md"
 }
 ```
+
+This repo does not currently wire `PostToolUse`, because file edits made
+through `apply_patch` are not exposed as `Write` or `Edit` hook payloads in
+current Codex runtime.
 
 ## SessionStart
 
-Fired when a Codex session begins. No stdin payload is required; stdout is
-shown back to Codex as extra context.
+Fired when a Codex session begins.
+
+### Example
+
+```json
+{
+  "session_id": "sess_123",
+  "cwd": "/workspace/game",
+  "hook_event_name": "SessionStart",
+  "source": "startup"
+}
+```
+
+Plain text on stdout is added as extra developer context for this event.
 
 ## Stop
 
-Fired when the Codex session ends. No stdin payload is required; use it for
-logging or cleanup.
+Fired when the current turn stops.
+
+### Example
+
+```json
+{
+  "session_id": "sess_123",
+  "turn_id": "turn_456",
+  "cwd": "/workspace/game",
+  "hook_event_name": "Stop"
+}
+```
+
+This repo uses `Stop` for worktree validation because it reliably fires after a
+turn even when file writes happened through `apply_patch`.
 
 ## Exit Code Reference
 
@@ -96,10 +86,11 @@ logging or cleanup.
 
 ## Notes
 
-- Hooks receive JSON on stdin when the event carries tool data.
-- `jq` is optional; grep-based fallbacks keep the scripts Windows Git Bash
-  friendly.
-- Normalize Windows paths with `sed 's|\\|/|g'` before comparing them.
-- This repo intentionally does not document unsupported legacy events such as
-  `PreCompact`, `PostCompact`, notification hooks, or subagent lifecycle hooks
-  as part of the active Codex hook contract.
+- `matcher` is only meaningful for `SessionStart`, `PreToolUse`, and
+  `PostToolUse`.
+- `Stop` and `UserPromptSubmit` ignore `matcher` today.
+- Use `timeout` in `hooks.json`. `timeoutSec` is accepted as the camelCase
+  alias; `timeout_sec` is not.
+- Repo-local hook commands should resolve from the git root instead of relying
+  on a relative `.codex/hooks/...` path.
+- Hooks are currently disabled on native Windows in the official Codex docs.

@@ -112,7 +112,8 @@ like any other part of the project.
   closest instructions for gameplay code, shaders, tests, narrative docs, and
   other domains.
 - Custom agent definitions live in `.codex/agents/*.toml`.
-- Project hooks are wired from `.codex/hooks.json`.
+- Project hooks are wired from `.codex/hooks.json`, and `.codex/config.toml`
+  explicitly enables `features.codex_hooks = true`.
 - Project defaults are stored in `.codex/config.toml`.
 
 Only hook events supported by current Codex releases are wired by default.
@@ -130,8 +131,16 @@ but unsupported Claude-specific hook events are not registered.
   to distinguish in the UI.
 - Project defaults now pin `[agents].max_threads = 6` and `max_depth = 1` to
   match current Codex guidance for predictable fan-out.
+- Repo-local hook commands now resolve from the git root instead of relative
+  `.codex/hooks/...` paths, which keeps them stable when Codex is launched from
+  a subdirectory.
+- File-based validation now runs at `Stop` and `git commit` time instead of
+  pretending `PostToolUse` can see `Write` and `Edit`. Current Codex hook
+  runtime only emits `Bash` for `PreToolUse` and `PostToolUse`, so this repo now
+  avoids no-op hook matchers.
 - Run `python3 scripts/validate_codex_native.py` after repo-level skill or
-  agent changes to catch contract drift early.
+  agent changes to catch contract drift early, including hook feature flags,
+  matcher no-ops, unsupported hook keys, and hook script syntax.
 
 ## Workflow Overview
 

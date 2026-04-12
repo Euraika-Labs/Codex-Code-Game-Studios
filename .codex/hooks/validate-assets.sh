@@ -1,72 +1,119 @@
 #!/bin/bash
-# Codex CLI PostToolUse hook: Validates asset files after Write/Edit
-# Checks naming conventions for files in assets/ directory
+# Codex CLI Stop hook: validate changed asset files in the worktree.
+# This replaces the old Write/Edit matcher pattern because current Codex
+# PostToolUse only emits Bash tool names.
 #
 # Exit behavior:
-#   exit 0 = success or advisory warnings only (non-blocking)
-#   exit 1 = blocking error (build-breaking issues: invalid JSON, missing required fields)
+#   exit 0 = success or advisory warnings only
 #
-# Input schema (PostToolUse for Write/Edit):
-# { "tool_name": "Write", "tool_input": { "file_path": "assets/data/foo.json", "content": "..." } }
+# Output:
+#   Emits a JSON systemMessage on stdout when changed assets need attention.
 
-INPUT=$(cat)
+find_python() {
+    for cmd in python3 python py; do
+        if command -v "$cmd" >/dev/null 2>&1; then
+            echo "$cmd"
+            return 0
+        fi
+    done
+    return 1
+}
 
-# Parse file path -- use jq if available, fall back to grep
-if command -v jq >/dev/null 2>&1; then
-    FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
-else
-    FILE_PATH=$(echo "$INPUT" | grep -oE '"file_path"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"file_path"[[:space:]]*:[[:space:]]*"//;s/"$//')
-fi
+emit_system_message() {
+    local message="$1"
 
-# Normalize path separators (Windows backslash to forward slash)
-FILE_PATH=$(echo "$FILE_PATH" | sed 's|\\|/|g')
+    if command -v python3 >/dev/null 2>&1; then
+        python3 - "$message" <<'PY'
+import json
+import sys
 
-# Only check files in assets/
-if ! echo "$FILE_PATH" | grep -qE '(^|/)assets/'; then
+print(json.dumps({"systemMessage": sys.argv[1]}))
+PY
+        return 0
+    fi
+
+    if command -v python >/dev/null 2>&1; then
+        python - "$message" <<'PY'
+import json
+import sys
+
+print(json.dumps({"systemMessage": sys.argv[1]}))
+PY
+        return 0
+    fi
+
+    if command -v jq >/dev/null 2>&1; then
+        jq -Rn --arg msg "$message" '{systemMessage: $msg}'
+        return 0
+    fi
+
+    local escaped
+    escaped=$(printf '%s' "$message" | sed 's/\\/\\\\/g; s/"/\\"/g; :a;N;$!ba;s/\n/\\n/g')
+    printf '{"systemMessage":"%s"}\n' "$escaped"
+}
+
+collect_changed_assets() {
+    {
+        git diff --name-only --diff-filter=ACMR -- assets 2>/dev/null
+        git diff --cached --name-only --diff-filter=ACMR -- assets 2>/dev/null
+        git ls-files --others --exclude-standard -- assets 2>/dev/null
+    } | sed '/^$/d' | sort -u
+}
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ -z "$REPO_ROOT" ]; then
     exit 0
 fi
 
-FILENAME=$(basename "$FILE_PATH")
-WARNINGS=""   # Style/convention issues -- exit 0 with advisory message
-ERRORS=""     # Build-breaking issues -- exit 1 to block the operation
+cd "$REPO_ROOT" || exit 0
 
-# ADVISORY: Check naming convention (lowercase with underscores only)
-# Naming issues are style violations -- warn but do not block
-# Uses grep -E (POSIX) not grep -P (Perl) for Windows Git Bash compatibility
-if echo "$FILENAME" | grep -qE '[A-Z[:space:]-]'; then
-    WARNINGS="$WARNINGS\n  NAMING: $FILE_PATH must be lowercase with underscores (got: $FILENAME)"
+CHANGED_ASSETS=$(collect_changed_assets)
+if [ -z "$CHANGED_ASSETS" ]; then
+    exit 0
 fi
 
-# BLOCKING: Check JSON validity for data files
-# Invalid JSON will break runtime loading -- this is a build-breaking error
-if echo "$FILE_PATH" | grep -qE '(^|/)assets/data/.*\.json$'; then
-    if [ -f "$FILE_PATH" ]; then
-        # Find a working Python command
-        PYTHON_CMD=""
-        for cmd in python python3 py; do
-            if command -v "$cmd" >/dev/null 2>&1; then
-                PYTHON_CMD="$cmd"
-                break
-            fi
-        done
+PYTHON_CMD=$(find_python || true)
+WARNINGS=""
+ERRORS=""
 
+while IFS= read -r file; do
+    [ -z "$file" ] && continue
+
+    FILE_PATH=$(echo "$file" | sed 's|\\|/|g')
+    if [ ! -e "$FILE_PATH" ]; then
+        continue
+    fi
+
+    FILENAME=$(basename "$FILE_PATH")
+
+    if echo "$FILENAME" | grep -qE '[A-Z[:space:]-]'; then
+        WARNINGS="$WARNINGS\n- $FILE_PATH should use lowercase_with_underscores naming"
+    fi
+
+    if echo "$FILE_PATH" | grep -qE '^assets/data/.*\.json$'; then
         if [ -n "$PYTHON_CMD" ]; then
-            if ! "$PYTHON_CMD" -m json.tool "$FILE_PATH" > /dev/null 2>&1; then
-                ERRORS="$ERRORS\n  FORMAT: $FILE_PATH is not valid JSON — fix syntax errors before continuing"
+            if ! "$PYTHON_CMD" -m json.tool "$FILE_PATH" >/dev/null 2>&1; then
+                ERRORS="$ERRORS\n- $FILE_PATH is not valid JSON"
             fi
+        else
+            WARNINGS="$WARNINGS\n- $FILE_PATH could not be JSON-validated because no Python runtime was found"
         fi
     fi
+done <<< "$CHANGED_ASSETS"
+
+if [ -z "$WARNINGS$ERRORS" ]; then
+    exit 0
 fi
 
-# Report warnings (advisory -- non-blocking)
-if [ -n "$WARNINGS" ]; then
-    echo -e "=== Asset Validation: Warnings ===$WARNINGS\n==================================\n(Warnings are advisory. Fix before final commit.)" >&2
-fi
-
-# Report errors and block if any build-breaking issues found
+MESSAGE="Asset checks found issues in changed worktree files."
 if [ -n "$ERRORS" ]; then
-    echo -e "=== Asset Validation: ERRORS (Blocking) ===$ERRORS\n===========================================\nFix these errors before proceeding." >&2
-    exit 1
+    MESSAGE="$MESSAGE\nBlocking-on-commit issues:$ERRORS"
 fi
+if [ -n "$WARNINGS" ]; then
+    MESSAGE="$MESSAGE\nWarnings:$WARNINGS"
+fi
+MESSAGE="$MESSAGE\nThe git commit hook will re-check these files before commit."
+
+emit_system_message "$MESSAGE"
 
 exit 0

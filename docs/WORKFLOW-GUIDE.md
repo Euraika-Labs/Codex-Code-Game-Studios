@@ -78,7 +78,8 @@ Recent commits:
 ```
 
 If you see this, hooks are working. If not, check `.codex/config.toml + .codex/hooks.json` to
-make sure the hook paths are correct for your OS.
+make sure `features.codex_hooks = true` is enabled and the hook commands still
+resolve from the git root for your OS.
 
 ### Step 4: Ask for Help Anytime
 
@@ -1237,9 +1238,9 @@ The project wires the supported Codex hook set it actively uses:
 | `detect-gaps.sh` | Session start | Detects fresh projects (no engine, no concept) and suggests `$start` |
 | `validate-commit.sh` | Before commit | Checks for design doc references, valid JSON, no hardcoded values |
 | `validate-push.sh` | Before push | Warns on pushes to main/develop |
-| `validate-assets.sh` | Before commit | Checks asset naming and size |
-| `validate-skill-change.sh` | Skill file written | Advises running `$skill-test` after `.agents/skills/` changes |
-| `session-stop.sh` | Session end | Appends a lightweight audit entry for the session |
+| `validate-assets.sh` | Turn stop | Reviews changed `assets/` files because current Codex write hooks do not fire for `apply_patch` |
+| `validate-skill-change.sh` | Turn stop | Runs `scripts/validate_codex_native.py` when skills, agents, config, or hooks change |
+| `session-stop.sh` | Turn stop | Appends a lightweight per-turn audit entry |
 
 Compatibility scripts such as `pre-compact.sh`, `post-compact.sh`, `notify.sh`,
 `log-agent.sh`, and `log-agent-stop.sh` are kept in `.codex/hooks/` but are not

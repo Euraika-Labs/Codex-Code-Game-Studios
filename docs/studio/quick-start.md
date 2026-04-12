@@ -7,7 +7,7 @@ This framework gives Codex a studio-shaped operating model:
 - 49 custom agents in `.codex/agents/`
 - 72 reusable skills in `.agents/skills/`
 - nested `AGENTS.md` guides for path-specific standards
-- project hooks wired through `.codex/hooks.json`
+- project hooks wired through `.codex/hooks.json` and enabled in `.codex/config.toml`
 
 ## 1. Open the Repo in Codex
 
@@ -99,3 +99,5 @@ python3 scripts/validate_codex_native.py
 
 This keeps `agents/openai.yaml`, agent nicknames, sandbox declarations, and
 project defaults aligned with the Codex-native contract the repo expects.
+It also validates hooks against the current Codex runtime, so no-op matcher
+patterns do not silently slip back in.

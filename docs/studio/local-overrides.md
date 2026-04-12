@@ -11,6 +11,14 @@ Use the supported Codex layers instead:
 - personal config in `~/.codex/config.toml`
 - personal hooks in `~/.codex/hooks.json`
 
+If you want private hooks to run outside this repo too, enable them in your
+user config:
+
+```toml
+[features]
+codex_hooks = true
+```
+
 If you need a personal profile for this repo, prefer a user-level profile:
 
 ```toml

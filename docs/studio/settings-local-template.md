@@ -9,6 +9,13 @@ Use Codex's layered configuration instead:
 - personal defaults live in `~/.codex/config.toml`
 - personal hooks live in `~/.codex/hooks.json`
 
+If you want personal hooks to run outside this repo too, add:
+
+```toml
+[features]
+codex_hooks = true
+```
+
 ## Example Personal Config
 
 ```toml

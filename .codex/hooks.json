@@ -6,13 +6,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.codex/hooks/session-start.sh",
-            "timeout_sec": 10
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/session-start.sh\"",
+            "timeout": 10,
+            "statusMessage": "Loading studio session context"
           },
           {
             "type": "command",
-            "command": "./.codex/hooks/detect-gaps.sh",
-            "timeout_sec": 10
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/detect-gaps.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking project gaps"
           }
         ]
       }
@@ -23,30 +25,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.codex/hooks/validate-commit.sh",
-            "timeout_sec": 10
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/validate-commit.sh\"",
+            "timeout": 10,
+            "statusMessage": "Checking staged commit"
           },
           {
             "type": "command",
-            "command": "./.codex/hooks/validate-push.sh",
-            "timeout_sec": 10
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "./.codex/hooks/validate-assets.sh",
-            "timeout_sec": 10
-          },
-          {
-            "type": "command",
-            "command": "./.codex/hooks/validate-skill-change.sh",
-            "timeout_sec": 10
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/validate-push.sh\"",
+            "timeout": 10,
+            "statusMessage": "Reviewing push target"
           }
         ]
       }
@@ -56,8 +43,21 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./.codex/hooks/session-stop.sh",
-            "timeout_sec": 10
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/validate-assets.sh\"",
+            "timeout": 10,
+            "statusMessage": "Reviewing changed assets"
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/validate-skill-change.sh\"",
+            "timeout": 10,
+            "statusMessage": "Validating Codex contracts"
+          },
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/session-stop.sh\"",
+            "timeout": 10,
+            "statusMessage": "Writing session audit trail"
           }
         ]
       }

@@ -8,6 +8,16 @@
 
 INPUT=$(cat)
 
+find_python() {
+    for cmd in python3 python py; do
+        if command -v "$cmd" >/dev/null 2>&1; then
+            echo "$cmd"
+            return 0
+        fi
+    done
+    return 1
+}
+
 # Parse command -- use jq if available, fall back to grep
 if command -v jq >/dev/null 2>&1; then
     COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
@@ -27,6 +37,7 @@ if [ -z "$STAGED" ]; then
 fi
 
 WARNINGS=""
+PYTHON_CMD=$(find_python || true)
 
 # Check design documents for required sections
 DESIGN_FILES=$(echo "$STAGED" | grep -E '^design/gdd/')
@@ -45,15 +56,6 @@ fi
 # Validate JSON data files -- block invalid JSON
 DATA_FILES=$(echo "$STAGED" | grep -E '^assets/data/.*\.json$')
 if [ -n "$DATA_FILES" ]; then
-    # Find a working Python command
-    PYTHON_CMD=""
-    for cmd in python python3 py; do
-        if command -v "$cmd" >/dev/null 2>&1; then
-            PYTHON_CMD="$cmd"
-            break
-        fi
-    done
-
     while IFS= read -r file; do
         if [ -f "$file" ]; then
             if [ -n "$PYTHON_CMD" ]; then
@@ -66,6 +68,20 @@ if [ -n "$DATA_FILES" ]; then
             fi
         fi
     done <<< "$DATA_FILES"
+fi
+
+CONTRACT_FILES=$(echo "$STAGED" | grep -E '^(\.agents/skills/|\.codex/agents/|\.codex/hooks/|\.codex/config\.toml$|\.codex/hooks\.json$|scripts/(sync_codex_metadata|validate_codex_native)\.py$)')
+if [ -n "$CONTRACT_FILES" ]; then
+    if [ -z "$PYTHON_CMD" ]; then
+        echo "BLOCKED: Python is required to validate Codex-native repo contracts." >&2
+        exit 2
+    fi
+
+    if ! VALIDATION_OUTPUT=$("$PYTHON_CMD" scripts/validate_codex_native.py 2>&1); then
+        echo "BLOCKED: Codex-native validation failed for staged repo-contract files." >&2
+        echo "$VALIDATION_OUTPUT" >&2
+        exit 2
+    fi
 fi
 
 # Check for hardcoded gameplay values in gameplay code
