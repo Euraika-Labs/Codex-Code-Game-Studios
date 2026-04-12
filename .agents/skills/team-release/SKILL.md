@@ -1,6 +1,6 @@
 ---
 name: team-release
-description: Orchestrate the release team: coordinates release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to deployment.
+description: "Orchestrate the release team: coordinates release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to deployment."
 ---
 
 **Argument check:** If no version number is provided:

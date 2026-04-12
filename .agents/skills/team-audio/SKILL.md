@@ -1,6 +1,6 @@
 ---
 name: team-audio
-description: Orchestrate audio team: audio-director + sound-designer + technical-artist + gameplay-programmer for full audio pipeline from direction to implementation.
+description: "Orchestrate audio team: audio-director + sound-designer + technical-artist + gameplay-programmer for full audio pipeline from direction to implementation."
 ---
 
 If no argument is provided, output usage guidance and exit without spawning any agents:

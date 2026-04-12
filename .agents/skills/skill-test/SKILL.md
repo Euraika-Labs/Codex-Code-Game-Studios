@@ -1,6 +1,6 @@
 ---
 name: skill-test
-description: Validate skill files for structural compliance and behavioral correctness. Three modes: static (linter), spec (behavioral), audit (coverage report).
+description: "Validate skill files for structural compliance and behavioral correctness. Three modes: static (linter), spec (behavioral), audit (coverage report)."
 ---
 
 # Skill Test

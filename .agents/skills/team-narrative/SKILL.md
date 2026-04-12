@@ -1,6 +1,6 @@
 ---
 name: team-narrative
-description: Orchestrate the narrative team: coordinates narrative-director, writer, world-builder, and level-designer to create cohesive story content, world lore, and narrative-driven level design.
+description: "Orchestrate the narrative team: coordinates narrative-director, writer, world-builder, and level-designer to create cohesive story content, world lore, and narrative-driven level design."
 ---
 
 If no argument is provided, output usage guidance and exit without spawning any agents:

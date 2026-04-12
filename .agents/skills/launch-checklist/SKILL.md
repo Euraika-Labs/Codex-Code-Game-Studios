@@ -1,6 +1,6 @@
 ---
 name: launch-checklist
-description: Complete launch readiness validation covering every department: code, content, store, marketing, community, infrastructure, legal, and go/no-go sign-offs.
+description: "Complete launch readiness validation covering every department: code, content, store, marketing, community, infrastructure, legal, and go/no-go sign-offs."
 ---
 
 > **Explicit invocation only**: This skill should only run when the user explicitly requests it with `$launch-checklist`. Do not auto-invoke based on context matching.

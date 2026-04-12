@@ -1,6 +1,6 @@
 ---
 name: team-polish
-description: Orchestrate the polish team: coordinates performance-analyst, technical-artist, sound-designer, and qa-tester to optimize, polish, and harden a feature or area for release quality.
+description: "Orchestrate the polish team: coordinates performance-analyst, technical-artist, sound-designer, and qa-tester to optimize, polish, and harden a feature or area for release quality."
 ---
 
 If no argument is provided, output usage guidance and exit without spawning any agents:

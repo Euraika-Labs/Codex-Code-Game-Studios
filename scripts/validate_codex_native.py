@@ -11,6 +11,11 @@ import subprocess
 import sys
 import tomllib
 
+try:
+    import yaml
+except Exception:  # pragma: no cover - optional dependency
+    yaml = None
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = REPO_ROOT / ".agents" / "skills"
@@ -35,6 +40,15 @@ def parse_frontmatter(skill_md: Path) -> dict[str, str]:
     text = skill_md.read_text(encoding="utf-8")
     match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
     if not match:
+        return {}
+
+    if yaml is not None:
+        data = yaml.safe_load(match.group(1))
+        if isinstance(data, dict):
+            return {
+                str(key): "" if value is None else str(value)
+                for key, value in data.items()
+            }
         return {}
 
     fields: dict[str, str] = {}
