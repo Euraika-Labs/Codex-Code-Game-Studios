@@ -27,6 +27,8 @@ GLOBAL_SKILLS_DIR = GLOBAL_PACK_DIR / "skills"
 GLOBAL_AGENTS_DIR = GLOBAL_PACK_DIR / "agents"
 GLOBAL_BIN_DIR = GLOBAL_PACK_DIR / "bin"
 GLOBAL_MANIFEST_PATH = GLOBAL_PACK_DIR / "manifest.json"
+ROOT_BOOTSTRAP_SH = REPO_ROOT / "bootstrap.sh"
+ROOT_BOOTSTRAP_PS1 = REPO_ROOT / "bootstrap.ps1"
 CONFIG_PATH = REPO_ROOT / ".codex" / "config.toml"
 HOOKS_CONFIG_PATH = REPO_ROOT / ".codex" / "hooks.json"
 HOOKS_DIR = REPO_ROOT / ".codex" / "hooks"
@@ -241,6 +243,38 @@ def validate_global_pack(errors: list[str]) -> None:
         bin_path = GLOBAL_BIN_DIR / bin_name
         if not bin_path.exists():
             fail(errors, f"{bin_path}: missing")
+
+    git_path = shutil.which("git")
+    if git_path:
+        for tracked_path in sorted({*(GLOBAL_BIN_DIR / name for name in bin_files), ROOT_BOOTSTRAP_SH, ROOT_BOOTSTRAP_PS1}):
+            result = subprocess.run(
+                [git_path, "check-ignore", "-q", str(tracked_path)],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if result.returncode == 0:
+                fail(errors, f"{tracked_path}: must not be ignored by git")
+
+    if not ROOT_BOOTSTRAP_SH.exists():
+        fail(errors, f"{ROOT_BOOTSTRAP_SH}: missing")
+    if not ROOT_BOOTSTRAP_PS1.exists():
+        fail(errors, f"{ROOT_BOOTSTRAP_PS1}: missing")
+
+    bash_path = shutil.which("bash")
+    if bash_path and ROOT_BOOTSTRAP_SH.exists():
+        result = subprocess.run(
+            [bash_path, "-n", str(ROOT_BOOTSTRAP_SH)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            fail(
+                errors,
+                f"{ROOT_BOOTSTRAP_SH}: bash -n failed: {(result.stderr or result.stdout).strip()}",
+            )
 
     for key in ("repo_files", "repo_dirs", "repo_nested_guides", "starter_dirs"):
         values = manifest.get(key, [])

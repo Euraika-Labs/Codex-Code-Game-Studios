@@ -13,16 +13,33 @@ It is intentionally smaller than the full project template:
 - `manifest.json` defines exactly what gets installed globally and what gets
   copied into a target repository.
 
-## Install the Global Pack
+## Universal Bootstrap
 
 From the root of this repository:
 
 ```bash
-python3 global-pack/bin/install_global_pack.py
+./bootstrap.sh
 ```
 
-By default this installs into `~/.codex`. Override with `--codex-home` if you
-want a test or sandbox install.
+On Windows PowerShell:
+
+```powershell
+.\bootstrap.ps1
+```
+
+Fallback:
+
+```bash
+python3 global-pack/bin/bootstrap.py
+```
+
+This command automatically:
+
+- picks the correct Codex home for your platform
+- installs or refreshes the global pack there
+- bootstraps the current git repo if you are inside one
+
+Use `--global-only` if you want only the user-level install.
 
 ## Bootstrap an Existing Repository
 
@@ -30,7 +47,7 @@ After the global pack is installed, either ask Codex to use `$install-studio`
 from inside a target repository, or run:
 
 ```bash
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/repo
+python3 ~/.codex/bin/bootstrap.py --target /path/to/repo
 ```
 
 Add `--dry-run` to preview changes and `--force` only if you want to overwrite

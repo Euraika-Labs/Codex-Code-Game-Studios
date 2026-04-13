@@ -27,7 +27,7 @@ the current repository state and explains the next action.
 - If the repo is missing the studio layer:
   - explain that the global pack is installed correctly, but the heavy game
     workflows still need to be bootstrapped into this repository
-  - recommend `$install-studio`
+  - recommend `$install-studio` or `python3 ~/.codex/bin/bootstrap.py --target "<repo-root>"`
 - If the user asks how the hybrid model works:
   - explain that global skills and agents live in `~/.codex`
   - explain that project workflows live in the repo after installation

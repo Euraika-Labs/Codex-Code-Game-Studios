@@ -5,9 +5,9 @@ description: Global installer skill that bootstraps the full Codex Code Game Stu
 
 # Install Studio
 
-This skill is designed to live in `~/.codex/skills/install-studio`. It uses the
-installed helper script at `../../bin/install_repo_studio.py`, which resolves
-the original source repository from the global pack metadata.
+This skill is designed to live in `~/.codex/skills/install-studio`. It should
+prefer the universal bootstrap at `../../bin/bootstrap.py`, which resolves the
+best Codex home and installs the repo-local studio safely.
 
 ## Step 1: Resolve the Target Repository
 
@@ -29,13 +29,13 @@ Check whether any of these already exist:
 Default to a preview first when the repository already has any of those paths:
 
 ```bash
-python3 ~/.codex/bin/install_repo_studio.py --target "<repo-root>" --dry-run
+python3 ~/.codex/bin/bootstrap.py --target "<repo-root>" --dry-run
 ```
 
 If the repo looks fresh, you may run the install directly:
 
 ```bash
-python3 ~/.codex/bin/install_repo_studio.py --target "<repo-root>"
+python3 ~/.codex/bin/bootstrap.py --target "<repo-root>"
 ```
 
 ## Step 4: Handle Conflicts Carefully

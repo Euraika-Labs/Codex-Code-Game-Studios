@@ -32,18 +32,49 @@ cd ~/tooling/Codex-Code-Game-Studios
 
 Do not clone the entire repo into `~/.codex`.
 
-## Step 2: Install the Global Pack
+## Step 2: Run the Universal Bootstrap
+
+On macOS, Linux, and WSL:
 
 ```bash
-python3 global-pack/bin/install_global_pack.py
+./bootstrap.sh
+```
+
+On Windows PowerShell:
+
+```powershell
+.\bootstrap.ps1
+```
+
+Fallback:
+
+```bash
+python3 global-pack/bin/bootstrap.py
 ```
 
 Optional flags:
 
 - `--dry-run` to preview file actions
 - `--force` to overwrite conflicting installed files
+- `--global-only` to install just the global pack
+- `--repo-only` to bootstrap only a repo
 - `--codex-home` to install into a non-default Codex home
 - `--source-repo` to point at a specific source clone
+- `--target` to bootstrap a specific repo instead of the current git root
+
+The universal bootstrap automatically:
+
+- resolves the best Codex home for the current platform
+- installs or refreshes the global pack
+- bootstraps the current git repo if one is detected
+
+### Platform defaults
+
+- `CODEX_HOME` wins if already set
+- native Windows uses `%USERPROFILE%\.codex`
+- WSL prefers the Windows Codex home if it already exists
+- otherwise WSL uses Linux `~/.codex`
+- Linux and macOS use `~/.codex`
 
 After a successful install, these should exist:
 
@@ -51,21 +82,25 @@ After a successful install, these should exist:
 - `~/.codex/skills/install-studio/`
 - `~/.codex/skills/adopt-studio/`
 - `~/.codex/agents/studio-bootstrapper.toml`
+- `~/.codex/bin/bootstrap.py`
 - `~/.codex/bin/install_repo_studio.py`
 - `~/.codex/bin/install_global_pack.py`
 
 ## Step 3: Bootstrap a Target Repository
 
-Inside any target repo:
+If you ran the universal bootstrap inside a git repo, this already happened
+automatically.
+
+If you want to target a specific repo manually:
 
 ```bash
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/repo
+python3 global-pack/bin/bootstrap.py --target /path/to/repo
 ```
 
 If the repo already has related files:
 
 ```bash
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/repo --dry-run
+python3 global-pack/bin/bootstrap.py --target /path/to/repo --dry-run
 ```
 
 Only use `--force` when you have explicitly decided to overwrite conflicting
@@ -101,6 +136,6 @@ documents. Those should be created by the repo skills after installation.
 ## Recommended Everyday Flow
 
 1. Keep one checked-out copy of this repo as your source of truth
-2. Run `install_global_pack.py` whenever you update it
-3. Use `$install-studio` or `install_repo_studio.py` inside any new or existing repo
+2. Run `./bootstrap.sh` or `.\bootstrap.ps1` whenever you update it
+3. Use `$install-studio` or `bootstrap.py --target ...` inside any new or existing repo
 4. Switch back to the repo-local workflows after bootstrap

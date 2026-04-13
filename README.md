@@ -112,6 +112,7 @@ like any other part of the project.
 ## Make It Global
 
 Use the hybrid model if you want Codex to recognize setup helpers everywhere.
+The easiest path is now the universal bootstrap.
 
 ### What "global" means here
 
@@ -131,46 +132,60 @@ git clone https://github.com/Euraika-Labs/Codex-Code-Game-Studios.git ~/tooling/
 cd ~/tooling/Codex-Code-Game-Studios
 ```
 
-### 2. Install the global pack into `~/.codex`
+### 2. Run the universal bootstrap
+
+On macOS, Linux, and WSL:
 
 ```bash
-python3 global-pack/bin/install_global_pack.py
+./bootstrap.sh
 ```
 
-Useful flags:
+On Windows PowerShell:
+
+```powershell
+.\bootstrap.ps1
+```
+
+Fallback if you prefer calling Python directly:
 
 ```bash
-python3 global-pack/bin/install_global_pack.py --dry-run
-python3 global-pack/bin/install_global_pack.py --force
-python3 global-pack/bin/install_global_pack.py --codex-home /tmp/codex-home
+python3 global-pack/bin/bootstrap.py
 ```
 
-This installs:
+This one command:
+
+- auto-detects the best Codex home for your platform
+- installs or refreshes the global pack there
+- if you are inside a git repo, also bootstraps the full studio into that repo
+
+### 3. Platform behavior
+
+The bootstrap resolves the global Codex home like this:
+
+- `CODEX_HOME` if you already set it
+- native Windows: `%USERPROFILE%\.codex`
+- WSL: the Windows Codex home if it already exists, otherwise Linux `~/.codex`
+- Linux and macOS: `~/.codex`
+
+This behavior matches OpenAI’s documented split between Windows and WSL, while
+giving new users the shared setup automatically when it already exists.
+
+### 4. What gets installed globally
+
+The global layer installs:
 
 - `~/.codex/skills/studio-help`
 - `~/.codex/skills/install-studio`
 - `~/.codex/skills/adopt-studio`
 - `~/.codex/agents/studio-bootstrapper.toml`
+- `~/.codex/bin/bootstrap.py`
 - `~/.codex/bin/install_repo_studio.py`
 - `~/.codex/bin/install_global_pack.py`
 
-### 3. Bootstrap any existing repo
+### 5. What happens inside a repo
 
-Once the global pack is installed, open Codex inside any target repository and
-either ask for `$install-studio`, or run the bootstrap script directly:
-
-```bash
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo
-```
-
-Useful flags:
-
-```bash
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo --dry-run
-python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo --force
-```
-
-That installs the repo-local studio layer:
+If you ran the bootstrap inside a git repository, it also installs the repo-local
+studio layer there:
 
 - `AGENTS.md`
 - `.agents/`
@@ -181,7 +196,23 @@ That installs the repo-local studio layer:
 - starter directories such as `design/`, `production/`, `src/`, `tests/`, and
   `build/`
 
-### 4. Start using the full studio in that repo
+If you ran the bootstrap outside a repo, no project files are changed.
+
+### 6. Optional manual modes
+
+If you want more control, the universal bootstrap also supports:
+
+```bash
+python3 global-pack/bin/bootstrap.py --dry-run
+python3 global-pack/bin/bootstrap.py --global-only
+python3 global-pack/bin/bootstrap.py --repo-only
+python3 global-pack/bin/bootstrap.py --target /path/to/existing-repo
+python3 global-pack/bin/bootstrap.py --codex-home /tmp/codex-home
+```
+
+The older low-level scripts still exist, but most users should not need them.
+
+### 7. Start using the full studio in that repo
 
 After bootstrap, start Codex in the target repo and use the normal repo skills:
 
@@ -190,12 +221,12 @@ After bootstrap, start Codex in the target repo and use the normal repo skills:
 - `$project-stage-detect`
 - `$adopt`
 
-### 5. Update the global pack later
+### 8. Update later
 
-Pull the latest version of this repo and rerun:
+Pull the latest version of this repo and rerun the same bootstrap command:
 
 ```bash
-python3 global-pack/bin/install_global_pack.py
+./bootstrap.sh
 ```
 
 For a more detailed walkthrough, see `docs/studio/global-install.md`.

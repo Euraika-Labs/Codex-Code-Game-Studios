@@ -25,6 +25,8 @@ docs/consistency-failures.md
 build/
 builds/
 bin/
+!global-pack/bin/
+!global-pack/bin/*.py
 obj/
 out/
 dist/

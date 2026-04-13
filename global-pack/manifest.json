@@ -9,6 +9,7 @@
   ],
   "bin_files": [
     "_installer_lib.py",
+    "bootstrap.py",
     "install_global_pack.py",
     "install_repo_studio.py"
   ],
