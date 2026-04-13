@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Demo"
+  short_description: "Create a Steam demo plan covering demo App ID strategy, depot sharing…"
+  default_prompt: "Use $steam-demo to create a Steam demo plan covering demo App ID strategy, depot sharing, CTA back to the base game, QA scope, and event timing. Use when planning a public Steam demo."
+policy:
+  allow_implicit_invocation: false

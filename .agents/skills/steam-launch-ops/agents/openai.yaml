@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Launch Ops"
+  short_description: "Create a Steam launch operations runbook covering release unlock…"
+  default_prompt: "Use $steam-launch-ops to create a Steam launch operations runbook covering release unlock timing, go-live checks, on-call ownership, monitoring, escalation thresholds, and hotfix triggers. Use right before a Steam launch."
+policy:
+  allow_implicit_invocation: false

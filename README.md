@@ -3,13 +3,13 @@
   <p align="center">
     Turn a single Codex CLI session into a structured game development studio.
     <br />
-    49 custom agents. 72 reusable skills. One consistent workflow.
+    50 custom agents. 84 reusable skills. One consistent workflow.
   </p>
 </p>
 
 <p align="center">
-  <a href=".codex/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 agents"></a>
-  <a href=".agents/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 skills"></a>
+  <a href=".codex/agents"><img src="https://img.shields.io/badge/agents-50-blueviolet" alt="50 agents"></a>
+  <a href=".agents/skills"><img src="https://img.shields.io/badge/skills-84-green" alt="84 skills"></a>
   <a href="docs/studio/hooks-reference.md"><img src="https://img.shields.io/badge/supported%20hooks-5-orange" alt="5 supported hooks"></a>
   <a href="docs/studio/rules-reference.md"><img src="https://img.shields.io/badge/path%20guides-11-red" alt="11 path guides"></a>
   <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/built%20for-Codex%20CLI-black" alt="Built for Codex CLI"></a>
@@ -41,7 +41,7 @@ What changed is the surface area:
 | Category | Count | Notes |
 | --- | --- | --- |
 | Custom agents | 49 | Directors, department leads, specialists, and engine experts |
-| Skills | 72 | Reusable repo skills for design, engineering, QA, release, and orchestration |
+| Skills | 84 | Reusable repo skills for design, engineering, QA, release, orchestration, and Steam publishing |
 | Supported hooks | 5 events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` are the current Codex hook surfaces |
 | Path guides | 11 | Nested `AGENTS.md` files for code, docs, shaders, data, tests, and prototypes |
 | Studio docs | 60+ | Workflow docs, templates, gate definitions, and references |
@@ -52,7 +52,7 @@ What changed is the surface area:
 /
 ├── AGENTS.md                     # Root operating guide for Codex
 ├── .agents/
-│   └── skills/                  # 72 repo skills
+│   └── skills/                  # 84 repo skills
 ├── .codex/
 │   ├── agents/                  # 49 custom agent definitions (.toml)
 │   ├── hooks/                   # Hook scripts kept in repo

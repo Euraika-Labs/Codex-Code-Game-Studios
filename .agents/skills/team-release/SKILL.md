@@ -17,6 +17,7 @@ The user must approve before moving to the next phase.
 
 ## Team Composition
 - **release-manager** — Release branch, versioning, changelog, deployment
+- **steam-publishing-manager** — Steamworks-specific app/package/depot, review, variant, pricing, and launch-readiness coordination (invoke if Steam is a target storefront)
 - **qa-lead** — Test sign-off, regression suite, release quality gate
 - **devops-engineer** — Build pipeline, artifacts, deployment automation
 - **security-engineer** — Pre-release security audit (invoke if game has online/multiplayer features or player data)
@@ -28,6 +29,7 @@ The user must approve before moving to the next phase.
 
 Use the subagent workflow to spawn each team member as a subagent:
 - `custom agent: release-manager` — Release branch, versioning, changelog, deployment
+- `custom agent: steam-publishing-manager` — Steamworks planning, review readiness, variants, pricing, launch operations
 - `custom agent: qa-lead` — Test sign-off, regression suite, release quality gate
 - `custom agent: devops-engineer` — Build pipeline, artifacts, deployment automation
 - `custom agent: security-engineer` — Security audit for online/multiplayer/data features
@@ -54,6 +56,14 @@ Delegate to **release-manager**:
 - Generate the release checklist using `$release-checklist`
 - Freeze the branch — no feature changes, bug fixes only
 - Output: release branch name and checklist
+
+If Steam is a target storefront, also delegate to **steam-publishing-manager**:
+- Generate or refresh the base Steam plan using `$steam-publish-plan`
+- Confirm whether `$steam-coming-soon`, `$steam-store-assets`, `$steam-review-ready`,
+  `$steam-demo`, `$steam-playtest`, `$steam-early-access`, `$steam-dlc`,
+  `$steam-soundtrack`, `$steam-bundles-pricing`, `$steam-launch-ops`, or
+  `$steam-deck-ready` are needed for this release
+- Output: Steam-specific release risks and missing artifacts
 
 ### Phase 3: Quality Gate (parallel)
 Delegate in parallel:
@@ -93,6 +103,11 @@ Delegate to **release-manager** + **devops-engineer**:
 - Deploy to staging for final smoke test
 - Deploy to production
 - Monitor for 48 hours post-release
+
+If Steam is a target storefront, delegate to **steam-publishing-manager** in parallel:
+- Confirm store page, pricing, packages, depots, and release toggles match the approved plan
+- Verify Steam-specific launch operations and monitoring are ready
+- Output: final Steam storefront readiness note
 
 Delegate to **community-manager** (in parallel with deployment):
 - Finalize patch notes using `$patch-notes [version]`

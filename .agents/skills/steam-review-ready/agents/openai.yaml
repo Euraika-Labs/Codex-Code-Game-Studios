@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Review Ready"
+  short_description: "Produce a Steam review-readiness packet covering store page…"
+  default_prompt: "Use $steam-review-ready to produce a Steam review-readiness packet covering store page completeness, build submission readiness, depot/package checks, and reviewer-facing risks. Use before Steam review submission."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Publish Plan"
+  short_description: "Build a Steamworks publishing plan covering app relationships…"
+  default_prompt: "Use $steam-publish-plan to build a Steamworks publishing plan covering app relationships, packages, depots, review sequencing, Coming Soon timing, and which Steam variant flows apply. Use when preparing a Steam release for a premium game, demo, playtest, Early Access, DLC, soundtrack, or bundle."
+policy:
+  allow_implicit_invocation: false

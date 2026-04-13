@@ -11,6 +11,11 @@ from dataclasses import dataclass
 import re
 from pathlib import Path
 
+try:
+    import yaml
+except Exception:  # pragma: no cover - optional dependency
+    yaml = None
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = REPO_ROOT / ".agents" / "skills"
@@ -72,12 +77,21 @@ def parse_frontmatter(skill_md: Path) -> SkillFrontmatter:
     if not match:
         raise ValueError(f"Missing YAML frontmatter in {skill_md}")
 
-    fields: dict[str, str] = {}
-    for raw_line in match.group(1).splitlines():
-        if ":" not in raw_line:
-            continue
-        key, value = raw_line.split(":", 1)
-        fields[key.strip()] = value.strip()
+    if yaml is not None:
+        data = yaml.safe_load(match.group(1))
+        if not isinstance(data, dict):
+            raise ValueError(f"Invalid YAML frontmatter in {skill_md}")
+        fields = {
+            str(key): "" if value is None else str(value)
+            for key, value in data.items()
+        }
+    else:
+        fields = {}
+        for raw_line in match.group(1).splitlines():
+            if ":" not in raw_line:
+                continue
+            key, value = raw_line.split(":", 1)
+            fields[key.strip()] = value.strip()
 
     name = fields.get("name", "")
     description = fields.get("description", "")

@@ -4,8 +4,8 @@
 
 This framework gives Codex a studio-shaped operating model:
 
-- 49 custom agents in `.codex/agents/`
-- 72 reusable skills in `.agents/skills/`
+- 50 custom agents in `.codex/agents/`
+- 84 reusable skills in `.agents/skills/`
 - nested `AGENTS.md` guides for path-specific standards
 - project hooks wired through `.codex/hooks.json` and enabled in `.codex/config.toml`
 

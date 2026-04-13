@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Dlc"
+  short_description: "Create a Steam DLC plan covering DLC App ID setup, ownership gating…"
+  default_prompt: "Use $steam-dlc to create a Steam DLC plan covering DLC App ID setup, ownership gating, depot strategy, bundle effects, messaging, and QA focus. Use when planning a Steam DLC release."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Soundtrack"
+  short_description: "Create a Steam soundtrack release plan covering soundtrack app setup…"
+  default_prompt: "Use $steam-soundtrack to create a Steam soundtrack release plan covering soundtrack app setup, rights checks, album assets, pricing, and bundle coordination. Use when releasing a soundtrack on Steam."
+policy:
+  allow_implicit_invocation: false

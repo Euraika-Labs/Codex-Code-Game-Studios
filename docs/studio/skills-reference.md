@@ -1,6 +1,6 @@
 # Available Skills
 
-72 repo skills organized by phase. Mention the skill name directly in your
+84 repo skills organized by phase. Mention the skill name directly in your
 prompt, for example `$start` or `$design-system`.
 
 ## Onboarding & Navigation
@@ -102,6 +102,18 @@ prompt, for example `$start` or `$design-system`.
 | `$changelog` | Auto-generate changelog from git commits and sprint data |
 | `$patch-notes` | Generate player-facing patch notes from git history and internal data |
 | `$hotfix` | Emergency fix workflow with audit trail, bypassing normal sprint process |
+| `$steam-publish-plan` | Build the master Steamworks publishing plan for the base game and release variants |
+| `$steam-coming-soon` | Plan Steam review timing, Coming Soon visibility, and wishlist beats |
+| `$steam-store-assets` | Prepare Steam-specific store copy and visual asset pack |
+| `$steam-review-ready` | Generate the Steam review-readiness packet for store page and build submission |
+| `$steam-demo` | Plan a public Steam demo release with App ID, depots, CTA, and QA scope |
+| `$steam-playtest` | Plan a gated Steam Playtest with cohorts, admission waves, and feedback flow |
+| `$steam-early-access` | Prepare the Steam Early Access plan and Q and A |
+| `$steam-dlc` | Plan Steam DLC ownership, depots, messaging, and release impact |
+| `$steam-soundtrack` | Plan a soundtrack release on Steam |
+| `$steam-bundles-pricing` | Plan Steam pricing, launch discounts, bundles, and regional considerations |
+| `$steam-launch-ops` | Create the Steam launch-day runbook and monitoring plan |
+| `$steam-deck-ready` | Summarize Steam Deck readiness and follow-up actions |
 
 ## Creative & Content
 
@@ -120,7 +132,7 @@ Coordinate multiple agents on a single feature area:
 | `$team-combat` | game-designer + gameplay-programmer + ai-programmer + technical-artist + sound-designer + qa-tester |
 | `$team-narrative` | narrative-director + writer + world-builder + level-designer |
 | `$team-ui` | ux-designer + ui-programmer + art-director + accessibility-specialist |
-| `$team-release` | release-manager + qa-lead + devops-engineer + producer |
+| `$team-release` | release-manager + steam-publishing-manager + qa-lead + devops-engineer + producer |
 | `$team-polish` | performance-analyst + technical-artist + sound-designer + qa-tester |
 | `$team-audio` | audio-director + sound-designer + technical-artist + gameplay-programmer |
 | `$team-level` | level-designer + narrative-director + world-builder + art-director + systems-designer + qa-tester |

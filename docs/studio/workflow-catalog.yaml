@@ -368,6 +368,12 @@ phases:
         required: true
         description: "Pre-release validation across all departments: code, content, store, legal"
 
+      - id: steam-publish
+        name: "Steam Publishing Pack (if shipping on Steam)"
+        command: $steam-publish-plan
+        required: false
+        description: "Steamworks-native planning for the base app, child apps, packages, depots, reviews, and downstream variant flows. Leads to $steam-coming-soon, $steam-store-assets, $steam-review-ready, $steam-demo, $steam-playtest, $steam-early-access, $steam-dlc, $steam-soundtrack, $steam-bundles-pricing, $steam-launch-ops, and $steam-deck-ready."
+
       - id: patch-notes
         name: "Patch Notes"
         command: $patch-notes

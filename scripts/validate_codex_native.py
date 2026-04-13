@@ -11,7 +11,7 @@ import subprocess
 import sys
 import tomllib
 
-from build_workflow_matrix import build_matrix
+from build_workflow_matrix import WORKFLOW_CATALOG_PATH, build_matrix, load_yaml
 
 try:
     import yaml
@@ -380,12 +380,20 @@ def validate_workflow_matrix(errors: list[str]) -> None:
         fail(errors, error)
 
     summary = matrix.get("summary", {})
+    workflow_catalog = load_yaml(WORKFLOW_CATALOG_PATH)
+    expected_workflow_steps = sum(
+        len(phase.get("steps", []))
+        for phase in workflow_catalog.get("phases", {}).values()
+    )
     if summary.get("skills_total") != len(list(SKILLS_DIR.glob("*/SKILL.md"))):
         fail(errors, "workflow matrix did not enumerate every repo skill")
     if summary.get("agents_total") != len(list(AGENTS_DIR.glob("*.toml"))):
         fail(errors, "workflow matrix did not enumerate every custom agent")
-    if summary.get("workflow_steps_total") != 44:
-        fail(errors, f"expected workflow matrix to enumerate 44 workflow steps, found {summary.get('workflow_steps_total')}")
+    if summary.get("workflow_steps_total") != expected_workflow_steps:
+        fail(
+            errors,
+            f"expected workflow matrix to enumerate {expected_workflow_steps} workflow steps, found {summary.get('workflow_steps_total')}",
+        )
 
 
 def main() -> int:

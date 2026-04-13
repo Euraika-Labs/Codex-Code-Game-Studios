@@ -3,7 +3,7 @@
 > **How to go from zero to a shipped game using the studio workflow.**
 >
 > This guide walks you through every phase of game development using the
-> 49-agent system, 72 repo skills, and the supported Codex hook surface. It
+> 50-agent system, 84 repo skills, and the supported Codex hook surface. It
 > assumes you have Codex CLI installed and are working from the project root.
 >
 > The pipeline has 7 phases. Each phase has a formal gate (`$gate-check`)
@@ -1036,6 +1036,16 @@ $release-checklist  -->  $launch-checklist  -->  $team-release
   code, content,          per department)           deployment, launch
   store, legal
                     Also: $changelog, $patch-notes, $hotfix
+
+If Steam is a target storefront:
+$steam-publish-plan --> $steam-coming-soon --> $steam-review-ready --> $steam-launch-ops
+        |                      |                      |
+        v                      v                      v
+  Base app + variants    Store timing + assets   Steam-specific go-live checks
+
+Optional Steam variants:
+$steam-demo, $steam-playtest, $steam-early-access, $steam-dlc,
+$steam-soundtrack, $steam-bundles-pricing, $steam-deck-ready
 ```
 
 ### Step 7.1: Release Checklist
@@ -1078,6 +1088,35 @@ Complete cross-department validation:
 
 Each item gets a **Go / No-Go** status. All must be Go to ship.
 
+### Step 7.2b: Steam Specialization (if shipping on Steam)
+
+```
+$steam-publish-plan premium
+$steam-coming-soon
+$steam-store-assets
+$steam-review-ready
+```
+
+Use the Steam pack to model:
+- base app plus child apps such as demo, playtest, DLC, or soundtrack
+- package and depot planning
+- Steam review ordering and launch timing
+- pricing, launch discounts, and bundle setup
+- Steam Deck positioning and launch-day operations
+
+Variant commands:
+
+```
+$steam-demo
+$steam-playtest
+$steam-early-access
+$steam-dlc
+$steam-soundtrack
+$steam-bundles-pricing
+$steam-launch-ops
+$steam-deck-ready
+```
+
 ### Step 7.3: Generate Player-Facing Content
 
 ```
@@ -1099,7 +1138,7 @@ Generates an internal changelog (more technical, for the team).
 $team-release
 ```
 
-Coordinates release-manager, QA, and DevOps through:
+Coordinates release-manager, Steam storefront planning when relevant, QA, and DevOps through:
 1. Pre-release validation
 2. Build management
 3. Final QA sign-off

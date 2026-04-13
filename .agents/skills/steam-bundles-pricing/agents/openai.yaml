@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Bundles Pricing"
+  short_description: "Create a Steam pricing and bundle plan covering regional pricing…"
+  default_prompt: "Use $steam-bundles-pricing to create a Steam pricing and bundle plan covering regional pricing, launch discounts, deluxe packages, soundtrack or DLC bundles, and Steam-specific pricing risks. Use when setting commercial terms on Steam."
+policy:
+  allow_implicit_invocation: false

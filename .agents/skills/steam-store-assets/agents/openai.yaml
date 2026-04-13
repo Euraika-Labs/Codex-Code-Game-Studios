@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Store Assets"
+  short_description: "Build a Steam store asset and copy pack covering capsule messaging…"
+  default_prompt: "Use $steam-store-assets to build a Steam store asset and copy pack covering capsule messaging, screenshots, trailers, library assets, and proof points. Use when preparing Steam store-facing creative and metadata."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Early Access"
+  short_description: "Create a Steam Early Access plan covering the Early Access Q and A…"
+  default_prompt: "Use $steam-early-access to create a Steam Early Access plan covering the Early Access Q and A, roadmap framing, save-compatibility strategy, update cadence, and price-change risks. Use when the base game will launch in Early Access."
+policy:
+  allow_implicit_invocation: false

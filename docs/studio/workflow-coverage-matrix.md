@@ -12,21 +12,21 @@ The matrix treats the following as distinct coverage obligations:
 
 ## Summary
 
-- Skills: `72`
-- Workflow steps: `44`
-- Workflow commands: `45`
-- Support skills: `27`
-- Custom agents: `49`
-- Coverage obligations: `216`
-- Complete obligations: `6`
-- Partial obligations: `209`
+- Skills: `84`
+- Workflow steps: `45`
+- Workflow commands: `46`
+- Support skills: `38`
+- Custom agents: `50`
+- Coverage obligations: `241`
+- Complete obligations: `0`
+- Partial obligations: `240`
 - Missing obligations: `1`
-- Critical/high obligations not complete: `57`
+- Critical/high obligations not complete: `59`
 
 ## Evidence Sources
 
 - Probe summary supplied: `false`
-- Scenario summary supplied: `true`
+- Scenario summary supplied: `false`
 
 ## Required Gaps
 
@@ -50,6 +50,7 @@ The matrix treats the following as distinct coverage obligations:
 | critical | `workflow.pre-production.prototype.prototype.base-flow` | `prototype` | static=present, spec=present, probe=untracked, scenario=missing |
 | critical | `workflow.release.release-checklist.release-checklist.base-flow` | `release-checklist` | static=present, spec=present, probe=untracked, scenario=missing |
 | critical | `workflow.systems-design.review-all-gdds.review-all-gdds.base-flow` | `review-all-gdds` | static=present, spec=present, probe=untracked, scenario=missing |
+| critical | `workflow.concept.engine-setup.setup-engine.base-flow` | `setup-engine` | static=present, spec=present, probe=untracked, scenario=defined |
 | critical | `workflow.pre-production.sprint-plan.sprint-plan.base-flow` | `sprint-plan` | static=present, spec=present, probe=untracked, scenario=missing |
 | critical | `workflow.production.sprint-plan.sprint-plan.base-flow` | `sprint-plan` | static=present, spec=present, probe=untracked, scenario=missing |
 | critical | `workflow.production.story-done.story-done.base-flow` | `story-done` | static=present, spec=present, probe=untracked, scenario=missing |
@@ -71,7 +72,6 @@ The matrix treats the following as distinct coverage obligations:
 | high | `workflow.systems-design.design-review.design-review.repeatable-iteration` | `design-review` | static=present, spec=present, probe=untracked, scenario=missing |
 | high | `workflow.systems-design.design-review.design-review.write-approval` | `design-review` | static=present, spec=present, probe=untracked, scenario=missing |
 | high | `workflow.systems-design.design-system.design-system.repeatable-iteration` | `design-system` | static=present, spec=present, probe=untracked, scenario=missing |
-| high | `workflow.systems-design.design-system.design-system.write-approval` | `design-system` | static=present, spec=present, probe=untracked, scenario=missing |
 
 ## Workflow Obligations
 
@@ -79,8 +79,8 @@ The matrix treats the following as distinct coverage obligations:
 | --- | --- | --- | --- | --- | --- | --- |
 | concept | brainstorm | `brainstorm` | base-flow | medium | partial | - |
 | concept | brainstorm | `brainstorm` | write-approval | low | partial | - |
-| concept | engine-setup | `setup-engine` | base-flow | critical | complete | `setup-engine-godot` |
-| concept | engine-setup | `setup-engine` | write-approval | high | complete | `setup-engine-godot` |
+| concept | engine-setup | `setup-engine` | base-flow | critical | partial | `setup-engine-godot` |
+| concept | engine-setup | `setup-engine` | write-approval | high | partial | `setup-engine-godot` |
 | concept | game-concept | `brainstorm` | base-flow | critical | partial | - |
 | concept | game-concept | `brainstorm` | write-approval | high | partial | - |
 | concept | design-review-concept | `design-review` | base-flow | medium | partial | - |
@@ -125,8 +125,8 @@ The matrix treats the following as distinct coverage obligations:
 | pre-production | create-stories | `create-stories` | base-flow | critical | partial | - |
 | pre-production | create-stories | `create-stories` | repeatable-iteration | high | partial | - |
 | pre-production | create-stories | `create-stories` | write-approval | high | partial | - |
-| pre-production | test-setup | `test-setup` | base-flow | medium | complete | `test-setup-godot` |
-| pre-production | test-setup | `test-setup` | write-approval | low | complete | `test-setup-godot` |
+| pre-production | test-setup | `test-setup` | base-flow | medium | partial | `test-setup-godot` |
+| pre-production | test-setup | `test-setup` | write-approval | low | partial | `test-setup-godot` |
 | pre-production | sprint-plan | `sprint-plan` | base-flow | critical | partial | - |
 | pre-production | sprint-plan | `sprint-plan` | write-approval | high | partial | - |
 | pre-production | vertical-slice | `playtest-report` | base-flow | critical | partial | - |
@@ -186,6 +186,8 @@ The matrix treats the following as distinct coverage obligations:
 | polish | team-polish | `team-polish` | write-approval | high | partial | - |
 | release | release-checklist | `release-checklist` | base-flow | critical | partial | - |
 | release | release-checklist | `release-checklist` | write-approval | high | partial | - |
+| release | steam-publish | `steam-publish-plan` | base-flow | medium | partial | `steam-publish-plan` |
+| release | steam-publish | `steam-publish-plan` | write-approval | low | partial | `steam-publish-plan` |
 | release | patch-notes | `patch-notes` | base-flow | medium | partial | - |
 | release | patch-notes | `patch-notes` | write-approval | low | partial | - |
 | release | changelog | `changelog` | base-flow | medium | partial | - |
@@ -239,10 +241,32 @@ The matrix treats the following as distinct coverage obligations:
 | `soak-test` | write-approval | partial | - |
 | `start` | base-flow | partial | - |
 | `start` | write-approval | partial | - |
+| `steam-bundles-pricing` | base-flow | partial | - |
+| `steam-bundles-pricing` | write-approval | partial | - |
+| `steam-coming-soon` | base-flow | partial | - |
+| `steam-coming-soon` | write-approval | partial | - |
+| `steam-deck-ready` | base-flow | partial | - |
+| `steam-deck-ready` | write-approval | partial | - |
+| `steam-demo` | base-flow | partial | - |
+| `steam-demo` | write-approval | partial | - |
+| `steam-dlc` | base-flow | partial | - |
+| `steam-dlc` | write-approval | partial | - |
+| `steam-early-access` | base-flow | partial | - |
+| `steam-early-access` | write-approval | partial | - |
+| `steam-launch-ops` | base-flow | partial | - |
+| `steam-launch-ops` | write-approval | partial | - |
+| `steam-playtest` | base-flow | partial | - |
+| `steam-playtest` | write-approval | partial | - |
+| `steam-review-ready` | base-flow | partial | - |
+| `steam-review-ready` | write-approval | partial | - |
+| `steam-soundtrack` | base-flow | partial | - |
+| `steam-soundtrack` | write-approval | partial | - |
+| `steam-store-assets` | base-flow | partial | - |
+| `steam-store-assets` | write-approval | partial | - |
 | `team-release` | base-flow | partial | - |
 | `team-release` | write-approval | partial | - |
-| `tech-debt` | base-flow | complete | `tech-debt-scan` |
-| `tech-debt` | write-approval | complete | `tech-debt-scan` |
+| `tech-debt` | base-flow | partial | `tech-debt-scan` |
+| `tech-debt` | write-approval | partial | `tech-debt-scan` |
 | `test-evidence-review` | base-flow | partial | - |
 | `test-evidence-review` | write-approval | partial | - |
 | `test-flakiness` | base-flow | partial | - |
@@ -285,6 +309,7 @@ The matrix treats the following as distinct coverage obligations:
 | `release-manager` | `workspace-write` | partial | untracked |
 | `security-engineer` | `workspace-write` | partial | untracked |
 | `sound-designer` | `workspace-write` | partial | untracked |
+| `steam-publishing-manager` | `workspace-write` | partial | untracked |
 | `systems-designer` | `workspace-write` | partial | untracked |
 | `technical-artist` | `workspace-write` | partial | untracked |
 | `technical-director` | `workspace-write` | partial | untracked |

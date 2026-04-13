@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Playtest"
+  short_description: "Create a Steam Playtest operations plan covering signup messaging…"
+  default_prompt: "Use $steam-playtest to create a Steam Playtest operations plan covering signup messaging, cohort waves, build cadence, feedback collection, and exit criteria. Use when planning gated Steam testing before launch."
+policy:
+  allow_implicit_invocation: false

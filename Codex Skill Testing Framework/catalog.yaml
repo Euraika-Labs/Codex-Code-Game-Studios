@@ -797,6 +797,138 @@ skills:
     priority: low
     category: utility
 
+  - name: steam-publish-plan
+    spec: Codex Skill Testing Framework/skills/utility/steam-publish-plan.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-coming-soon
+    spec: Codex Skill Testing Framework/skills/utility/steam-coming-soon.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-store-assets
+    spec: Codex Skill Testing Framework/skills/utility/steam-store-assets.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-review-ready
+    spec: Codex Skill Testing Framework/skills/utility/steam-review-ready.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-demo
+    spec: Codex Skill Testing Framework/skills/utility/steam-demo.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-playtest
+    spec: Codex Skill Testing Framework/skills/utility/steam-playtest.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-early-access
+    spec: Codex Skill Testing Framework/skills/utility/steam-early-access.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-dlc
+    spec: Codex Skill Testing Framework/skills/utility/steam-dlc.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-soundtrack
+    spec: Codex Skill Testing Framework/skills/utility/steam-soundtrack.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-bundles-pricing
+    spec: Codex Skill Testing Framework/skills/utility/steam-bundles-pricing.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-launch-ops
+    spec: Codex Skill Testing Framework/skills/utility/steam-launch-ops.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
+  - name: steam-deck-ready
+    spec: Codex Skill Testing Framework/skills/utility/steam-deck-ready.md
+    last_static: ""
+    last_static_result: ""
+    last_spec: ""
+    last_spec_result: ""
+    last_category: ""
+    last_category_result: ""
+    priority: medium
+    category: utility
+
 agents:
   # Tier 1 Directors (Opus)
   - name: creative-director
@@ -1041,6 +1173,12 @@ agents:
 
   - name: release-manager
     spec: Codex Skill Testing Framework/agents/operations/release-manager.md
+    last_spec: ""
+    last_spec_result: ""
+    category: operations
+
+  - name: steam-publishing-manager
+    spec: Codex Skill Testing Framework/agents/operations/steam-publishing-manager.md
     last_spec: ""
     last_spec_result: ""
     category: operations

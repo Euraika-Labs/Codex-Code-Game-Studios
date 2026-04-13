@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Deck Ready"
+  short_description: "Create a Steam Deck readiness summary covering input, readability…"
+  default_prompt: "Use $steam-deck-ready to create a Steam Deck readiness summary covering input, readability, performance, suspend-resume behavior, compatibility risks, and follow-up actions. Use when preparing Steam Deck support or review positioning."
+policy:
+  allow_implicit_invocation: false

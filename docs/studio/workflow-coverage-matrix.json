@@ -1,31 +1,30 @@
 {
   "repo_root": ".",
   "probe_summary_supplied": false,
-  "scenario_summary_supplied": true,
+  "scenario_summary_supplied": false,
   "summary": {
-    "skills_total": 72,
-    "workflow_steps_total": 44,
-    "workflow_commands_total": 45,
-    "support_skills_total": 27,
-    "agents_total": 49,
-    "variants_total": 216,
+    "skills_total": 84,
+    "workflow_steps_total": 45,
+    "workflow_commands_total": 46,
+    "support_skills_total": 38,
+    "agents_total": 50,
+    "variants_total": 241,
     "status_counts": {
-      "partial": 209,
-      "complete": 6,
+      "partial": 240,
       "missing": 1
     },
     "surface_counts": {
-      "workflow-step": 115,
-      "support-skill": 52,
-      "custom-agent": 49
+      "workflow-step": 117,
+      "support-skill": 74,
+      "custom-agent": 50
     },
     "priority_counts": {
-      "medium": 100,
-      "low": 57,
+      "medium": 113,
+      "low": 69,
       "critical": 25,
       "high": 34
     },
-    "uncovered_required_total": 57
+    "uncovered_required_total": 59
   },
   "variants": [
     {
@@ -101,12 +100,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "setup-engine-godot"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "workflow.concept.engine-setup.setup-engine.write-approval",
@@ -131,12 +130,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "setup-engine-godot"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "workflow.concept.game-concept.brainstorm.base-flow",
@@ -1344,12 +1343,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "test-setup-godot"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "workflow.pre-production.test-setup.test-setup.write-approval",
@@ -1373,12 +1372,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "test-setup-godot"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "workflow.pre-production.sprint-plan.sprint-plan.base-flow",
@@ -2892,6 +2891,60 @@
       "status": "partial"
     },
     {
+      "variant_id": "workflow.release.steam-publish.steam-publish-plan.base-flow",
+      "surface_kind": "workflow-step",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": "release",
+      "step_id": "steam-publish",
+      "step_name": "Steam Publishing Pack (if shipping on Steam)",
+      "target": "steam-publish-plan",
+      "required": false,
+      "repeatable": false,
+      "description": "Steamworks-native planning for the base app, child apps, packages, depots, reviews, and downstream variant flows. Leads to $steam-coming-soon, $steam-store-assets, $steam-review-ready, $steam-demo, $steam-playtest, $steam-early-access, $steam-dlc, $steam-soundtrack, $steam-bundles-pricing, $steam-launch-ops, and $steam-deck-ready.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-publish-plan/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "defined",
+        "scenario_ids": [
+          "steam-publish-plan"
+        ]
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "workflow.release.steam-publish.steam-publish-plan.write-approval",
+      "surface_kind": "workflow-step",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": "release",
+      "step_id": "steam-publish",
+      "step_name": "Steam Publishing Pack (if shipping on Steam)",
+      "target": "steam-publish-plan",
+      "required": false,
+      "repeatable": false,
+      "description": "Steamworks-native planning for the base app, child apps, packages, depots, reviews, and downstream variant flows. Leads to $steam-coming-soon, $steam-store-assets, $steam-review-ready, $steam-demo, $steam-playtest, $steam-early-access, $steam-dlc, $steam-soundtrack, $steam-bundles-pricing, $steam-launch-ops, and $steam-deck-ready.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-publish-plan/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "defined",
+        "scenario_ids": [
+          "steam-publish-plan"
+        ]
+      },
+      "status": "partial"
+    },
+    {
       "variant_id": "workflow.release.patch-notes.patch-notes.base-flow",
       "surface_kind": "workflow-step",
       "obligation_kind": "base-flow",
@@ -4092,6 +4145,556 @@
       "status": "partial"
     },
     {
+      "variant_id": "support.steam-bundles-pricing.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-bundles-pricing",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam pricing and bundle plan covering regional pricing, launch discounts, deluxe packages, soundtrack or DLC bundles, and Steam-specific pricing risks. Use when setting commercial terms on Steam.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-bundles-pricing/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-bundles-pricing.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-bundles-pricing",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam pricing and bundle plan covering regional pricing, launch discounts, deluxe packages, soundtrack or DLC bundles, and Steam-specific pricing risks. Use when setting commercial terms on Steam.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-bundles-pricing/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-coming-soon.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-coming-soon",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Coming Soon and review calendar covering Steam Direct readiness, store page review, build review, wishlist beats, and release timing. Use when planning the Steam pre-launch window.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-coming-soon/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-coming-soon.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-coming-soon",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Coming Soon and review calendar covering Steam Direct readiness, store page review, build review, wishlist beats, and release timing. Use when planning the Steam pre-launch window.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-coming-soon/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-deck-ready.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-deck-ready",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Deck readiness summary covering input, readability, performance, suspend-resume behavior, compatibility risks, and follow-up actions. Use when preparing Steam Deck support or review positioning.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-deck-ready/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-deck-ready.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-deck-ready",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Deck readiness summary covering input, readability, performance, suspend-resume behavior, compatibility risks, and follow-up actions. Use when preparing Steam Deck support or review positioning.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-deck-ready/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-demo.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-demo",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam demo plan covering demo App ID strategy, depot sharing, CTA back to the base game, QA scope, and event timing. Use when planning a public Steam demo.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-demo/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-demo.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-demo",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam demo plan covering demo App ID strategy, depot sharing, CTA back to the base game, QA scope, and event timing. Use when planning a public Steam demo.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-demo/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-dlc.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-dlc",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam DLC plan covering DLC App ID setup, ownership gating, depot strategy, bundle effects, messaging, and QA focus. Use when planning a Steam DLC release.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-dlc/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-dlc.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-dlc",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam DLC plan covering DLC App ID setup, ownership gating, depot strategy, bundle effects, messaging, and QA focus. Use when planning a Steam DLC release.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-dlc/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-early-access.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-early-access",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Early Access plan covering the Early Access Q and A, roadmap framing, save-compatibility strategy, update cadence, and price-change risks. Use when the base game will launch in Early Access.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-early-access/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-early-access.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-early-access",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Early Access plan covering the Early Access Q and A, roadmap framing, save-compatibility strategy, update cadence, and price-change risks. Use when the base game will launch in Early Access.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-early-access/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-launch-ops.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-launch-ops",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam launch operations runbook covering release unlock timing, go-live checks, on-call ownership, monitoring, escalation thresholds, and hotfix triggers. Use right before a Steam launch.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-launch-ops/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-launch-ops.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-launch-ops",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam launch operations runbook covering release unlock timing, go-live checks, on-call ownership, monitoring, escalation thresholds, and hotfix triggers. Use right before a Steam launch.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-launch-ops/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-playtest.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-playtest",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Playtest operations plan covering signup messaging, cohort waves, build cadence, feedback collection, and exit criteria. Use when planning gated Steam testing before launch.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-playtest/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-playtest.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-playtest",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam Playtest operations plan covering signup messaging, cohort waves, build cadence, feedback collection, and exit criteria. Use when planning gated Steam testing before launch.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-playtest/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-review-ready.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-review-ready",
+      "required": false,
+      "repeatable": false,
+      "description": "Produce a Steam review-readiness packet covering store page completeness, build submission readiness, depot/package checks, and reviewer-facing risks. Use before Steam review submission.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-review-ready/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-review-ready.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-review-ready",
+      "required": false,
+      "repeatable": false,
+      "description": "Produce a Steam review-readiness packet covering store page completeness, build submission readiness, depot/package checks, and reviewer-facing risks. Use before Steam review submission.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-review-ready/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-soundtrack.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-soundtrack",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam soundtrack release plan covering soundtrack app setup, rights checks, album assets, pricing, and bundle coordination. Use when releasing a soundtrack on Steam.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-soundtrack/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-soundtrack.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-soundtrack",
+      "required": false,
+      "repeatable": false,
+      "description": "Create a Steam soundtrack release plan covering soundtrack app setup, rights checks, album assets, pricing, and bundle coordination. Use when releasing a soundtrack on Steam.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-soundtrack/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-store-assets.base-flow",
+      "surface_kind": "support-skill",
+      "obligation_kind": "base-flow",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-store-assets",
+      "required": false,
+      "repeatable": false,
+      "description": "Build a Steam store asset and copy pack covering capsule messaging, screenshots, trailers, library assets, and proof points. Use when preparing Steam store-facing creative and metadata.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-store-assets/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "support.steam-store-assets.write-approval",
+      "surface_kind": "support-skill",
+      "obligation_kind": "write-approval",
+      "priority": "low",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-store-assets",
+      "required": false,
+      "repeatable": false,
+      "description": "Build a Steam store asset and copy pack covering capsule messaging, screenshots, trailers, library assets, and proof points. Use when preparing Steam store-facing creative and metadata.",
+      "artifact": {},
+      "skill_path": ".agents/skills/steam-store-assets/SKILL.md",
+      "implicit_allowed": false,
+      "write_approval": true,
+      "coverage": {
+        "static": "present",
+        "spec": "present",
+        "live_probe": "untracked",
+        "scenario": "missing",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
       "variant_id": "support.team-release.base-flow",
       "surface_kind": "support-skill",
       "obligation_kind": "base-flow",
@@ -4161,12 +4764,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "tech-debt-scan"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "support.tech-debt.write-approval",
@@ -4188,12 +4791,12 @@
         "static": "present",
         "spec": "present",
         "live_probe": "untracked",
-        "scenario": "pass",
+        "scenario": "defined",
         "scenario_ids": [
           "tech-debt-scan"
         ]
       },
-      "status": "complete"
+      "status": "partial"
     },
     {
       "variant_id": "support.test-evidence-review.base-flow",
@@ -5140,6 +5743,32 @@
       "artifact": {},
       "skill_path": null,
       "agent_path": ".codex/agents/sound-designer.toml",
+      "implicit_allowed": false,
+      "write_approval": false,
+      "coverage": {
+        "static": "present",
+        "spec": "n/a",
+        "live_probe": "untracked",
+        "scenario": "n/a",
+        "scenario_ids": []
+      },
+      "status": "partial"
+    },
+    {
+      "variant_id": "agent.steam-publishing-manager.subagent-spawn",
+      "surface_kind": "custom-agent",
+      "obligation_kind": "subagent-spawn",
+      "priority": "medium",
+      "phase": null,
+      "step_id": null,
+      "step_name": null,
+      "target": "steam-publishing-manager",
+      "required": false,
+      "repeatable": false,
+      "description": "Owns Steamworks-specific publishing strategy and readiness: app relationships, packages, depots, review sequencing, Coming Soon timing, demos, playtests, Early Access, DLC, soundtracks, bundles, pricing, launch operations, and Steam Deck positioning.",
+      "artifact": {},
+      "skill_path": null,
+      "agent_path": ".codex/agents/steam-publishing-manager.toml",
       "implicit_allowed": false,
       "write_approval": false,
       "coverage": {

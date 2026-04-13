@@ -52,6 +52,7 @@ spawned sessions have explicit runtime defaults and more readable thread labels.
 | `performance-analyst` | Performance | `gpt-5.4-mini` | Profiling, optimization recommendations, memory analysis |
 | `devops-engineer` | Build/deploy | `gpt-5.3-codex-spark` | CI/CD, build scripts, version control workflow |
 | `analytics-engineer` | Telemetry | `gpt-5.4-mini` | Event tracking, dashboards, A/B test design |
+| `steam-publishing-manager` | Steamworks publishing | `gpt-5.4-mini` | Steam app/package/depot planning, reviews, demos, playtests, Early Access, DLC, bundles, pricing, launch ops |
 | `ux-designer` | UX flows | `gpt-5.4-mini` | User flows, wireframes, accessibility, input handling |
 | `prototyper` | Rapid prototyping | `gpt-5.4-mini` | Throwaway prototypes, mechanic testing, feasibility validation |
 | `security-engineer` | Security | `gpt-5.4-mini` | Anti-cheat, exploit prevention, save encryption, network security |

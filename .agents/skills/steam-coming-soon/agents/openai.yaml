@@ -1,0 +1,6 @@
+interface:
+  display_name: "Steam Coming Soon"
+  short_description: "Create a Steam Coming Soon and review calendar covering Steam Direct…"
+  default_prompt: "Use $steam-coming-soon to create a Steam Coming Soon and review calendar covering Steam Direct readiness, store page review, build review, wishlist beats, and release timing. Use when planning the Steam pre-launch window."
+policy:
+  allow_implicit_invocation: false

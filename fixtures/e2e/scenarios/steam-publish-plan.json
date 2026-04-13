@@ -1,0 +1,30 @@
+{
+  "name": "steam-publish-plan",
+  "fixture": "blank-project",
+  "covers": [
+    "workflow.release.steam-publish.steam-publish-plan.base-flow",
+    "workflow.release.steam-publish.steam-publish-plan.write-approval"
+  ],
+  "turns": [
+    {
+      "prompt": "Use the `$steam-publish-plan` skill for this repository. Assume the project will ship as a premium Steam PC game and also plans a public demo plus a future soundtrack. You already have user approval to create the plan file if the plan is valid. Complete the workflow and stop when the Steam publishing plan is fully written.",
+      "expect_regex": "steam-publish-plan\\.md|Steam Publish Plan|COMPLETE|Next Steps"
+    }
+  ],
+  "assertions": [
+    {
+      "type": "path_exists",
+      "path": "production/releases/steam/steam-publish-plan.md"
+    },
+    {
+      "type": "file_contains",
+      "path": "production/releases/steam/steam-publish-plan.md",
+      "regex": "Base game|Release Shape"
+    },
+    {
+      "type": "file_contains",
+      "path": "production/releases/steam/steam-publish-plan.md",
+      "regex": "Demo|Soundtrack"
+    }
+  ]
+}
