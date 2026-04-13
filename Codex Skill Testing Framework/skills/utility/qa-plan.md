@@ -1,5 +1,7 @@
 # Skill Test Spec: $qa-plan
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$qa-plan` generates a structured QA test plan for a feature or sprint milestone.

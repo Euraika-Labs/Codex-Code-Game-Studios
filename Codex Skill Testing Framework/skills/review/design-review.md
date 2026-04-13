@@ -1,5 +1,7 @@
 # Skill Test Spec: $design-review
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$design-review` reads a game design document (GDD) and evaluates it against

@@ -1,5 +1,7 @@
 # Skill Test Spec: $ux-design
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$ux-design` is a guided, section-by-section UX spec authoring skill. It produces

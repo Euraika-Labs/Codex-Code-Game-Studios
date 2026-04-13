@@ -1,5 +1,7 @@
 # Skill Test Spec: $art-bible
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$art-bible` is a guided, section-by-section art bible authoring skill. It

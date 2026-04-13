@@ -1,5 +1,7 @@
 # Skill Test Spec: $consistency-check
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$consistency-check` scans all GDDs in `design/gdd/` and checks for internal

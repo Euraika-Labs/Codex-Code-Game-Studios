@@ -1,5 +1,7 @@
 # Skill Quality Rubric
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 Used by `$skill-test category [name|all]` to evaluate skills beyond structural compliance.
 Each category defines 4–5 binary PASS/FAIL metrics specific to the skill's job.
 

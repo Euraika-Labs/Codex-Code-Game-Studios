@@ -1,5 +1,7 @@
 # Skill Test Spec: $security-audit
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$security-audit` audits the game for security risks including save data

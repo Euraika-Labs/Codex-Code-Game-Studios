@@ -1,5 +1,7 @@
 # Skill Test Spec: $perf-profile
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$perf-profile` is a structured performance profiling workflow that identifies

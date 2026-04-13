@@ -1,5 +1,7 @@
 # Skill Test Spec: $create-architecture
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$create-architecture` guides the user through section-by-section authoring of a

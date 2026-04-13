@@ -1,5 +1,7 @@
 # Skill Test Spec: $onboard
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$onboard` generates a contextual project onboarding summary tailored for a new

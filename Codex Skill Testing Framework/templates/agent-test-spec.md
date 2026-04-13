@@ -1,5 +1,7 @@
 # Agent Spec: [agent-name]
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 > **Tier**: [directors | leads | specialists | godot | unity | unreal | operations | creative]
 > **Category**: [director | lead | specialist | engine | operations | creative]
 > **Spec written**: [YYYY-MM-DD]

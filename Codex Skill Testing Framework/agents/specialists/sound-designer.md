@@ -1,5 +1,7 @@
 # Agent Test Spec: sound-designer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: SFX specs, audio events, mixing parameters, and sound category definitions.
 Does NOT own: music composition direction (audio-director), code implementation of audio systems.

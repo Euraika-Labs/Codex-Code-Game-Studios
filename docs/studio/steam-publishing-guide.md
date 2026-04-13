@@ -1,50 +1,84 @@
 # Steam Publishing Guide
 
-This repo now includes a Steamworks-native release pack for projects shipping on
-Steam. Use it as a specialization layer on top of the generic release skills.
+Steam publishing is built into the release layer of the framework.
+Use this guide to decide which Steam skills to run and in what order.
 
-## When To Use Which Flow
+## Start Here
 
-- Use `$steam-publish-plan` first when the project needs a Steam release plan.
-- Use `$steam-coming-soon` when you are planning store review timing, Coming
-  Soon visibility, and wishlist beats.
-- Use `$steam-store-assets` when you need the Steam-specific copy and visual
-  asset pack.
-- Use `$steam-review-ready` before submitting the store page and build for review.
-- Use `$steam-demo` when you want an open, public-facing demo with its own App ID.
-- Use `$steam-playtest` when you want gated testing and signup waves without a
-  full public demo funnel.
-- Use `$steam-early-access` when the base product is launching in Early Access
-  and needs the Steam Q&A, roadmap framing, and pricing caution.
-- Use `$steam-dlc` for paid or free DLC planning, ownership gating, and depot strategy.
-- Use `$steam-soundtrack` for a soundtrack app and music release coordination.
-- Use `$steam-bundles-pricing` for regional pricing, launch discounts, and
-  bundle/deluxe setup.
-- Use `$steam-launch-ops` for launch-day release execution and post-launch monitoring.
-- Use `$steam-deck-ready` for Steam Deck compatibility preparation and follow-up.
+Always begin with:
 
-## Variant Selection Heuristic
+- `$steam-publish-plan`
 
-- Choose **Playtest** when you want controlled access, limited cohorts, or
-  server/load validation before broad public marketing.
-- Choose **Demo** when you want broad discovery, conversion, and wishlist growth.
-- Choose **Early Access** only when the base product is already a legitimate
-  purchasable experience and you can explain the current state and roadmap clearly.
-- Choose **DLC** when content ownership should attach to the base game after launch.
-- Choose **Soundtrack** when music needs its own Steam release surface instead
-  of being buried in a normal DLC plan.
-- Choose **Bundles** when you need deluxe/complete-the-set packaging or price
-  presentation across multiple Steam products.
+That command creates the base planning artifact for the game and establishes whether you also need variant tracks such as demo, playtest, Early Access, DLC, soundtrack, or bundle work.
 
-## How This Fits The Existing Release Phase
+## Core Release Sequence
 
-The generic release phase still owns broad readiness:
+Typical premium release flow:
 
-- `$release-checklist`
-- `$launch-checklist`
-- `$patch-notes`
-- `$changelog`
-- `$team-release`
+1. `$steam-publish-plan`
+2. `$steam-coming-soon`
+3. `$steam-store-assets`
+4. `$steam-review-ready`
+5. `$steam-launch-ops`
+6. `$steam-deck-ready`
 
-The Steam pack adds the storefront-specific work those generic skills do not
-model in detail.
+## Variant Tracks
+
+### Demo
+
+Use when you want an openly available, player-facing slice of the game.
+
+- `$steam-demo`
+
+### Playtest
+
+Use when you want a gated testing program without the same public-store pressure as a demo.
+
+- `$steam-playtest`
+
+### Early Access
+
+Use when the product will launch publicly before full feature completion.
+
+- `$steam-early-access`
+
+### DLC
+
+Use when planning paid or free post-launch content as separate Steam app relationships.
+
+- `$steam-dlc`
+
+### Soundtrack
+
+Use when releasing soundtrack content through Steam’s soundtrack app model.
+
+- `$steam-soundtrack`
+
+### Pricing and Bundles
+
+Use when planning launch discounts, deluxe packs, bundles, and regional pricing considerations.
+
+- `$steam-bundles-pricing`
+
+## Typical Artifact Location
+
+Steam outputs generally live under:
+
+- `production/releases/steam/`
+
+Use the matching templates in `docs/studio/templates/` when the skill asks for or generates a first-class artifact.
+
+## Release Readiness Reminders
+
+Steam work should stay connected to the rest of the release process:
+
+- validate the build
+- keep QA evidence current
+- keep launch operations explicit
+- reflect platform constraints in technical preferences and release notes
+
+## Related Docs
+
+- `docs/WORKFLOW-GUIDE.md`
+- `docs/studio/skills-reference.md`
+- `docs/studio/director-gates.md`

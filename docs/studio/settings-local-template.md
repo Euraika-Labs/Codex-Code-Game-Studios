@@ -1,79 +1,29 @@
-# Codex Configuration Notes
+# Local Codex Config Template
 
-The old `settings.local.json` pattern is not used in this repo.
+Use this document as a starting point when creating your own `~/.codex/config.toml`.
+It is a personal reference, not a shared repo file.
 
-Use Codex's layered configuration instead:
-
-- shared project defaults live in `.codex/config.toml`
-- shared project hooks live in `.codex/hooks.json`
-- personal defaults live in `~/.codex/config.toml`
-- personal hooks live in `~/.codex/hooks.json`
-
-If you want personal hooks to run outside this repo too, add:
+## Suggested Pattern
 
 ```toml
-[features]
-codex_hooks = true
-```
-
-## Example Personal Config
-
-```toml
-[profiles.game-studio]
 model = "gpt-5.4"
-model_reasoning_effort = "high"
-approval_policy = "on-request"
-sandbox_mode = "workspace-write"
+reasoning_effort = "medium"
+web_search = "live"
 
-[agents]
-max_threads = 4
-max_depth = 1
+[profiles.fast]
+model = "gpt-5.4-mini"
+reasoning_effort = "low"
 
-[tui]
-alternate_screen = "never"
-
-[tools.web_search]
-context_size = "medium"
-
-[projects."/absolute/path/to/Codex-Code-Game-Studios"]
-trust_level = "trusted"
-
-[[skills.config]]
-name = "team-ui"
-enabled = false
+[profiles.deep]
+model = "gpt-5.4"
+reasoning_effort = "high"
 ```
 
-Run the project with that profile using:
+## Use Personal Config For
 
-```bash
-codex -p game-studio
-```
-
-## What Belongs Where
-
-Use project `.codex/config.toml` for settings the whole team should share:
-
-- default model or reasoning level for the studio
-- default sandbox and approval posture for this repo
-- feature flags required by the framework
-
-Use user `~/.codex/config.toml` for settings only you should control:
-
-- trust declarations for local paths
+- default model choice
 - personal profiles
-- local model-provider choices
-- personal approval preferences
-- personal skill enables/disables via `[[skills.config]]`
-- terminal UI preferences such as `tui.alternate_screen`
-- personal subagent tuning such as `[agents].max_threads`
+- local tool preferences
+- user-specific integrations and experiments
 
-Use project `.codex/hooks.json` for hooks that should run for everyone in the
-repo. Use user `~/.codex/hooks.json` for private notifications or local-only
-automation.
-
-Notes:
-
-- `skills.config` is user-level on purpose. Use it when a repo ships useful
-  skills that you do not want implicitly active in your personal workflow.
-- `tui.alternate_screen = "never"` is helpful in Zellij or other multiplexers
-  where you want reliable scrollback.
+Keep project behavior in the repo-local `.codex/` files instead.

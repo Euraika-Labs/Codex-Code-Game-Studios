@@ -1,5 +1,7 @@
 # Agent Test Spec: security-engineer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Anti-cheat systems, save data security, network security, vulnerability assessment, and data privacy compliance.
 Does NOT own: game logic design (gameplay-programmer), server infrastructure (devops-engineer).

@@ -1,5 +1,7 @@
 # Skill Test Spec: $team-ui
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 Orchestrates the UI team through the full UX pipeline for a single UI feature.

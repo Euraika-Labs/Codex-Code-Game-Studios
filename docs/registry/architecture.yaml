@@ -1,4 +1,5 @@
 # Architecture Decision Registry
+# Shared registry used by Codex Code Game Studios to keep cross-system architectural stances stable and discoverable.
 #
 # PURPOSE: Single source of truth for key architectural stances that all ADRs
 # must agree on. Skills check this before writing new ADRs to detect conflicts

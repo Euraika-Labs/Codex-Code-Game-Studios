@@ -1,5 +1,7 @@
 # Skill Test Spec: $team-combat
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 Orchestrates the full combat team pipeline end-to-end for a single combat feature.

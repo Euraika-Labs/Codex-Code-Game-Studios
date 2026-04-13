@@ -1,5 +1,7 @@
 # Example Session: Scope Crisis - Strategic Decision Making
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Solo indie dev, week 8 of project (month 2), approaching Alpha milestone.
 
 **Crisis:**

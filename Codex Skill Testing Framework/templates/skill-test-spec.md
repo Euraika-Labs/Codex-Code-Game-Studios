@@ -1,5 +1,7 @@
 # Skill Spec: /[skill-name]
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 > **Category**: [gate | review | authoring | readiness | pipeline | analysis | team | sprint | utility]
 > **Priority**: [critical | high | medium | low]
 > **Spec written**: [YYYY-MM-DD]

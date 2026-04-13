@@ -1,5 +1,7 @@
 # Godot — Current Best Practices
 
+> Current-practice reference for new work in this engine family. Prefer these defaults unless the project has a documented reason to do otherwise.
+
 Last verified: 2026-02-12 | Engine: Godot 4.6
 
 Practices that are **new or changed** since the model's training data (~4.3).

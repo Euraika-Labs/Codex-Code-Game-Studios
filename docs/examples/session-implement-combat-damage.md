@@ -1,5 +1,7 @@
 # Example Session: Implementing Combat Damage Calculation
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Solo indie dev, week 4 of project, implementing gameplay systems.
 
 **Starting State:**

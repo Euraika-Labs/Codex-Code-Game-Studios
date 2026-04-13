@@ -1,5 +1,7 @@
 # Unity 6.3 LTS — Optional Packages & Systems
 
+> Plugin reference for this engine family. Use it when deciding what belongs in the shared project stack and what should remain optional or project-specific.
+
 **Last verified:** 2026-02-13
 
 This document indexes **optional packages and systems** available in Unity 6.3 LTS.

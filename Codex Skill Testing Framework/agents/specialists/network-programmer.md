@@ -1,5 +1,7 @@
 # Agent Test Spec: network-programmer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Multiplayer networking, state replication, lag compensation, matchmaking protocol design, and network message schemas.
 Does NOT own: gameplay logic (only the networking of it), server infrastructure and deployment (devops-engineer).

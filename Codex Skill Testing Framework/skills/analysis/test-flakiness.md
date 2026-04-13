@@ -1,5 +1,7 @@
 # Skill Test Spec: $test-flakiness
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$test-flakiness` detects non-deterministic tests by analyzing test history logs

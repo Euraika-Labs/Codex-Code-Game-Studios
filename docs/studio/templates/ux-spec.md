@@ -1,5 +1,7 @@
 # UX Specification: [Screen / Flow Name]
 
+> Template reference for Codex Code Game Studios. Use this when a workflow asks for the matching artifact, replace bracketed placeholders, and keep only the sections that apply to the current project.
+
 > **Status**: Draft | In Review | Approved | Implemented
 > **Author**: [Name or agent — e.g., ui-designer]
 > **Last Updated**: [Date]

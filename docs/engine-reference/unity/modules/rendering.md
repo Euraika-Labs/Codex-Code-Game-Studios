@@ -1,5 +1,7 @@
 # Unity 6.3 — Rendering Module Reference
 
+> Engine subsystem reference for Codex Code Game Studios. Use it when the related subsystem becomes active work in the project.
+
 **Last verified:** 2026-02-13
 **Knowledge Gap:** LLM trained on Unity 2022 LTS; Unity 6 has major rendering changes
 

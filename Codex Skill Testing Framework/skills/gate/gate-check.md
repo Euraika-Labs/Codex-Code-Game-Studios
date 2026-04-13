@@ -1,5 +1,7 @@
 # Skill Test Spec: $gate-check
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$gate-check` validates whether the project is ready to advance to the next

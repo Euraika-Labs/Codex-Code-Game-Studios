@@ -35,6 +35,13 @@ HOOKS_DIR = REPO_ROOT / ".codex" / "hooks"
 SCENARIOS_DIR = REPO_ROOT / "fixtures" / "e2e" / "scenarios"
 STATES_DIR = REPO_ROOT / "fixtures" / "e2e" / "states"
 FRAMEWORK_AGENTS_PATH = REPO_ROOT / "Codex Skill Testing Framework" / "AGENTS.md"
+DOC_SURFACES = (
+    REPO_ROOT / "README.md",
+    REPO_ROOT / "UPGRADING.md",
+    REPO_ROOT / "AGENTS.md",
+    REPO_ROOT / "docs",
+    REPO_ROOT / "Codex Skill Testing Framework",
+)
 SUPPORTED_HOOK_EVENTS = {
     "SessionStart",
     "PreToolUse",
@@ -48,6 +55,16 @@ STALE_RUNTIME_PATTERNS = {
     ".claude/agents/": "Claude agent paths are not valid in this Codex-native repo",
     "`ask the user directly in plain text`": "pseudo-tool references should be plain-text instructions instead",
     "Write/Edit tools": "refer to file edits or apply_patch, not obsolete Write/Edit tool names",
+}
+STALE_DOC_PATTERNS = {
+    "Claude Code": "docs should describe this repo as a standalone Codex product",
+    "CLAUDE.md": "shared guidance should refer to AGENTS.md",
+    ".claude/": "docs should not point to deprecated Claude paths",
+    "AskUserQuestion": "docs should not mention obsolete prompt helpers",
+    "settings.local.json": "docs should point to Codex-native override surfaces",
+    "@anthropic-ai/claude-code": "install instructions should reference @openai/codex",
+    "built for Claude": "docs should not frame the repo as a derivative product",
+    "port of the original": "docs should not frame the repo as a port",
 }
 
 
@@ -458,6 +475,33 @@ def validate_runtime_wording(errors: list[str]) -> None:
                 fail(errors, f"{path}: stale runtime wording '{needle}' ({explanation})")
 
 
+def validate_docs_wording(errors: list[str]) -> None:
+    doc_files: list[Path] = []
+    for surface in DOC_SURFACES:
+        if surface.is_file():
+            doc_files.append(surface)
+            continue
+        if surface.is_dir():
+            doc_files.extend(sorted(surface.rglob("*.md")))
+            doc_files.extend(sorted(surface.rglob("*.yaml")))
+            doc_files.extend(sorted(surface.rglob("*.yml")))
+
+    seen: set[Path] = set()
+    for path in doc_files:
+        if path in seen:
+            continue
+        seen.add(path)
+        try:
+            text = path.read_text(encoding="utf-8")
+        except Exception as exc:
+            fail(errors, f"{path}: could not read doc for validation: {exc}")
+            continue
+
+        for needle, explanation in STALE_DOC_PATTERNS.items():
+            if needle in text:
+                fail(errors, f"{path}: stale documentation wording '{needle}' ({explanation})")
+
+
 def validate_scenarios(errors: list[str]) -> None:
     if not SCENARIOS_DIR.exists():
         return
@@ -562,6 +606,7 @@ def main() -> int:
     validate_project_config(errors)
     validate_hooks(errors)
     validate_runtime_wording(errors)
+    validate_docs_wording(errors)
     validate_scenarios(errors)
     validate_workflow_matrix(errors)
 

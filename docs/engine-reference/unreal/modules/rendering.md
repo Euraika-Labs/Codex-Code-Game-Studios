@@ -1,5 +1,7 @@
 # Unreal Engine 5.7 — Rendering Module Reference
 
+> Engine subsystem reference for Codex Code Game Studios. Use it when the related subsystem becomes active work in the project.
+
 **Last verified:** 2026-02-13
 **Knowledge Gap:** UE 5.7 has Megalights, production-ready Substrate, and Lumen improvements
 

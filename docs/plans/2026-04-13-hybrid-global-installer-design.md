@@ -1,5 +1,7 @@
 # Hybrid Global Installer Design
 
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 **Goal:** Make Codex Code Game Studios usable globally through a small self-contained user-level pack plus a repo installer that can bootstrap the full studio into any target repository.
 
 ## Problem

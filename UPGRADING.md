@@ -1,45 +1,36 @@
 # Upgrading Codex Code Game Studios
 
-This guide covers two upgrade paths:
+This guide covers the two supported upgrade paths for the framework:
 
-1. migrating an older `Claude-Code-Game-Studios` project into the Codex-native
-   structure
-2. pulling newer updates into an existing `Codex-Code-Game-Studios` repo
+1. updating an existing `Codex-Code-Game-Studios` repo to a newer release
+2. adopting the framework into an existing game repository that did not start from this repo
 
----
+## Upgrade Strategy
 
-## One-Time Migration From the Claude Version
+Treat the framework as shared studio infrastructure.
 
-Use this table as the source-of-truth mapping:
+- overwrite the framework layer freely when it has not been customized
+- merge carefully where your project added its own rules, templates, or conventions
+- keep game-specific content separate from framework content whenever possible
 
-| Claude-oriented file/folder | Codex-native replacement |
-| --- | --- |
-| `CLAUDE.md` | `AGENTS.md` |
-| `design/CLAUDE.md`, `src/CLAUDE.md`, `docs/CLAUDE.md` | nested `AGENTS.md` files in those directories |
-| `.claude/skills/*/SKILL.md` | `.agents/skills/*/SKILL.md` |
-| `.claude/agents/*.md` | `.codex/agents/*.toml` |
-| `.claude/rules/*.md` | nested `AGENTS.md` files scoped to the matching directories |
-| `.claude/hooks/*` | `.codex/hooks/*` and `.codex/hooks.json` |
-| `.claude/docs/*` | `docs/studio/*` |
-| `settings.local.json` overrides | `~/.codex/config.toml` and optional `~/.codex/hooks.json` |
-| Claude-only prompt helpers like `AskUserQuestion` | direct Codex conversation flow inside repo skills |
+## Path 1: Update an Existing Framework Repo
 
-### Recommended Migration Steps
+If your project already uses the full layout, update it like a normal upstream template:
 
-1. Copy `AGENTS.md`, `.agents/`, `.codex/`, and `docs/studio/` into your
-   project.
-2. Rename any remaining `CLAUDE.md` files to `AGENTS.md`.
-3. Move repo workflows from `.claude/skills/` into `.agents/skills/`.
-4. Convert markdown agent definitions into `.codex/agents/*.toml`.
-5. Replace path-scoped rule files with nested `AGENTS.md` files.
-6. Keep only currently supported Codex hook events in `.codex/hooks.json`.
-7. Re-read and update any project-specific docs that still mention
-   `.claude/`, slash commands, or `settings.local.json`.
+```bash
+git remote add template <codex-code-game-studios-remote>
+git fetch template
+git merge template/main
+```
 
-### Safe To Overwrite During Migration
+If you only want selected updates:
 
-These files are framework infrastructure and usually contain no game-specific
-content:
+```bash
+git fetch template
+git cherry-pick <commit-sha>
+```
+
+### Usually safe to overwrite
 
 ```text
 AGENTS.md
@@ -48,13 +39,14 @@ AGENTS.md
 .codex/hooks/
 .codex/hooks.json
 docs/studio/
+docs/examples/
+docs/engine-reference/
+global-pack/
 README.md
 UPGRADING.md
 ```
 
-### Merge Carefully
-
-These often contain project-specific decisions and should be reviewed manually:
+### Merge carefully
 
 ```text
 .codex/config.toml
@@ -63,69 +55,80 @@ docs/architecture/
 production/
 src/
 tests/
-nested AGENTS.md files you already customized
+nested AGENTS.md files you customized for your game
 ```
 
----
+## Path 2: Adopt the Framework Into an Existing Game Repo
 
-## Upgrading Between Codex Releases
+If you already have code, docs, or production assets, use the hybrid installer and brownfield workflow.
 
-If your project already uses the Codex-native layout, pull updates like any
-other template-based repo:
+### Step 1: Install the studio layer
+
+Run the universal bootstrap inside the target repo:
 
 ```bash
-git remote add template <codex-code-game-studios-remote>
-git fetch template
-git merge template/main
+python3 ~/.codex/bin/bootstrap.py --target /path/to/game-repo
 ```
 
-If you only need specific workflows or docs:
+Or, from the framework repo on macOS, Linux, or WSL:
 
 ```bash
-git fetch template
-git cherry-pick <commit-sha>
+./bootstrap.sh --target /path/to/game-repo
 ```
 
----
+### Step 2: Audit the project state
+
+Inside the target repo, run:
+
+- `$project-stage-detect`
+- `$adopt`
+- `$help`
+
+`project-stage-detect` identifies what exists. `adopt` checks whether those artifacts are usable by the studio workflows. `help` tells you what to do next.
+
+### Step 3: Merge the framework with your existing project conventions
+
+Review these shared surfaces first:
+
+- `AGENTS.md`
+- `.codex/config.toml`
+- nested `AGENTS.md` files
+- `docs/studio/technical-preferences.md`
+- release and testing templates you plan to keep
 
 ## Upgrade Checklist
 
-After pulling an update, verify these items:
+After any framework update, verify:
 
-1. `AGENTS.md` still reflects your project-specific rules.
-2. `.agents/skills/` only contains the workflows you want to keep customized.
-3. `.codex/agents/` still matches your preferred model and reasoning defaults.
-4. `.codex/hooks.json` only wires supported Codex hook events.
-5. `.codex/config.toml` does not accidentally override personal preferences you
-   meant to keep in `~/.codex/config.toml`.
-6. No docs still reference `.claude/`, `CLAUDE.md`, slash commands, or
-   `settings.local.json`.
-
----
+1. `AGENTS.md` still reflects the current project reality.
+2. `.agents/skills/` matches the workflows you actually want to keep customized.
+3. `.codex/agents/` still uses the desired models, nicknames, and sandbox settings.
+4. `.codex/hooks.json` still points only at supported hook events and valid repo scripts.
+5. `.codex/config.toml` still separates personal preferences from shared project defaults.
+6. docs, templates, and examples still point at the correct file paths for your repo.
 
 ## Personal Overrides
 
-Do not re-introduce project-local `settings.local.json`.
+Keep personal setup outside the shared repo layer:
 
-Use these Codex-native override points instead:
+- `~/.codex/config.toml` for user defaults and profiles
+- `~/.codex/hooks.json` for user hooks
+- `~/.codex/skills/` and `~/.codex/agents/` for personal global capabilities
 
-- `~/.codex/config.toml` for user-specific defaults and profiles
-- `~/.codex/hooks.json` for personal hooks
-- project `.codex/config.toml` for shared repo defaults
-- project `.codex/hooks.json` for shared repo hooks
+Keep the project `.codex/` layer reserved for shared team behavior.
 
----
+## If the Repo Drifts
 
-## If You Hit Drift
-
-The fastest way to recover from a half-migrated state is:
+The fastest recovery path is:
 
 1. restore `AGENTS.md`
 2. restore `.agents/skills/`
 3. restore `.codex/agents/`
 4. restore `.codex/hooks.json`
-5. re-run a grep for old Claude-only surfaces:
+5. re-run the bootstrap if global installation drifted
+6. run the validation suite
 
 ```bash
-rg -n --hidden '\.claude|CLAUDE\.md|settings\.local\.json|AskUserQuestion|slash command'
+python3 scripts/validate_codex_native.py
+python3 scripts/test_hybrid_global_install.py
 ```

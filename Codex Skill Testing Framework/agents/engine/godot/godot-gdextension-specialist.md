@@ -1,5 +1,7 @@
 # Agent Test Spec: godot-gdextension-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: GDExtension API, godot-cpp C++ bindings, godot-rust bindings, native library integration, and native performance optimization.
 Does NOT own: GDScript code (gdscript-specialist), shader code (godot-shader-specialist).

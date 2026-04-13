@@ -1,5 +1,7 @@
 # Skill Test Spec: $reverse-document
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$reverse-document` generates design or architecture documentation from existing

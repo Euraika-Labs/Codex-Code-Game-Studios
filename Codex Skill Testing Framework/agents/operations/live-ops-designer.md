@@ -1,5 +1,7 @@
 # Agent Test Spec: live-ops-designer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 - **Domain**: Post-launch content strategy, seasonal events (design and structure), battle pass design, content cadence planning, player retention mechanic design, live service feature roadmaps
 - **Does NOT own**: Economy math and reward value calculations (economy-designer), analytics tracking implementation (analytics-engineer), narrative content within events (writer), code implementation

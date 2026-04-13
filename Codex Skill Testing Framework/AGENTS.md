@@ -1,5 +1,7 @@
 # Codex Skill Testing Framework — Codex Instructions
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 This folder is the quality assurance layer for the Codex Code Game Studios skill/agent
 framework. It is self-contained and separate from any game project.
 

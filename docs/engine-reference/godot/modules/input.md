@@ -1,5 +1,7 @@
 # Godot Input — Quick Reference
 
+> Engine subsystem reference for Codex Code Game Studios. Use it when the related subsystem becomes active work in the project.
+
 Last verified: 2026-02-12 | Engine: Godot 4.6
 
 ## What Changed Since ~4.3 (LLM Cutoff)

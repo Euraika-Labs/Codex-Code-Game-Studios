@@ -1,5 +1,7 @@
 # Skill Test Spec: $content-audit
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$content-audit` reads GDDs in `design/gdd/` and checks whether all content

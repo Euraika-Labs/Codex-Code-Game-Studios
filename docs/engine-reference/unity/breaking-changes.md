@@ -1,5 +1,7 @@
 # Unity 6.3 LTS — Breaking Changes
 
+> Breaking-change reference for engine upgrades and major refactors. Use it before adopting new engine versions or moving older project code forward.
+
 **Last verified:** 2026-02-13
 
 This document tracks breaking API changes and behavioral differences between Unity 2022 LTS

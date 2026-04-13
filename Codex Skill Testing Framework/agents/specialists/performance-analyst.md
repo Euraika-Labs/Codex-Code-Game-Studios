@@ -1,5 +1,7 @@
 # Agent Test Spec: performance-analyst
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Profiling, bottleneck identification, performance metrics tracking, and optimization recommendations.
 Does NOT own: implementing optimizations (belongs to the appropriate programmer for that domain).

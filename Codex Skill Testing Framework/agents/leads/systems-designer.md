@@ -1,5 +1,7 @@
 # Agent Test Spec: systems-designer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 **Domain owned:** Combat formulas, progression curves, crafting recipes, status effect interactions, economy math, numerical balance.
 **Does NOT own:** Narrative and lore (narrative-director), visual design (art-director), code implementation (lead-programmer), conceptual mechanic rules (game-designer — collaborates with).

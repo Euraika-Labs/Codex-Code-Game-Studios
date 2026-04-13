@@ -1,5 +1,7 @@
 # Skill Test Spec: $bug-report
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$bug-report` creates a structured bug report document from a user description.

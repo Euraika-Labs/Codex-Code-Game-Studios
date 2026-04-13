@@ -1,5 +1,7 @@
 # Agent Test Spec: ue-blueprint-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 - **Domain**: Blueprint architecture, the Blueprint/C++ boundary, Blueprint graph quality, Blueprint performance optimization, Blueprint Function Library design
 - **Does NOT own**: C++ implementation (engine-programmer or gameplay-programmer), art assets or shaders, UI/UX flow design (ux-designer)

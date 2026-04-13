@@ -1,5 +1,7 @@
 # Agent Test Spec: engine-programmer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Rendering pipeline, physics integration, memory management, resource loading, and core engine framework.
 Does NOT own: gameplay mechanics (gameplay-programmer), editor/debug tool UI (tools-programmer).

@@ -1,141 +1,127 @@
-# Global Install Guide
+# Global Installation
 
-This guide explains the supported hybrid setup for making Codex Code Game
-Studios available everywhere without forcing the whole repo into `~/.codex`.
+Codex Code Game Studios uses a hybrid installation model:
 
-## The Supported Model
+- a small global pack in your Codex home for discovery and installation helpers
+- the full studio installed into each target repository
 
-There are two layers:
+This keeps global state small while preserving the repo-local context that the full workflows need.
 
-1. **Global layer in `~/.codex`**
-   - small helper skills
-   - small helper agent set
-   - installer scripts
-2. **Project layer inside a repo**
-   - `AGENTS.md`
-   - `.agents/skills`
-   - `.codex/agents`, hooks, config
-   - `docs/studio`
-   - nested path-specific `AGENTS.md` guides
+## Recommended Path: Universal Bootstrap
 
-This split matters because most game workflows depend on repo-local templates,
-docs, and directories.
+Run the bootstrap from the framework repo or from an installed global Codex home.
 
-## Step 1: Clone the Source Repo Normally
-
-Keep this repository somewhere ordinary:
-
-```bash
-git clone https://github.com/Euraika-Labs/Codex-Code-Game-Studios.git ~/tooling/Codex-Code-Game-Studios
-cd ~/tooling/Codex-Code-Game-Studios
-```
-
-Do not clone the entire repo into `~/.codex`.
-
-## Step 2: Run the Universal Bootstrap
-
-On macOS, Linux, and WSL:
+### macOS, Linux, and WSL
 
 ```bash
 ./bootstrap.sh
 ```
 
-On Windows PowerShell:
+### Windows PowerShell
 
 ```powershell
-.\bootstrap.ps1
+.ootstrap.ps1
 ```
 
-Fallback:
+### Direct Python fallback
 
 ```bash
 python3 global-pack/bin/bootstrap.py
 ```
 
-Optional flags:
+## What the Bootstrap Does
 
-- `--dry-run` to preview file actions
-- `--force` to overwrite conflicting installed files
-- `--global-only` to install just the global pack
-- `--repo-only` to bootstrap only a repo
-- `--codex-home` to install into a non-default Codex home
-- `--source-repo` to point at a specific source clone
-- `--target` to bootstrap a specific repo instead of the current git root
+The bootstrap will:
 
-The universal bootstrap automatically:
+1. resolve the correct Codex home for the current platform
+2. install or refresh the global pack there
+3. if you are inside a git repo, install the full studio into that repo
 
-- resolves the best Codex home for the current platform
-- installs or refreshes the global pack
-- bootstraps the current git repo if one is detected
+## Platform Resolution Rules
 
-### Platform defaults
+The Codex home resolution order is:
 
-- `CODEX_HOME` wins if already set
-- native Windows uses `%USERPROFILE%\.codex`
-- WSL prefers the Windows Codex home if it already exists
-- otherwise WSL uses Linux `~/.codex`
-- Linux and macOS use `~/.codex`
+1. `CODEX_HOME` if already set
+2. native Windows: `%USERPROFILE%\.codex`
+3. WSL: shared Windows Codex home if it already exists, otherwise Linux `~/.codex`
+4. Linux and macOS: `~/.codex`
 
-After a successful install, these should exist:
+This matches the Codex split between Windows and WSL while preferring a shared setup when that is already present.
 
-- `~/.codex/skills/studio-help/`
-- `~/.codex/skills/install-studio/`
-- `~/.codex/skills/adopt-studio/`
+## What Gets Installed Globally
+
+The global pack installs:
+
+- `~/.codex/skills/studio-help`
+- `~/.codex/skills/install-studio`
+- `~/.codex/skills/adopt-studio`
 - `~/.codex/agents/studio-bootstrapper.toml`
 - `~/.codex/bin/bootstrap.py`
 - `~/.codex/bin/install_repo_studio.py`
 - `~/.codex/bin/install_global_pack.py`
 
-## Step 3: Bootstrap a Target Repository
+## What Gets Installed Into a Repo
 
-If you ran the universal bootstrap inside a git repo, this already happened
-automatically.
+When the bootstrap targets a git repository, it installs the full studio layer there:
 
-If you want to target a specific repo manually:
-
-```bash
-python3 global-pack/bin/bootstrap.py --target /path/to/repo
-```
-
-If the repo already has related files:
-
-```bash
-python3 global-pack/bin/bootstrap.py --target /path/to/repo --dry-run
-```
-
-Only use `--force` when you have explicitly decided to overwrite conflicting
-files.
-
-## Step 4: Use the Repo-Local Studio
-
-Once installed, open Codex in the target repo and use the normal project skills:
-
-- `$start`
-- `$help`
-- `$project-stage-detect`
-- `$adopt`
-- the rest of the game, QA, release, and Steam workflows
-
-## What Gets Copied Into a Repo
-
-The first installer version copies:
-
-- root `AGENTS.md`
+- `AGENTS.md`
 - `.agents/`
 - `.codex/`
 - `docs/studio/`
-- `docs/AGENTS.md`
-- `docs/WORKFLOW-GUIDE.md`
-- nested `AGENTS.md` guides for design, source, tests, assets, docs, and prototypes
-- starter directory structure for design, production, code, tests, assets, docs,
-  build, and Steam release tracking
+- nested `AGENTS.md` path guides
+- starter directories such as `design/`, `production/`, `src/`, `tests/`, and `build/`
 
-It intentionally does **not** generate project-specific design or production
-documents. Those should be created by the repo skills after installation.
+## Useful Flags
 
-## Recommended Everyday Flow
+```bash
+python3 global-pack/bin/bootstrap.py --dry-run
+python3 global-pack/bin/bootstrap.py --global-only
+python3 global-pack/bin/bootstrap.py --repo-only
+python3 global-pack/bin/bootstrap.py --target /path/to/repo
+python3 global-pack/bin/bootstrap.py --codex-home /tmp/codex-home
+python3 global-pack/bin/bootstrap.py --force
+```
 
-1. Keep one checked-out copy of this repo as your source of truth
-2. Run `./bootstrap.sh` or `.\bootstrap.ps1` whenever you update it
-3. Use `$install-studio` or `bootstrap.py --target ...` inside any new or existing repo
-4. Switch back to the repo-local workflows after bootstrap
+Use `--force` when you intentionally want to refresh already-installed files.
+
+## Typical Scenarios
+
+### Install the global helpers only
+
+```bash
+./bootstrap.sh --global-only
+```
+
+### Install the studio into an existing game repo
+
+```bash
+./bootstrap.sh --target /path/to/existing-game-repo
+```
+
+### Refresh both global and local installation from the framework repo
+
+```bash
+./bootstrap.sh --force
+```
+
+## After Installation
+
+If the target repo is new to the framework, start with:
+
+- `$project-stage-detect`
+- `$adopt`
+- `$help`
+
+If the target repo is new game work, start with:
+
+- `$start`
+- `$brainstorm`
+
+## Validation
+
+Validate the installer layer with:
+
+```bash
+python3 scripts/validate_codex_native.py
+python3 scripts/test_hybrid_global_install.py
+```

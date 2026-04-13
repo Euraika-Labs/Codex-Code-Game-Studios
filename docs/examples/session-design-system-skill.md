@@ -1,5 +1,7 @@
 # Example Session: Using $design-system to Author a GDD
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Solo indie dev, week 3 of project. `$map-systems` already ran and produced `design/gdd/systems-index.md`. The movement system is listed as MVP tier, Foundation priority.
 
 **Starting State:**

@@ -1,5 +1,7 @@
 # Skill Test Spec: $brainstorm
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$brainstorm` facilitates guided game concept ideation. It presents 2-4 concept

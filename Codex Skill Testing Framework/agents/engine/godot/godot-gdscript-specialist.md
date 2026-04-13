@@ -1,5 +1,7 @@
 # Agent Test Spec: godot-gdscript-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: GDScript static typing, design patterns in GDScript, signal architecture, coroutine/await patterns, and GDScript performance.
 Does NOT own: shader code (godot-shader-specialist), GDExtension bindings (godot-gdextension-specialist).

@@ -1,5 +1,7 @@
 # Agent Test Spec: level-designer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 **Domain owned:** Level layouts, encounter design, pacing and tension arc, environmental storytelling, spatial puzzles.
 **Does NOT own:** Narrative dialogue (writer / narrative-director), visual art style (art-director), code implementation (lead-programmer / ai-programmer), enemy AI behavior logic (ai-programmer / gameplay-programmer).

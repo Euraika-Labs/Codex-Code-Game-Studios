@@ -1,5 +1,7 @@
 # Skill Test Spec: $quick-design
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$quick-design` produces a lightweight design spec for features too small to

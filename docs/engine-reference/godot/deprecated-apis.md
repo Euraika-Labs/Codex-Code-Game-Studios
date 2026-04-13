@@ -1,5 +1,7 @@
 # Godot — Deprecated APIs
 
+> Deprecation reference for this engine family. Use it to avoid stale APIs and to map older patterns onto the currently preferred replacements.
+
 Last verified: 2026-02-12
 
 If an agent suggests any API in the "Deprecated" column, it MUST be replaced

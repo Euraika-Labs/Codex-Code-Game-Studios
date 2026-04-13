@@ -1,5 +1,7 @@
 # Agent Test Spec: godot-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Godot-specific patterns, node/scene architecture, signals, resources, and GDScript vs C# vs GDExtension decisions.
 Does NOT own: actual code authoring in a specific language (delegates to language sub-specialists).

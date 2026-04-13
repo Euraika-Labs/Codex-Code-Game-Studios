@@ -1,5 +1,7 @@
 # Skill Test Spec: $asset-spec
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$asset-spec` generates per-asset visual specification documents from design

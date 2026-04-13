@@ -1,5 +1,7 @@
 # Example Session: $adopt — Brownfield Project Onboarding
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Developer has been building a game for 3 months before discovering this agent system. They have code, some design docs, and rough notes — but nothing in the right format for the skills to use.
 
 **Starting State:**
@@ -24,7 +26,7 @@
 
 ## Turn 2: Agent Detects Project State
 
-**Agent (technical-director, via $adopt, context: fork):**
+**Agent (technical-director, via $adopt, context: isolated sub-session):**
 > Running brownfield audit...
 >
 > **Phase 1: Project State Detection**

@@ -1,5 +1,7 @@
 # Agent Test Spec: unity-ui-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Unity UI Toolkit (UXML/USS), UGUI (Canvas), data binding, runtime UI performance, and UI input event handling.
 Does NOT own: UX flow design (ux-designer), visual art style (art-director).

@@ -1,5 +1,7 @@
 # Agent Test Spec: localization-lead
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 - **Domain**: Internationalization (i18n) architecture, string extraction workflows and tooling configuration, locale testing methodology, translation pipeline design (extraction → TMS → import), string quality standards, locale-specific formatting rules (plurals, RTL, date/number formats)
 - **Does NOT own**: Game narrative content and dialogue writing (writer), code implementation of i18n calls (gameplay-programmer), translation work itself (external translators)

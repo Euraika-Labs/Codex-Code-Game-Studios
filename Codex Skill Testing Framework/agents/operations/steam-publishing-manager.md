@@ -1,5 +1,7 @@
 # Agent Spec: /steam-publishing-manager
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Summary
 
 Steamworks-specialist operations agent for store planning, app relationships,

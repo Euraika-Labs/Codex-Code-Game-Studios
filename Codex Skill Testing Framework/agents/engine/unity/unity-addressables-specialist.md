@@ -1,5 +1,7 @@
 # Agent Test Spec: unity-addressables-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Addressable Asset System — groups, async loading/unloading, handle lifecycle management, memory budgeting, content catalogs, and remote content delivery.
 Does NOT own: rendering systems (engine-programmer), game logic that uses the loaded assets (gameplay-programmer).

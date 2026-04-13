@@ -1,5 +1,7 @@
 # Skill Test Spec: $test-helpers
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$test-helpers` generates engine-specific test helper utilities for the project's

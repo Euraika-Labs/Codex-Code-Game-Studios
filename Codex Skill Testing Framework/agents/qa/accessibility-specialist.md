@@ -1,5 +1,7 @@
 # Agent Test Spec: accessibility-specialist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Input remapping, text scaling, colorblind modes, screen reader support, and accessibility standards compliance (WCAG, platform certifications).
 Does NOT own: overall UX flow design (ux-designer), visual art style direction (art-director).

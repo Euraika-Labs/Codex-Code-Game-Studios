@@ -1,6 +1,7 @@
 # Universal Bootstrap Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 
 **Goal:** Add one universal bootstrap entrypoint that installs the global pack
 and, when applicable, bootstraps the full studio into the current repository

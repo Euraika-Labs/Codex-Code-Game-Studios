@@ -1,75 +1,80 @@
 <p align="center">
   <h1 align="center">Codex Code Game Studios</h1>
   <p align="center">
-    Turn a single Codex CLI session into a structured game development studio.
+    A Codex-native operating system for game teams, solo developers, and agent-driven production.
     <br />
-    50 custom agents. 84 reusable skills. One consistent workflow.
+    Skills, agents, hooks, templates, workflow gates, Steam publishing support, and a global bootstrap in one repo.
   </p>
 </p>
 
 <p align="center">
   <a href=".codex/agents"><img src="https://img.shields.io/badge/agents-50-blueviolet" alt="50 agents"></a>
   <a href=".agents/skills"><img src="https://img.shields.io/badge/skills-84-green" alt="84 skills"></a>
-  <a href="docs/studio/hooks-reference.md"><img src="https://img.shields.io/badge/supported%20hooks-5-orange" alt="5 supported hooks"></a>
-  <a href="docs/studio/rules-reference.md"><img src="https://img.shields.io/badge/path%20guides-11-red" alt="11 path guides"></a>
+  <a href="docs/studio/hooks-reference.md"><img src="https://img.shields.io/badge/hook%20events-5-orange" alt="5 supported hooks"></a>
+  <a href="docs/studio/steam-publishing-guide.md"><img src="https://img.shields.io/badge/steam-ready-yes-black" alt="Steam publishing support"></a>
   <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/built%20for-Codex%20CLI-black" alt="Built for Codex CLI"></a>
 </p>
 
 ---
 
-## What This Repo Is
+## What This Repository Does
 
-This repository is a Codex-native port of the original studio framework that
-was built for Claude Code. The core idea is unchanged: instead of one generic
-AI session, you work with a full studio model that has directors, leads,
-specialists, reusable workflows, document templates, and lightweight
-automation.
+Codex Code Game Studios turns a normal Codex session into a structured game studio.
+Instead of relying on ad-hoc prompts, the repo gives you a repeatable operating model:
 
-What changed is the surface area:
+- a root `AGENTS.md` and nested path guides
+- reusable skills for concepting, design, engineering, QA, production, release, and Steamworks
+- custom agents for directors, discipline leads, engine experts, and publishing specialists
+- hook-based guardrails for validation and session hygiene
+- templates and examples that keep artifacts consistent
+- an optional global bootstrap so the installer flows are available from any repo
 
-| Original concept | Codex-native equivalent |
-| --- | --- |
-| `CLAUDE.md` | `AGENTS.md` |
-| `.claude/skills/*/SKILL.md` | `.agents/skills/*/SKILL.md` |
-| `.claude/agents/*.md` | `.codex/agents/*.toml` |
-| `.claude/rules/*.md` | nested `AGENTS.md` files near the relevant paths |
-| `.claude/hooks/*` | `.codex/hooks/*` plus `.codex/hooks.json` |
-| Claude-only prompts like `AskUserQuestion` | direct Codex conversation flow with explicit option-setting in skills |
+The result is a repo that can support the full lifecycle of a game project:
 
-## What Is Included
+1. concept and systems design
+2. technical setup and architecture
+3. sprint planning and implementation
+4. QA, polish, and gate reviews
+5. launch preparation and Steam publishing
+
+## What You Get
 
 | Category | Count | Notes |
 | --- | --- | --- |
-| Custom agents | 50 | Directors, department leads, specialists, engine experts, and Steam publishing support |
-| Skills | 84 | Reusable repo skills for design, engineering, QA, release, orchestration, and Steam publishing |
-| Global pack | 3 skills + 1 agent | User-level bootstrap layer for `~/.codex` |
-| Supported hooks | 5 events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` are the current Codex hook surfaces |
-| Path guides | 11 | Nested `AGENTS.md` files for code, docs, shaders, data, tests, and prototypes |
-| Studio docs | 60+ | Workflow docs, templates, gate definitions, and references |
+| Custom agents | 50 | Leadership, leads, specialists, engine experts, release, and Steam publishing |
+| Repo skills | 84 | Reusable workflows under `.agents/skills/` |
+| Global pack | 3 skills + 1 agent | Lightweight install/discovery layer for `~/.codex` |
+| Hooks | 5 supported events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` |
+| Templates | 35+ | Design, architecture, QA, production, release, and Steam artifacts |
+| Engine references | 3 engines | Godot, Unity, and Unreal guidance for setup and implementation |
 
-## Codex-Native Layout
+## Repository Layout
 
 ```text
 /
-├── AGENTS.md                     # Root operating guide for Codex
-├── .agents/
-│   └── skills/                  # 84 repo skills
-├── .codex/
-│   ├── agents/                  # 50 custom agent definitions (.toml)
-│   ├── hooks/                   # Hook scripts kept in repo
-│   ├── config.toml              # Project defaults for Codex
-│   └── hooks.json               # Hook registration file
+├── AGENTS.md
+├── .agents/skills/
+├── .codex/agents/
+├── .codex/hooks/
+├── .codex/config.toml
+├── .codex/hooks.json
 ├── docs/
-│   └── studio/                  # Workflow docs, templates, references
-├── design/                      # GDDs, UX, narrative, level docs
-├── src/                         # Game source code
-├── assets/                      # Art, audio, shaders, data
-├── tests/                       # QA and automated tests
-├── prototypes/                  # Isolated throwaway experiments
-└── production/                  # Sprints, milestones, release tracking
+│   ├── WORKFLOW-GUIDE.md
+│   ├── studio/
+│   ├── examples/
+│   └── engine-reference/
+├── design/
+├── src/
+├── assets/
+├── tests/
+├── prototypes/
+├── production/
+└── global-pack/
 ```
 
-## Getting Started
+Use the repo as a project template, a studio layer inside an existing game repo, or a source repository for the global installer.
+
+## Fast Start
 
 ### 1. Install Codex CLI
 
@@ -77,407 +82,71 @@ What changed is the surface area:
 npm install -g @openai/codex
 ```
 
-You can also install via Homebrew or a release binary from the official
-[OpenAI Codex repository](https://github.com/openai/codex).
-
-### 2. Clone the Repo
+### 2. Clone the repo into a normal working directory
 
 ```bash
-git clone <your-repo-url> my-game
-cd my-game
+git clone https://github.com/Euraika-Labs/Codex-Code-Game-Studios.git my-game-studio
+cd my-game-studio
 ```
 
-This repository should live in a normal project or tooling directory. Do **not**
-clone the full repo directly into `~/.codex`.
+Do not clone the entire repository directly into `~/.codex`. Project-local content and global Codex home content are separate concerns.
 
-### 3. Start Codex in the Project Root
+### 3. Start Codex in the repo
 
 ```bash
 codex
 ```
 
-### 4. Kick Off the Workflow
+### 4. Use a skill as the entry point
 
-Mention a repo skill directly in your prompt:
+Start with one of these:
 
-- `$start` for first-time routing
-- `$help` for “what should I do next?”
-- `$brainstorm` to shape a new concept
-- `$project-stage-detect` to audit an existing game project
-- `$setup-engine godot 4.6` or another engine-specific setup
+- `$start` for guided routing
+- `$help` for the next recommended action
+- `$brainstorm` for concept discovery
+- `$project-stage-detect` for an existing project
+- `$setup-engine godot 4.6` or the engine/version you already chose
 
-The skills live in `.agents/skills/`, so you can inspect or customize them just
-like any other part of the project.
+The short onboarding route lives in [docs/studio/quick-start.md](docs/studio/quick-start.md).
 
-## Make It Global
+## Global Installation
 
-Use the hybrid model if you want Codex to recognize setup helpers everywhere.
-The easiest path is now the universal bootstrap.
+This repo ships a hybrid installation model:
 
-### What "global" means here
+- a small global pack in `~/.codex`
+- the full studio installed into each target game repo
 
-- `~/.codex/skills` gets a **small global pack** with install and discovery
-  helpers
-- `~/.codex/agents` gets a **small global agent layer**
-- the **full studio** still installs into each target repo, because most game
-  workflows depend on repo-local docs, templates, hooks, agents, and path
-  guides
+The recommended path is the universal bootstrap.
 
-### 1. Clone this repo once in a normal location
-
-Example:
-
-```bash
-git clone https://github.com/Euraika-Labs/Codex-Code-Game-Studios.git ~/tooling/Codex-Code-Game-Studios
-cd ~/tooling/Codex-Code-Game-Studios
-```
-
-### 2. Run the universal bootstrap
-
-On macOS, Linux, and WSL:
+### macOS, Linux, and WSL
 
 ```bash
 ./bootstrap.sh
 ```
 
-On Windows PowerShell:
+### Windows PowerShell
 
 ```powershell
-.\bootstrap.ps1
+.ootstrap.ps1
 ```
 
-Fallback if you prefer calling Python directly:
+### Direct Python fallback
 
 ```bash
 python3 global-pack/bin/bootstrap.py
 ```
 
-This one command:
+The bootstrap automatically:
 
-- auto-detects the best Codex home for your platform
-- installs or refreshes the global pack there
-- if you are inside a git repo, also bootstraps the full studio into that repo
+- resolves the correct Codex home for the current platform
+- installs or refreshes the global installer pack
+- bootstraps the full studio into the current git repo when appropriate
 
-### 3. Platform behavior
+Full instructions: [docs/studio/global-install.md](docs/studio/global-install.md)
 
-The bootstrap resolves the global Codex home like this:
+## Recommended Workflow
 
-- `CODEX_HOME` if you already set it
-- native Windows: `%USERPROFILE%\.codex`
-- WSL: the Windows Codex home if it already exists, otherwise Linux `~/.codex`
-- Linux and macOS: `~/.codex`
-
-This behavior matches OpenAI’s documented split between Windows and WSL, while
-giving new users the shared setup automatically when it already exists.
-
-### 4. What gets installed globally
-
-The global layer installs:
-
-- `~/.codex/skills/studio-help`
-- `~/.codex/skills/install-studio`
-- `~/.codex/skills/adopt-studio`
-- `~/.codex/agents/studio-bootstrapper.toml`
-- `~/.codex/bin/bootstrap.py`
-- `~/.codex/bin/install_repo_studio.py`
-- `~/.codex/bin/install_global_pack.py`
-
-### 5. What happens inside a repo
-
-If you ran the bootstrap inside a git repository, it also installs the repo-local
-studio layer there:
-
-- `AGENTS.md`
-- `.agents/`
-- `.codex/`
-- `docs/studio/`
-- nested `AGENTS.md` path guides under `design/`, `src/`, `tests/`, `assets/`,
-  `docs/`, and `prototypes/`
-- starter directories such as `design/`, `production/`, `src/`, `tests/`, and
-  `build/`
-
-If you ran the bootstrap outside a repo, no project files are changed.
-
-### 6. Optional manual modes
-
-If you want more control, the universal bootstrap also supports:
-
-```bash
-python3 global-pack/bin/bootstrap.py --dry-run
-python3 global-pack/bin/bootstrap.py --global-only
-python3 global-pack/bin/bootstrap.py --repo-only
-python3 global-pack/bin/bootstrap.py --target /path/to/existing-repo
-python3 global-pack/bin/bootstrap.py --codex-home /tmp/codex-home
-```
-
-The older low-level scripts still exist, but most users should not need them.
-
-### 7. Start using the full studio in that repo
-
-After bootstrap, start Codex in the target repo and use the normal repo skills:
-
-- `$start`
-- `$help`
-- `$project-stage-detect`
-- `$adopt`
-
-### 8. Update later
-
-Pull the latest version of this repo and rerun the same bootstrap command:
-
-```bash
-./bootstrap.sh
-```
-
-For a more detailed walkthrough, see `docs/studio/global-install.md`.
-
-## Steam Publishing Setup
-
-If you want to use the new Steamworks-native flows, this is the exact setup
-order to follow.
-
-### 1. Prepare the Base Project Context
-
-Before you run any Steam-specific skill, make sure these core project inputs
-exist or are at least mostly accurate:
-
-- `AGENTS.md`
-- `docs/studio/technical-preferences.md`
-- `design/gdd/game-concept.md`
-- your normal release artifacts under `production/releases/` if you already
-  have them
-
-If the project is still very early, that is fine. The Steam skills can still
-draft planning artifacts, but the better your concept and platform info are,
-the better the Steam output will be.
-
-### 2. Start With the Base Steam Plan
-
-Run this first:
-
-```bash
-codex
-```
-
-Then prompt:
-
-```text
-Use $steam-publish-plan for this repository. We are shipping a premium Steam PC game.
-```
-
-Common variants:
-
-- Premium launch only:
-  `Use $steam-publish-plan premium for this repository.`
-- Premium + public demo:
-  `Use $steam-publish-plan mixed for this repository. We are shipping a premium game with a public demo.`
-- Early Access:
-  `Use $steam-publish-plan early-access for this repository.`
-
-This creates the master planning artifact at:
-
-- `production/releases/steam/steam-publish-plan.md`
-
-That file is the anchor for everything else in the Steam pack.
-
-### 3. Run the Core Steam Release Sequence
-
-For a normal Steam release, use this order:
-
-1. `$steam-publish-plan`
-2. `$steam-coming-soon`
-3. `$steam-store-assets`
-4. `$steam-review-ready`
-5. `$steam-bundles-pricing`
-6. `$steam-launch-ops`
-7. `$team-release`
-
-Typical prompts:
-
-```text
-Use $steam-coming-soon for this repository.
-Use $steam-store-assets for this repository.
-Use $steam-review-ready for this repository.
-Use $steam-bundles-pricing for this repository.
-Use $steam-launch-ops for this repository.
-```
-
-These write to:
-
-- `production/releases/steam/coming-soon-calendar.md`
-- `production/releases/steam/store-assets.md`
-- `production/releases/steam/review-ready.md`
-- `production/releases/steam/bundles-pricing.md`
-- `production/releases/steam/launch-ops.md`
-
-### 4. Add the Variant Flows You Actually Need
-
-Only run the variant skills that match your release shape.
-
-#### Demo
-
-Use when you want a public-facing Steam demo:
-
-```text
-Use $steam-demo for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/demo-plan.md`
-
-#### Steam Playtest
-
-Use when you want gated signups, invite waves, or load testing before public release:
-
-```text
-Use $steam-playtest for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/playtest-plan.md`
-
-#### Early Access
-
-Use when the base game itself launches in Early Access:
-
-```text
-Use $steam-early-access for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/early-access-plan.md`
-
-#### DLC
-
-Use when you are planning paid or free DLC tied to the base game:
-
-```text
-Use $steam-dlc for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/dlc-plan.md`
-
-#### Soundtrack
-
-Use when the soundtrack should be released as its own Steam product:
-
-```text
-Use $steam-soundtrack for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/soundtrack-plan.md`
-
-#### Steam Deck
-
-Use when you want an explicit Steam Deck readiness pass:
-
-```text
-Use $steam-deck-ready for this repository.
-```
-
-Writes:
-
-- `production/releases/steam/steam-deck-ready.md`
-
-### 5. Map Each Release Shape To The Right Flow
-
-- Premium launch only:
-  `$steam-publish-plan` -> `$steam-coming-soon` -> `$steam-store-assets` -> `$steam-review-ready` -> `$steam-bundles-pricing` -> `$steam-launch-ops`
-- Premium + demo:
-  same as above, plus `$steam-demo`
-- Premium + gated testing:
-  same as above, plus `$steam-playtest`
-- Early Access:
-  `$steam-publish-plan` -> `$steam-early-access` -> `$steam-coming-soon` -> `$steam-store-assets` -> `$steam-review-ready` -> `$steam-bundles-pricing` -> `$steam-launch-ops`
-- Post-launch DLC:
-  `$steam-publish-plan` -> `$steam-dlc` -> `$steam-bundles-pricing` -> `$steam-review-ready` -> `$steam-launch-ops`
-- Soundtrack:
-  `$steam-publish-plan` -> `$steam-soundtrack` -> `$steam-bundles-pricing` -> `$steam-review-ready`
-
-### 6. Keep the Generic Release Flow
-
-The Steam pack does not replace the normal release skills. Keep using:
-
-- `$release-checklist`
-- `$launch-checklist`
-- `$patch-notes`
-- `$changelog`
-- `$team-release`
-
-The pattern is:
-
-- generic release skills for broad cross-discipline readiness
-- Steam skills for Steamworks-specific app/package/depot/store/review/timing work
-
-### 7. Validate After Editing The Steam Pack
-
-If you change the Steam skills, templates, agent, or docs, run:
-
-```bash
-python3 scripts/sync_codex_metadata.py
-python3 scripts/validate_codex_native.py
-python3 scripts/run_codex_scenarios.py --scenario steam-publish-plan
-```
-
-For the full workflow matrix refresh:
-
-```bash
-python3 scripts/build_workflow_matrix.py
-```
-
-### 8. Where To Read More
-
-- `docs/studio/steam-publishing-guide.md`
-- `docs/WORKFLOW-GUIDE.md`
-- `docs/studio/templates/steam-*.md`
-
-## How This Repo Uses Codex
-
-- Root guidance lives in `AGENTS.md`.
-- Path-specific rules live in nested `AGENTS.md` files, so Codex picks up the
-  closest instructions for gameplay code, shaders, tests, narrative docs, and
-  other domains.
-- Custom agent definitions live in `.codex/agents/*.toml`.
-- Project hooks are wired from `.codex/hooks.json`, and `.codex/config.toml`
-  explicitly enables `features.codex_hooks = true`.
-- Project defaults are stored in `.codex/config.toml`.
-
-Only hook events supported by current Codex releases are wired by default.
-Legacy compatibility scripts are still kept under `.codex/hooks/` for reference,
-but unsupported Claude-specific hook events are not registered.
-
-## Codex-Native Ergonomics
-
-- Every repo skill now ships `agents/openai.yaml`, so Codex can use metadata for
-  UI labels, default prompts, and invocation policy.
-- Heavy orchestration workflows are marked explicit-only by default. Lightweight
-  review and analysis skills remain eligible for implicit triggering.
-- Every custom agent TOML now declares `sandbox_mode` and
-  `nickname_candidates`, which makes spawned threads more predictable and easier
-  to distinguish in the UI.
-- Project defaults now pin `[agents].max_threads = 6` and `max_depth = 1` to
-  match current Codex guidance for predictable fan-out.
-- Repo-local hook commands now resolve from the git root instead of relative
-  `.codex/hooks/...` paths, which keeps them stable when Codex is launched from
-  a subdirectory.
-- File-based validation now runs at `Stop` and `git commit` time instead of
-  pretending `PostToolUse` can see `Write` and `Edit`. Current Codex hook
-  runtime only emits `Bash` for `PreToolUse` and `PostToolUse`, so this repo now
-  avoids no-op hook matchers.
-- Run `python3 scripts/validate_codex_native.py` after repo-level skill or
-  agent changes to catch contract drift early, including hook feature flags,
-  matcher no-ops, unsupported hook keys, and hook script syntax.
-
-## Workflow Overview
-
-The studio model is organized around seven phases:
+The studio works best when you follow the phase model defined in [docs/WORKFLOW-GUIDE.md](docs/WORKFLOW-GUIDE.md):
 
 1. Concept
 2. Systems Design
@@ -487,61 +156,86 @@ The studio model is organized around seven phases:
 6. Polish
 7. Release
 
-The docs that drive those phases live in:
+Typical command flow for a brand-new game:
 
-- `docs/studio/quick-start.md`
-- `docs/WORKFLOW-GUIDE.md`
-- `docs/studio/workflow-catalog.yaml`
-- `docs/studio/director-gates.md`
+1. `$start`
+2. `$brainstorm`
+3. `$setup-engine`
+4. `$map-systems`
+5. `$design-system`
+6. `$create-architecture`
+7. `$create-epics`
+8. `$create-stories`
+9. `$dev-story`
+10. `$gate-check`
 
-## Customizing the Studio
+Typical command flow for an existing game repo:
 
-- Edit `AGENTS.md` to change the repo-wide operating model.
-- Edit nested `AGENTS.md` files to change domain-specific standards.
-- Add or refine workflows in `.agents/skills/`.
-- Tune project defaults in `.codex/config.toml`.
-- Add or remove supported hooks in `.codex/hooks.json`.
+1. run the bootstrap inside the repo
+2. `$project-stage-detect`
+3. `$adopt`
+4. `$help`
+5. continue from the recommended phase
 
-If you change a skill description, invocation policy, or agent metadata, run:
+## Steam Publishing
+
+Steamworks is a first-class part of the repo, not an afterthought. The Steam pack covers:
+
+- base game release planning
+- Coming Soon timing
+- store assets and copy
+- review-readiness
+- demo and playtest strategy
+- Early Access planning
+- DLC and soundtrack releases
+- pricing, bundles, and launch operations
+- Steam Deck readiness
+
+Start with `$steam-publish-plan`, then branch into the relevant release variants.
+Reference guide: [docs/studio/steam-publishing-guide.md](docs/studio/steam-publishing-guide.md)
+
+## Core Docs Map
+
+| Need | Start Here |
+| --- | --- |
+| Quick onboarding | [docs/studio/quick-start.md](docs/studio/quick-start.md) |
+| Full operating model | [docs/WORKFLOW-GUIDE.md](docs/WORKFLOW-GUIDE.md) |
+| Repo layout | [docs/studio/directory-structure.md](docs/studio/directory-structure.md) |
+| Skills catalog | [docs/studio/skills-reference.md](docs/studio/skills-reference.md) |
+| Agent map | [docs/studio/agent-roster.md](docs/studio/agent-roster.md) |
+| Coordination rules | [docs/studio/coordination-rules.md](docs/studio/coordination-rules.md) |
+| Global install | [docs/studio/global-install.md](docs/studio/global-install.md) |
+| Hook behavior | [docs/studio/hooks-reference.md](docs/studio/hooks-reference.md) |
+| Upgrade path | [UPGRADING.md](UPGRADING.md) |
+| Templates | [docs/studio/templates/](docs/studio/templates/) |
+| Examples | [docs/examples/README.md](docs/examples/README.md) |
+
+## Validation and Maintenance
+
+After changing shared skills, agents, docs, or install flows, run:
 
 ```bash
 python3 scripts/sync_codex_metadata.py
 python3 scripts/validate_codex_native.py
+python3 scripts/test_hybrid_global_install.py
 ```
 
-For higher-fidelity workflow testing in throwaway repo copies, run:
-
-```bash
-python3 scripts/run_codex_scenarios.py
-```
-
-To generate the repo's machine-checkable workflow coverage matrix, run:
+If you changed workflow coverage, scenario setup, or release docs, also run:
 
 ```bash
 python3 scripts/build_workflow_matrix.py
+python3 scripts/run_codex_scenarios.py --list
 ```
 
-To refresh the matrix against live skill probes and fixture scenarios in one go, run:
+## Who This Is For
 
-```bash
-python3 scripts/build_workflow_matrix.py --refresh-live
-```
+This repo is designed for:
 
-This performs the full sequential live sweep (skills, agents, then fixture scenarios), so expect it to take noticeably longer than static validation.
-
-The generated outputs land in:
-
-- `docs/studio/workflow-coverage-matrix.json`
-- `docs/studio/workflow-coverage-matrix.md`
-
-The fixture overlays and scenario definitions live under `fixtures/e2e/`.
-
-## Attribution
-
-This repository preserves the studio architecture and workflow intent of the
-original `Claude-Code-Game-Studios` project while translating it to Codex CLI
-concepts and project structure.
+- solo developers who want a disciplined studio workflow
+- small teams that want shared AI-assisted process without inventing it from scratch
+- technical leads who want Codex-native agents, skills, and hooks with real repo structure
+- teams shipping to Steam that want release flows tied to the rest of development
 
 ## License
 
-Released under the [MIT License](LICENSE).
+MIT. See [LICENSE](LICENSE).

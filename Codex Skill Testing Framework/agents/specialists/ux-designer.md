@@ -1,5 +1,7 @@
 # Agent Test Spec: ux-designer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: User experience flows, interaction design, information architecture, input handling design, and onboarding UX.
 Does NOT own: visual art style (art-director), UI implementation code (ui-programmer).

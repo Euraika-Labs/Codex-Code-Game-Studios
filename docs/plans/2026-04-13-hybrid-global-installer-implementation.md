@@ -1,6 +1,7 @@
 # Hybrid Global Installer Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 
 **Goal:** Add a hybrid global distribution layer that installs a curated Codex home pack and bootstraps the full studio into any target repository.
 

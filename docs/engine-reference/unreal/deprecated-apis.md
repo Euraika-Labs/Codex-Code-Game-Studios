@@ -1,5 +1,7 @@
 # Unreal Engine 5.7 — Deprecated APIs
 
+> Deprecation reference for this engine family. Use it to avoid stale APIs and to map older patterns onto the currently preferred replacements.
+
 **Last verified:** 2026-02-13
 
 Quick lookup table for deprecated APIs and their replacements.

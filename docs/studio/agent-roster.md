@@ -1,98 +1,98 @@
 # Agent Roster
 
-The following agents are available. Each has a dedicated TOML definition in
-`.codex/agents/`. Use the agent best suited to the task at hand. When a task
-spans multiple domains, the coordinating agent (usually `producer` or the
-domain lead) should delegate to specialists.
+This roster explains the role of each custom agent family. The TOML files in `.codex/agents/` remain the source of truth for runtime configuration.
 
-The model values below reflect the current `.codex/agents/*.toml` files. If a
-TOML file changes, treat the file as the source of truth and update this roster.
-Each agent file also declares `sandbox_mode` and `nickname_candidates` so
-spawned sessions have explicit runtime defaults and more readable thread labels.
+## How to Choose an Agent
 
-## Tier 1 -- Leadership Agents (`gpt-5.4`)
+- use a director for cross-discipline conflicts or strategic decisions
+- use a lead for domain ownership and review
+- use a specialist for focused execution
+- use an engine-specific specialist when implementation depends on Godot, Unity, or Unreal specifics
 
-| Agent | Domain | When to Use |
-|-------|--------|-------------|
-| `creative-director` | High-level vision | Major creative decisions, pillar conflicts, tone and direction |
-| `technical-director` | Technical vision | Architecture decisions, tech stack choices, performance strategy |
-| `producer` | Production management | Sprint planning, milestone tracking, risk management, coordination |
+## Directors
 
-## Tier 2 -- Department Lead Agents (`gpt-5.4-mini`)
+| Agent | Role | Use For |
+| --- | --- | --- |
+| `creative-director` | creative alignment | pillars, tone, cohesion, major design tradeoffs |
+| `technical-director` | technical alignment | architecture, scalability, performance strategy |
+| `producer` | delivery alignment | scope, milestone risk, sequencing, coordination |
 
-| Agent | Domain | When to Use |
-|-------|--------|-------------|
-| `game-designer` | Game design | Mechanics, systems, progression, economy, balancing |
-| `lead-programmer` | Code architecture | System design, code review, API design, refactoring |
-| `art-director` | Visual direction | Style guides, art bible, asset standards, UI/UX direction |
-| `audio-director` | Audio direction | Music direction, sound palette, audio implementation strategy |
-| `narrative-director` | Story and writing | Story arcs, world-building, character design, dialogue strategy |
-| `qa-lead` | Quality assurance | Test strategy, bug triage, release readiness, regression planning |
-| `release-manager` | Release pipeline | Build management, versioning, changelogs, deployment, rollbacks |
-| `localization-lead` | Internationalization | String externalization, translation pipeline, locale testing |
+## Leads
 
-## Tier 3 -- Specialist Agents
+| Agent | Role | Use For |
+| --- | --- | --- |
+| `game-designer` | design leadership | systems, progression, core loops |
+| `lead-programmer` | engineering leadership | code quality, implementation strategy, refactors |
+| `art-director` | visual leadership | style, art bible, asset standards |
+| `audio-director` | audio leadership | audio palette, implementation priorities |
+| `narrative-director` | story leadership | worldbuilding, narrative consistency, dialogue strategy |
+| `qa-lead` | QA leadership | test strategy, risk reviews, release quality |
+| `release-manager` | release leadership | builds, launch process, rollback and evidence planning |
+| `localization-lead` | localization leadership | string strategy, locale readiness, translation pipeline |
 
-| Agent | Domain | Model | When to Use |
-|-------|--------|-------|-------------|
-| `systems-designer` | Systems design | `gpt-5.4-mini` | Specific mechanic implementation, formula design, loops |
-| `level-designer` | Level design | `gpt-5.4-mini` | Level layouts, pacing, encounter design, flow |
-| `economy-designer` | Economy/balance | `gpt-5.4-mini` | Resource economies, loot tables, progression curves |
-| `gameplay-programmer` | Gameplay code | `gpt-5.4-mini` | Feature implementation, gameplay systems code |
-| `engine-programmer` | Engine systems | `gpt-5.4-mini` | Core engine, rendering, physics, memory management |
-| `ai-programmer` | AI systems | `gpt-5.4-mini` | Behavior trees, pathfinding, NPC logic, state machines |
-| `network-programmer` | Networking | `gpt-5.4-mini` | Netcode, replication, lag compensation, matchmaking |
-| `tools-programmer` | Dev tools | `gpt-5.4-mini` | Editor extensions, pipeline tools, debug utilities |
-| `ui-programmer` | UI implementation | `gpt-5.4-mini` | UI framework, screens, widgets, data binding |
-| `technical-artist` | Tech art | `gpt-5.4-mini` | Shaders, VFX, optimization, art pipeline tools |
-| `sound-designer` | Sound design | `gpt-5.3-codex-spark` | SFX design docs, audio event lists, mixing notes |
-| `writer` | Dialogue/lore | `gpt-5.4-mini` | Dialogue writing, lore entries, item descriptions |
-| `world-builder` | World/lore design | `gpt-5.4-mini` | World rules, faction design, history, geography |
-| `qa-tester` | Test execution | `gpt-5.4-mini` | Writing test cases, bug reports, test checklists |
-| `performance-analyst` | Performance | `gpt-5.4-mini` | Profiling, optimization recommendations, memory analysis |
-| `devops-engineer` | Build/deploy | `gpt-5.3-codex-spark` | CI/CD, build scripts, version control workflow |
-| `analytics-engineer` | Telemetry | `gpt-5.4-mini` | Event tracking, dashboards, A/B test design |
-| `steam-publishing-manager` | Steamworks publishing | `gpt-5.4-mini` | Steam app/package/depot planning, reviews, demos, playtests, Early Access, DLC, bundles, pricing, launch ops |
-| `ux-designer` | UX flows | `gpt-5.4-mini` | User flows, wireframes, accessibility, input handling |
-| `prototyper` | Rapid prototyping | `gpt-5.4-mini` | Throwaway prototypes, mechanic testing, feasibility validation |
-| `security-engineer` | Security | `gpt-5.4-mini` | Anti-cheat, exploit prevention, save encryption, network security |
-| `accessibility-specialist` | Accessibility | `gpt-5.4-mini` | WCAG compliance, colorblind modes, remapping, text scaling |
-| `live-ops-designer` | Live operations | `gpt-5.4-mini` | Seasons, events, battle passes, retention, live economy |
-| `community-manager` | Community | `gpt-5.3-codex-spark` | Patch notes, player feedback, crisis comms, community health |
+## Domain Specialists
 
-## Engine-Specific Agents (use the set matching your engine)
+| Agent | Domain |
+| --- | --- |
+| `systems-designer` | systems and formulas |
+| `level-designer` | level flow and encounter pacing |
+| `economy-designer` | progression and economy balancing |
+| `gameplay-programmer` | gameplay implementation |
+| `engine-programmer` | engine-level code and foundations |
+| `ai-programmer` | AI behavior and supporting systems |
+| `network-programmer` | multiplayer and replication |
+| `tools-programmer` | dev tools and internal workflow support |
+| `ui-programmer` | UI implementation |
+| `technical-artist` | shaders, VFX, optimization, and pipeline glue |
+| `sound-designer` | SFX structure and implementation notes |
+| `writer` | dialogue and authored text |
+| `world-builder` | world logic, lore, factions |
+| `qa-tester` | test execution and evidence |
+| `performance-analyst` | profiling and optimization guidance |
+| `devops-engineer` | CI, build, packaging, release automation |
+| `analytics-engineer` | telemetry and instrumentation |
+| `steam-publishing-manager` | Steam app/package/depot planning and store operations |
+| `ux-designer` | interaction flows and usability |
+| `prototyper` | fast throwaway exploration |
+| `security-engineer` | exploit, anti-cheat, and data safety concerns |
+| `accessibility-specialist` | accessibility and inclusive design |
+| `live-ops-designer` | post-launch events and retention systems |
+| `community-manager` | outward-facing player communication |
 
-### Engine Leads
+## Engine Specialists
 
-| Agent | Engine | Model | When to Use |
-| ---- | ---- | ---- | ---- |
-| `unreal-specialist` | Unreal Engine 5 | `gpt-5.4-mini` | Blueprint vs C++, GAS overview, UE subsystems, Unreal optimization |
-| `unity-specialist` | Unity | `gpt-5.4-mini` | MonoBehaviour vs DOTS, Addressables, URP/HDRP, Unity optimization |
-| `godot-specialist` | Godot 4 | `gpt-5.4-mini` | GDScript patterns, node/scene architecture, signals, Godot optimization |
+### Unreal
 
-### Unreal Engine Sub-Specialists
+- `unreal-specialist`
+- `ue-gas-specialist`
+- `ue-blueprint-specialist`
+- `ue-replication-specialist`
+- `ue-umg-specialist`
 
-| Agent | Subsystem | Model | When to Use |
-| ---- | ---- | ---- | ---- |
-| `ue-gas-specialist` | Gameplay Ability System | `gpt-5.4-mini` | Abilities, gameplay effects, attribute sets, tags, prediction |
-| `ue-blueprint-specialist` | Blueprint Architecture | `gpt-5.4-mini` | BP/C++ boundary, graph standards, naming, BP optimization |
-| `ue-replication-specialist` | Networking/Replication | `gpt-5.4-mini` | Property replication, RPCs, prediction, relevancy, bandwidth |
-| `ue-umg-specialist` | UMG/CommonUI | `gpt-5.4-mini` | Widget hierarchy, data binding, CommonUI input, UI performance |
+### Unity
 
-### Unity Sub-Specialists
+- `unity-specialist`
+- `unity-dots-specialist`
+- `unity-shader-specialist`
+- `unity-addressables-specialist`
+- `unity-ui-specialist`
 
-| Agent | Subsystem | Model | When to Use |
-| ---- | ---- | ---- | ---- |
-| `unity-dots-specialist` | DOTS/ECS | `gpt-5.4-mini` | Entity Component System, Jobs, Burst compiler, hybrid renderer |
-| `unity-shader-specialist` | Shaders/VFX | `gpt-5.4-mini` | Shader Graph, VFX Graph, URP/HDRP customization, post-processing |
-| `unity-addressables-specialist` | Asset Management | `gpt-5.4-mini` | Addressable groups, async loading, memory, content delivery |
-| `unity-ui-specialist` | UI Toolkit/UGUI | `gpt-5.4-mini` | UI Toolkit, UXML/USS, UGUI Canvas, data binding, cross-platform input |
+### Godot
 
-### Godot Sub-Specialists
+- `godot-specialist`
+- `godot-gdscript-specialist`
+- `godot-csharp-specialist`
+- `godot-shader-specialist`
+- `godot-gdextension-specialist`
 
-| Agent | Subsystem | Model | When to Use |
-| ---- | ---- | ---- | ---- |
-| `godot-gdscript-specialist` | GDScript | `gpt-5.4-mini` | Static typing, design patterns, signals, coroutines, GDScript performance |
-| `godot-csharp-specialist` | C#/.NET | `gpt-5.4-mini` | Assemblies, exported properties, signals, interop, C# performance |
-| `godot-shader-specialist` | Shaders/Rendering | `gpt-5.4-mini` | Godot shading language, visual shaders, particles, post-processing |
-| `godot-gdextension-specialist` | GDExtension | `gpt-5.4-mini` | C++/Rust bindings, native performance, custom nodes, build systems |
+## Choosing Between Skills and Agents
+
+- use a skill when you need a repeatable workflow
+- use an agent when you need judgment within a domain
+- use a team skill when multiple agents should coordinate under one theme
+
+## Related Docs
+
+- `docs/studio/skills-reference.md`
+- `docs/studio/agent-coordination-map.md`
+- `docs/studio/coordination-rules.md`

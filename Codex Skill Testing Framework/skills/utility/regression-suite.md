@@ -1,5 +1,7 @@
 # Skill Test Spec: $regression-suite
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$regression-suite` maps test coverage to GDD requirements: it reads the

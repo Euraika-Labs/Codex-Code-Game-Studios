@@ -1,140 +1,139 @@
-# Available Skills
+# Skills Reference
 
-84 repo skills organized by phase. Mention the skill name directly in your
-prompt, for example `$start` or `$design-system`.
+This file maps the repo skills to the work they are meant to drive.
+Mention skills directly in Codex prompts, for example `$start` or `$design-system`.
 
-## Onboarding & Navigation
-
-| Command | Purpose |
-|---------|---------|
-| `$start` | First-time onboarding — asks where you are, then guides you to the right workflow |
-| `$help` | Context-aware "what do I do next?" — reads current stage and surfaces the required next step |
-| `$project-stage-detect` | Full project audit — detect phase, identify existence gaps, recommend next steps |
-| `$setup-engine` | Configure engine + version, detect knowledge gaps, populate version-aware reference docs |
-| `$adopt` | Brownfield format audit — checks internal structure of existing GDDs/ADRs/stories, produces migration plan |
-
-## Game Design
+## Onboarding and Navigation
 
 | Command | Purpose |
-|---------|---------|
-| `$brainstorm` | Guided ideation using professional studio methods (MDA, SDT, Bartle, verb-first) |
-| `$map-systems` | Decompose game concept into systems, map dependencies, prioritize design order |
-| `$design-system` | Guided, section-by-section GDD authoring for a single game system |
-| `$quick-design` | Lightweight design spec for small changes — tuning, tweaks, minor additions |
-| `$review-all-gdds` | Cross-GDD consistency and game design holism review across all design docs |
-| `$propagate-design-change` | When a GDD is revised, find affected ADRs and produce an impact report |
+| --- | --- |
+| `$start` | guided first-step router for new or ambiguous projects |
+| `$help` | context-aware “what next?” assistant |
+| `$project-stage-detect` | phase and artifact audit for existing repos |
+| `$setup-engine` | lock engine and version, then align technical references |
+| `$adopt` | brownfield audit for existing repos that need framework alignment |
 
-## UX & Interface Design
-
-| Command | Purpose |
-|---------|---------|
-| `$ux-design` | Guided section-by-section UX spec authoring (screen/flow, HUD, or pattern library) |
-| `$ux-review` | Validate UX specs for GDD alignment, accessibility, and pattern compliance |
-
-## Architecture
+## Design and Discovery
 
 | Command | Purpose |
-|---------|---------|
-| `$create-architecture` | Guided authoring of the master architecture document |
-| `$architecture-decision` | Create an Architecture Decision Record (ADR) |
-| `$architecture-review` | Validate all ADRs for completeness, dependency ordering, and GDD coverage |
-| `$create-control-manifest` | Generate flat programmer rules sheet from accepted ADRs |
+| --- | --- |
+| `$brainstorm` | concept generation and refinement |
+| `$map-systems` | systems inventory, dependencies, and priorities |
+| `$design-system` | full system GDD authoring |
+| `$quick-design` | smaller-scoped design note for limited changes |
+| `$review-all-gdds` | cross-document design coherence review |
+| `$propagate-design-change` | impact review after a design update |
 
-## Stories & Sprints
-
-| Command | Purpose |
-|---------|---------|
-| `$create-epics` | Translate GDDs + ADRs into epics — one per architectural module |
-| `$create-stories` | Break a single epic into implementable story files |
-| `$dev-story` | Read a story and implement it — routes to the correct programmer agent |
-| `$sprint-plan` | Generate or update a sprint plan; initializes sprint-status.yaml |
-| `$sprint-status` | Fast 30-line sprint snapshot (reads sprint-status.yaml) |
-| `$story-readiness` | Validate a story is implementation-ready before pickup (READY/NEEDS WORK/BLOCKED) |
-| `$story-done` | 8-phase completion review after implementation; updates story file, surfaces next story |
-| `$estimate` | Structured effort estimate with complexity, dependencies, and risk breakdown |
-
-## Reviews & Analysis
+## UX
 
 | Command | Purpose |
-|---------|---------|
-| `$design-review` | Review a game design document for completeness and consistency |
-| `$code-review` | Architectural code review for a file or changeset |
-| `$balance-check` | Analyze game balance data, formulas, and config — flag outliers |
-| `$asset-audit` | Audit assets for naming conventions, file size budgets, and pipeline compliance |
-| `$content-audit` | Audit GDD-specified content counts against implemented content |
-| `$scope-check` | Analyze feature or sprint scope against original plan, flag scope creep |
-| `$perf-profile` | Structured performance profiling with bottleneck identification |
-| `$tech-debt` | Scan, track, prioritize, and report on technical debt |
-| `$gate-check` | Validate readiness to advance between development phases (PASS/CONCERNS/FAIL) |
-| `$consistency-check` | Scan all GDDs against the entity registry to detect cross-document inconsistencies (stats, names, rules that contradict each other) |
+| --- | --- |
+| `$ux-design` | write UX specifications and interaction flows |
+| `$ux-review` | check UX outputs for consistency, accessibility, and clarity |
 
-## QA & Testing
+## Architecture and Technical Direction
 
 | Command | Purpose |
-|---------|---------|
-| `$qa-plan` | Generate a QA test plan for a sprint or feature |
-| `$smoke-check` | Run critical path smoke test gate before QA hand-off |
-| `$soak-test` | Generate a soak test protocol for extended play sessions |
-| `$regression-suite` | Map test coverage to GDD critical paths, identify fixed bugs without regression tests |
-| `$test-setup` | Scaffold the test framework and CI/CD pipeline for the project's engine |
-| `$test-helpers` | Generate engine-specific test helper libraries for the test suite |
-| `$test-evidence-review` | Quality review of test files and manual evidence documents |
-| `$test-flakiness` | Detect non-deterministic (flaky) tests from CI run logs |
-| `$skill-test` | Validate skill files for structural compliance and behavioral correctness |
+| --- | --- |
+| `$create-architecture` | author the master architecture document |
+| `$architecture-decision` | create a focused ADR |
+| `$architecture-review` | review ADR quality and coverage |
+| `$create-control-manifest` | flatten accepted decisions into programmer guidance |
+| `$reverse-document` | document architecture or design from existing code |
 
-## Production
+## Planning and Delivery
 
 | Command | Purpose |
-|---------|---------|
-| `$milestone-review` | Review milestone progress and generate status report |
-| `$retrospective` | Run a structured sprint or milestone retrospective |
-| `$bug-report` | Create a structured bug report |
-| `$bug-triage` | Read all open bugs, re-evaluate priority vs. severity, assign owner and label |
-| `$reverse-document` | Generate design or architecture docs from existing implementation |
-| `$playtest-report` | Generate a structured playtest report or analyze existing playtest notes |
+| --- | --- |
+| `$create-epics` | convert design and architecture into epics |
+| `$create-stories` | break epics into implementable stories |
+| `$story-readiness` | confirm a story is ready for pickup |
+| `$dev-story` | implement a story using the appropriate coding specialist |
+| `$story-done` | verify a story is complete and update status |
+| `$sprint-plan` | build or refresh a sprint plan |
+| `$sprint-status` | summarize sprint health |
+| `$estimate` | produce a structured effort estimate |
 
-## Release
-
-| Command | Purpose |
-|---------|---------|
-| `$release-checklist` | Generate and validate a pre-release checklist for the current build |
-| `$launch-checklist` | Complete launch readiness validation across all departments |
-| `$changelog` | Auto-generate changelog from git commits and sprint data |
-| `$patch-notes` | Generate player-facing patch notes from git history and internal data |
-| `$hotfix` | Emergency fix workflow with audit trail, bypassing normal sprint process |
-| `$steam-publish-plan` | Build the master Steamworks publishing plan for the base game and release variants |
-| `$steam-coming-soon` | Plan Steam review timing, Coming Soon visibility, and wishlist beats |
-| `$steam-store-assets` | Prepare Steam-specific store copy and visual asset pack |
-| `$steam-review-ready` | Generate the Steam review-readiness packet for store page and build submission |
-| `$steam-demo` | Plan a public Steam demo release with App ID, depots, CTA, and QA scope |
-| `$steam-playtest` | Plan a gated Steam Playtest with cohorts, admission waves, and feedback flow |
-| `$steam-early-access` | Prepare the Steam Early Access plan and Q and A |
-| `$steam-dlc` | Plan Steam DLC ownership, depots, messaging, and release impact |
-| `$steam-soundtrack` | Plan a soundtrack release on Steam |
-| `$steam-bundles-pricing` | Plan Steam pricing, launch discounts, bundles, and regional considerations |
-| `$steam-launch-ops` | Create the Steam launch-day runbook and monitoring plan |
-| `$steam-deck-ready` | Summarize Steam Deck readiness and follow-up actions |
-
-## Creative & Content
+## Review, Quality, and Risk
 
 | Command | Purpose |
-|---------|---------|
-| `$prototype` | Rapid throwaway prototype to validate a mechanic (relaxed standards, isolated worktree) |
-| `$onboard` | Generate contextual onboarding document for a new contributor or agent |
-| `$localize` | Localization workflow: string extraction, validation, translation readiness |
+| --- | --- |
+| `$design-review` | review a design doc |
+| `$code-review` | review a file or changeset from a code-quality perspective |
+| `$balance-check` | inspect formulas, tuning, and game economies |
+| `$asset-audit` | check asset naming, budgets, and pipeline consistency |
+| `$content-audit` | compare planned content against implemented content |
+| `$scope-check` | detect scope creep or mismatched delivery expectations |
+| `$perf-profile` | identify performance risks and likely bottlenecks |
+| `$tech-debt` | identify and prioritize debt |
+| `$consistency-check` | scan for contradictions across design artifacts |
+| `$gate-check` | evaluate readiness to cross a phase boundary |
+
+## QA and Testing
+
+| Command | Purpose |
+| --- | --- |
+| `$qa-plan` | build a QA plan |
+| `$smoke-check` | critical-path smoke gate |
+| `$soak-test` | extended-session test protocol |
+| `$regression-suite` | identify missing regression protection |
+| `$test-setup` | scaffold project testing and CI foundations |
+| `$test-helpers` | create engine-specific helpers for the test suite |
+| `$test-evidence-review` | review test evidence quality |
+| `$test-flakiness` | investigate unstable tests |
+| `$skill-test` | validate repo skill definitions and behavior |
+
+## Production and Team Health
+
+| Command | Purpose |
+| --- | --- |
+| `$milestone-review` | assess milestone progress and risk |
+| `$retrospective` | run a retrospective |
+| `$bug-report` | generate a structured bug report |
+| `$bug-triage` | prioritize and route bugs |
+| `$playtest-report` | summarize or analyze playtest findings |
+| `$onboard` | create onboarding guidance for a new contributor |
+| `$localize` | plan and validate localization work |
+
+## Release and Live Operations
+
+| Command | Purpose |
+| --- | --- |
+| `$release-checklist` | build the pre-release checklist |
+| `$launch-checklist` | validate launch readiness across disciplines |
+| `$changelog` | generate internal change history |
+| `$patch-notes` | produce player-facing notes |
+| `$hotfix` | execute emergency fix workflow with audit trail |
+
+## Steam Publishing Pack
+
+| Command | Purpose |
+| --- | --- |
+| `$steam-publish-plan` | master Steamworks plan for the base game and release variants |
+| `$steam-coming-soon` | coming-soon timing, review lead time, wishlist beats |
+| `$steam-store-assets` | store copy and asset pack planning |
+| `$steam-review-ready` | submission-readiness packet |
+| `$steam-demo` | demo strategy and setup |
+| `$steam-playtest` | gated playtest strategy and cohorts |
+| `$steam-early-access` | Early Access positioning and Q&A planning |
+| `$steam-dlc` | DLC structure and release impact |
+| `$steam-soundtrack` | soundtrack release planning |
+| `$steam-bundles-pricing` | pricing, discounts, and bundle strategy |
+| `$steam-launch-ops` | launch-day runbook and monitoring |
+| `$steam-deck-ready` | Steam Deck readiness summary |
 
 ## Team Orchestration
 
-Coordinate multiple agents on a single feature area:
+Team skills coordinate groups of agents around a shared theme:
 
-| Command | Coordinates |
-|---------|-------------|
-| `$team-combat` | game-designer + gameplay-programmer + ai-programmer + technical-artist + sound-designer + qa-tester |
-| `$team-narrative` | narrative-director + writer + world-builder + level-designer |
-| `$team-ui` | ux-designer + ui-programmer + art-director + accessibility-specialist |
-| `$team-release` | release-manager + steam-publishing-manager + qa-lead + devops-engineer + producer |
-| `$team-polish` | performance-analyst + technical-artist + sound-designer + qa-tester |
-| `$team-audio` | audio-director + sound-designer + technical-artist + gameplay-programmer |
-| `$team-level` | level-designer + narrative-director + world-builder + art-director + systems-designer + qa-tester |
-| `$team-live-ops` | live-ops-designer + economy-designer + community-manager + analytics-engineer |
-| `$team-qa` | qa-lead + qa-tester + gameplay-programmer + producer |
+- `$team-combat`
+- `$team-narrative`
+- `$team-ui`
+- `$team-release`
+- `$team-polish`
+- `$team-audio`
+- `$team-level`
+- `$team-live-ops`
+- `$team-qa`
+
+Use these when a task genuinely needs multiple disciplines in one coordinated pass.

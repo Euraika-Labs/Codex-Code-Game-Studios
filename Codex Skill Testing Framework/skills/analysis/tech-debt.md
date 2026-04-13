@@ -1,5 +1,7 @@
 # Skill Test Spec: $tech-debt
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$tech-debt` tracks, categorizes, and prioritizes technical debt across the

@@ -1,80 +1,87 @@
 # Setup Requirements
 
-This template requires a few tools to be installed for full functionality.
-All hooks fail gracefully if tools are missing — nothing will break, but
-you'll lose validation features.
+These are the tools that make the framework fully usable. Missing optional tools should not break the repo, but they will reduce guardrails and convenience.
 
 ## Required
 
 | Tool | Purpose | Install |
-| ---- | ---- | ---- |
-| **Git** | Version control, branch management | [git-scm.com](https://git-scm.com/) |
-| **Codex CLI** | AI agent CLI | `npm install -g @anthropic-ai/claude-code` |
+| --- | --- | --- |
+| Git | version control and repo-aware workflows | [git-scm.com](https://git-scm.com/) |
+| Codex CLI | the agent runtime for this framework | `npm install -g @openai/codex` |
 
 ## Recommended
 
 | Tool | Used By | Purpose | Install |
-| ---- | ---- | ---- | ---- |
-| **jq** | Hooks (4 of 8) | JSON parsing in commit/push/asset/agent hooks | See below |
-| **Python 3** | Hooks (2 of 8) | JSON validation for data files | [python.org](https://www.python.org/) |
-| **Bash** | All hooks | Shell script execution | Included with Git for Windows |
+| --- | --- | --- | --- |
+| jq | hooks and lightweight JSON checks | fast JSON parsing in shell hooks | see platform commands below |
+| Python 3 | validators, install tests, structured checks | repo validation and helper scripts | [python.org](https://www.python.org/) |
+| Bash | hooks and bootstrap scripts | cross-platform shell execution | included on macOS/Linux, via Git Bash on Windows |
 
-### Installing jq
+## jq Installation
 
-**Windows** (any of these):
-```
+### Windows
+
+```bash
 winget install jqlang.jq
 choco install jq
 scoop install jq
 ```
 
-**macOS**:
-```
+### macOS
+
+```bash
 brew install jq
 ```
 
-**Linux**:
-```
-sudo apt install jq     # Debian/Ubuntu
-sudo dnf install jq     # Fedora
-sudo pacman -S jq       # Arch
+### Linux
+
+```bash
+sudo apt install jq
+sudo dnf install jq
+sudo pacman -S jq
 ```
 
 ## Platform Notes
 
 ### Windows
-- Git for Windows includes **Git Bash**, which provides the `bash` command
-  used by all hooks in `settings.json`
-- Ensure Git Bash is on your PATH (default if installed via the Git installer)
-- Hooks use `bash .codex/hooks/[name].sh` — this works on Windows because
-  Codex CLI invokes commands through a shell that can find `bash.exe`
 
-### macOS / Linux
-- Bash is available natively
-- Install `jq` via your package manager for full hook support
+- Git for Windows provides Git Bash, which is enough for the shared hook scripts.
+- PowerShell users can run the universal bootstrap with `bootstrap.ps1`.
+- If you also use WSL, decide whether you want a shared Codex home or separate ones.
 
-## Verifying Your Setup
+### WSL
 
-Run these commands to check prerequisites:
+- WSL can share the Windows Codex home when that home already exists.
+- The universal bootstrap handles that resolution automatically.
+- For active coding, keep repositories in the Linux filesystem when possible.
+
+### macOS and Linux
+
+- Bash is available natively.
+- Use the shell bootstrap directly.
+
+## Verify the Toolchain
 
 ```bash
-git --version          # Should show git version
-bash --version         # Should show bash version
-jq --version           # Should show jq version (optional)
-python3 --version      # Should show python version (optional)
+git --version
+codex --version
+bash --version
+jq --version
+python3 --version
 ```
 
-## What Happens Without Optional Tools
+## If Optional Tools Are Missing
 
 | Missing Tool | Effect |
-| ---- | ---- |
-| **jq** | Commit validation, push protection, asset validation, and agent audit hooks silently skip their checks. Commits and pushes still work. |
-| **Python 3** | JSON data file validation in commit and asset hooks is skipped. Invalid JSON can be committed without warning. |
-| **Both** | All hooks still execute without error (exit 0) but provide no validation. You're flying without safety nets. |
+| --- | --- |
+| jq | some shell-level validation becomes weaker or falls back to simpler checks |
+| Python 3 | validator and install-test scripts cannot run |
+| Both | the repo still functions, but shared validation is much weaker |
 
-## Recommended IDE
+## Editors
 
-Codex CLI works with any editor, but the template is optimized for:
-- **VS Code** with the Codex CLI extension
-- **Cursor** (Codex CLI compatible)
-- Terminal-based Codex CLI CLI
+The framework works with any editor, but the most common setups are:
+
+- Codex desktop app
+- terminal Codex CLI plus VS Code
+- terminal Codex CLI plus Cursor

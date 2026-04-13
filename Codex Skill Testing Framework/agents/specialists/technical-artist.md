@@ -1,5 +1,7 @@
 # Agent Test Spec: technical-artist
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Shaders, VFX, rendering optimization, art pipeline tools, and visual performance.
 Does NOT own: art style decisions or color palette (art-director), gameplay code (gameplay-programmer).

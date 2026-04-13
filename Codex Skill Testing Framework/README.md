@@ -1,5 +1,7 @@
 # Codex Skill Testing Framework
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 Quality-assurance infrastructure for **Codex Code Game Studios** itself.
 It tests the skills and agents in this framework, not the game built on top of
 it.

@@ -1,65 +1,38 @@
 # Coding Standards
 
-- All game code must include doc comments on public APIs
-- Every system must have a corresponding architecture decision record in `docs/architecture/`
-- Gameplay values must be data-driven (external config), never hardcoded
-- All public methods must be unit-testable (dependency injection over singletons)
-- Commits must reference the relevant design document or task ID
-- **Verification-driven development**: Write tests first when adding gameplay systems.
-  For UI changes, verify with screenshots. Compare expected output to actual output
-  before marking work complete. Every implementation should have a way to prove it works.
+These standards apply to implementation work generated or reviewed through the framework.
 
-# Design Document Standards
+## General Principles
 
-- All design docs use Markdown
-- Each mechanic has a dedicated document in `design/gdd/`
-- Documents must include these 8 required sections:
-  1. **Overview** -- one-paragraph summary
-  2. **Player Fantasy** -- intended feeling and experience
-  3. **Detailed Rules** -- unambiguous mechanics
-  4. **Formulas** -- all math defined with variables
-  5. **Edge Cases** -- unusual situations handled
-  6. **Dependencies** -- other systems listed
-  7. **Tuning Knobs** -- configurable values identified
-  8. **Acceptance Criteria** -- testable success conditions
-- Balance values must link to their source formula or rationale
+- favor clarity over cleverness
+- keep behavior close to the code that owns it
+- make data flow easy to trace
+- avoid hidden coupling between systems
+- write for maintainers, not only for current speed
 
-# Testing Standards
+## Game-Project Expectations
 
-## Test Evidence by Story Type
+- keep gameplay logic separate from presentation where the engine allows it
+- make tuning values explicit and easy to change
+- isolate platform- or engine-specific behavior behind clear boundaries
+- document assumptions that can affect content, balance, or save compatibility
 
-All stories must have appropriate test evidence before they can be marked Done:
+## Review Expectations
 
-| Story Type | Required Evidence | Location | Gate Level |
-|---|---|---|---|
-| **Logic** (formulas, AI, state machines) | Automated unit test — must pass | `tests/unit/[system]/` | BLOCKING |
-| **Integration** (multi-system) | Integration test OR documented playtest | `tests/integration/[system]/` | BLOCKING |
-| **Visual/Feel** (animation, VFX, feel) | Screenshot + lead sign-off | `production/qa/evidence/` | ADVISORY |
-| **UI** (menus, HUD, screens) | Manual walkthrough doc OR interaction test | `production/qa/evidence/` | ADVISORY |
-| **Config/Data** (balance tuning) | Smoke check pass | `production/qa/smoke-[date].md` | ADVISORY |
+Good implementation output should include:
 
-## Automated Test Rules
+- a clear description of what changed
+- enough tests or evidence to support the change
+- references to the relevant story, design doc, or ADR when appropriate
 
-- **Naming**: `[system]_[feature]_test.[ext]` for files; `test_[scenario]_[expected]` for functions
-- **Determinism**: Tests must produce the same result every run — no random seeds, no time-dependent assertions
-- **Isolation**: Each test sets up and tears down its own state; tests must not depend on execution order
-- **No hardcoded data**: Test fixtures use constant files or factory functions, not inline magic numbers
-  (exception: boundary value tests where the exact number IS the point)
-- **Independence**: Unit tests do not call external APIs, databases, or file I/O — use dependency injection
+## Stability Rules
 
-## What NOT to Automate
+- do not mix refactors with feature work unless the change genuinely requires it
+- avoid broad incidental cleanup during deadline-sensitive work
+- protect save data, networking behavior, and progression logic from silent breaking changes
 
-- Visual fidelity (shader output, VFX appearance, animation curves)
-- "Feel" qualities (input responsiveness, perceived weight, timing)
-- Platform-specific rendering (test on target hardware, not headlessly)
-- Full gameplay sessions (covered by playtesting, not automation)
+## Collaboration Rules
 
-## CI/CD Rules
-
-- Automated test suite runs on every push to main and every PR
-- No merge if tests fail — tests are a blocking gate in CI
-- Never disable or skip failing tests to make CI pass — fix the underlying issue
-- Engine-specific CI commands:
-  - **Godot**: `godot --headless --script tests/gdunit4_runner.gd`
-  - **Unity**: `game-ci/unity-test-runner@v4` (GitHub Actions)
-  - **Unreal**: headless runner with `-nullrhi` flag
+- if a change conflicts with design, escalate instead of guessing
+- if a change touches release risk, inform production and QA surfaces
+- if a change affects player-facing behavior, update the relevant docs or notes

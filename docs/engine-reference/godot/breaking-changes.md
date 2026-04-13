@@ -1,5 +1,7 @@
 # Godot — Breaking Changes
 
+> Breaking-change reference for engine upgrades and major refactors. Use it before adopting new engine versions or moving older project code forward.
+
 Last verified: 2026-02-12
 
 Changes between Godot versions, focused on post-LLM-cutoff changes (4.4+).

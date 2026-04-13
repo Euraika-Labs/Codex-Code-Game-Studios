@@ -1,5 +1,7 @@
 # Unreal Engine 5.7 — Optional Plugins & Systems
 
+> Plugin reference for this engine family. Use it when deciding what belongs in the shared project stack and what should remain optional or project-specific.
+
 **Last verified:** 2026-02-13
 
 This document indexes **optional plugins and systems** available in Unreal Engine 5.7.

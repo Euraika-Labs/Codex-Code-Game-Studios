@@ -1,5 +1,7 @@
 # Universal Bootstrap Design
 
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 **Goal:** Replace the current two-step manual installer flow with one universal
 bootstrap entrypoint that automatically picks the correct Codex home and, when
 run inside a repository, bootstraps the full studio into that repository.

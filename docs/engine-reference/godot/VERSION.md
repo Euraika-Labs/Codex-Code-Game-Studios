@@ -1,5 +1,7 @@
 # Godot Engine — Version Reference
 
+> Version reference for the active engine family. Use this when locking engine versions in technical preferences and when checking whether engine updates change project assumptions.
+
 | Field | Value |
 |-------|-------|
 | **Engine Version** | Godot 4.6 |

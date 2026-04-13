@@ -1,5 +1,7 @@
 # Skill Flow Diagrams
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 Visual maps of how skills chain together across the 7 development phases.
 These show what runs before and after each skill, and what artifacts flow between them.
 

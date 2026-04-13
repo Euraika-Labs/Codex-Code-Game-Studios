@@ -1,5 +1,7 @@
 # Example Session: Designing the Crafting System
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Solo indie dev, week 2 of project, needs to design the crafting system mentioned in the game pillars.
 
 **Starting State:**

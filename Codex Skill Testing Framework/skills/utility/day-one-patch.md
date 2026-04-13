@@ -1,5 +1,7 @@
 # Skill Test Spec: $day-one-patch
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$day-one-patch` prepares a day-one patch plan for issues that are known at

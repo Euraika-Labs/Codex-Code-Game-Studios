@@ -1,5 +1,7 @@
 # Skill Test Spec: $story-done
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$story-done` closes the loop between design and implementation. Run at the

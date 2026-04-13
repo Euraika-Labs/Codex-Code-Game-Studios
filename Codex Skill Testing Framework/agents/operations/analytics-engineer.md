@@ -1,5 +1,7 @@
 # Agent Test Spec: analytics-engineer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 - **Domain**: Telemetry architecture and event schema design, A/B test framework design, player behavior analysis methodology, analytics dashboard specification, event naming conventions, data pipeline design (schema → ingestion → dashboard)
 - **Does NOT own**: Game implementation of event tracking (appropriate programmer), economy design decisions informed by analytics (economy-designer), live ops event design (live-ops-designer)

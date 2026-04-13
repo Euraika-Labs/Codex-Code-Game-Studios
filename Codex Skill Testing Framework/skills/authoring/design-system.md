@@ -1,5 +1,7 @@
 # Skill Test Spec: $design-system
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$design-system` guides the user through section-by-section authoring of a Game

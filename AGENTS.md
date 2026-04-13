@@ -4,76 +4,53 @@ Use this repository as a structured game-development studio for Codex CLI.
 
 ## First Moves
 
-- If the user is new to the project, route through `$start`.
-- If the user asks what comes next, use `$help` or `docs/studio/workflow-catalog.yaml`.
-- If the project already exists, prefer `$project-stage-detect` before inventing a phase.
+- If the project is new or ambiguous, route through `$start`.
+- If the user asks what comes next, use `$help` or inspect `docs/studio/workflow-catalog.yaml`.
+- If the repo already contains meaningful code or docs, prefer `$project-stage-detect` before picking a phase.
+- If engine choice is not locked yet, use `$setup-engine` before architecture or implementation work.
 
-## Technology Stack
+## Source-of-Truth Documents
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
-- **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
-
-> Engine-specialist agents exist for Godot, Unity, and Unreal. Use the set that
-> matches the configured engine and keep this section in sync with
-> `docs/studio/technical-preferences.md`.
-
-## Engine Version Reference
-
-docs/engine-reference/[TO BE CONFIGURED]/VERSION.md
-
-## Technical Preferences
-
-docs/studio/technical-preferences.md
-
-## Coordination Rules
-
-docs/studio/coordination-rules.md
-
-## Coding Standards
-
-docs/studio/coding-standards.md
+- Engine and platform defaults: `docs/studio/technical-preferences.md`
+- Workflow phases and routing: `docs/studio/workflow-catalog.yaml`
+- Phase gates: `docs/studio/director-gates.md`
+- Coordination rules: `docs/studio/coordination-rules.md`
+- Coding standards: `docs/studio/coding-standards.md`
+- Repo structure: `docs/studio/directory-structure.md`
 
 ## Repo Surfaces
 
 - Root operating guidance lives here in `AGENTS.md`.
-- Path-specific standards live in nested `AGENTS.md` files under `src/`,
-  `design/`, `assets/`, `tests/`, and `prototypes/`.
+- Path-specific standards live in nested `AGENTS.md` files under `src/`, `design/`, `assets/`, `docs/`, `tests/`, and `prototypes/`.
 - Reusable workflows live in `.agents/skills/`.
 - Custom agent definitions live in `.codex/agents/`.
 - Shared project hooks live in `.codex/hooks.json`.
 - Shared project defaults live in `.codex/config.toml`.
 
-## Working Style
+## Working Agreements
 
-- Treat skills as the preferred entry point for recurring workflows.
-- Keep repo skills Codex-native: if you edit a skill, sync and validate its
-  metadata with `python3 scripts/sync_codex_metadata.py` and
-  `python3 scripts/validate_codex_native.py`.
-- Keep design intent in `design/`, technical decisions in `docs/architecture/`,
-  delivery state in `production/`, and implementation in `src/`.
-- Do not silently make cross-discipline decisions when design, technical, and
-  production priorities conflict. Surface options and call out tradeoffs.
-- Keep generated or updated docs aligned with the existing templates in
-  `docs/studio/templates/`.
-- Follow the collaboration rule of draft first, then ask for approval before
-  writing project files.
+- Prefer repo skills over ad-hoc prompting for recurring work.
+- Keep design intent in `design/`, technical decisions in `docs/architecture/`, delivery state in `production/`, and implementation in `src/`.
+- Surface tradeoffs when creative, technical, and production goals conflict.
+- Use templates in `docs/studio/templates/` when creating first-class artifacts.
+- Treat Steam release planning as part of the release phase, not as an external afterthought.
 
-## Studio Hierarchy
+## Delegation Model
 
-- Directors set direction: `creative-director`, `technical-director`,
-  `producer`.
-- Leads own domains such as design, programming, art, audio, narrative, QA,
-  localization, and release.
-- Specialists execute the work inside their discipline and escalate when a
-  decision crosses boundaries.
+- Directors define direction and resolve cross-discipline conflicts.
+- Leads own quality and coherence inside their domain.
+- Specialists execute focused work and escalate when a task crosses boundaries.
+- Use `$team-*` orchestration skills when the task genuinely spans multiple disciplines.
 
-## Migration Guardrails
+## Guardrails
 
-- Use `AGENTS.md`, never `CLAUDE.md`, for shared repo guidance.
-- Use `.agents/skills/`, never `.claude/skills/`, for repo skills.
-- Keep only currently supported Codex hook events wired in `.codex/hooks.json`.
-- When converting older docs, replace Claude-only workflow language with
-  Codex-native instructions.
+- Validate shared changes with `python3 scripts/validate_codex_native.py`.
+- After changing skill metadata, run `python3 scripts/sync_codex_metadata.py`.
+- Do not weaken repo-local hooks, gates, or artifact contracts without updating the matching docs.
+- Keep docs aligned with real paths, commands, and workflow names.
+
+## Output Style
+
+- Prefer concise, project-usable artifacts over abstract explanation.
+- Make file destinations explicit when writing new docs or reports.
+- When a workflow asks for approval before writing, stop at the draft boundary and ask clearly.

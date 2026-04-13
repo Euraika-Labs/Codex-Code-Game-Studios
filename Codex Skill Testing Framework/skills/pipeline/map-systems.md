@@ -1,5 +1,7 @@
 # Skill Test Spec: $map-systems
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$map-systems` decomposes a game concept into a systems index. It reads the

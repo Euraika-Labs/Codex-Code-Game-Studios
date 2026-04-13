@@ -1,5 +1,7 @@
 # Reverse Documentation Workflow Example
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 ## Scenario
 Developer built a working skill tree system but never wrote a design doc.
 Code exists in `src/gameplay/skills/`, but `design/gdd/` has no skill-system.md.

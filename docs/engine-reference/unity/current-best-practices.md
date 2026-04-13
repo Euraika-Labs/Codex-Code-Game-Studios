@@ -1,5 +1,7 @@
 # Unity 6.3 LTS — Current Best Practices
 
+> Current-practice reference for new work in this engine family. Prefer these defaults unless the project has a documented reason to do otherwise.
+
 **Last verified:** 2026-02-13
 
 Modern Unity 6 patterns that may not be in the LLM's training data.

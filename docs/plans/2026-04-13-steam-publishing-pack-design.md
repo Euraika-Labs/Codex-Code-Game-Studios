@@ -1,5 +1,7 @@
 # Steam Publishing Pack Design
 
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 **Date:** 2026-04-13
 **Status:** Approved for implementation
 **Scope:** Add Steamworks-native Codex flows for premium launch, demo, Steam Playtest, Early Access, DLC, soundtrack, bundles, pricing, review readiness, launch operations, and Steam Deck readiness.

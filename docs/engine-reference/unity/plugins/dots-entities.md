@@ -1,5 +1,7 @@
 # Unity 6.3 — DOTS / Entities (ECS)
 
+> Engine subsystem reference for Codex Code Game Studios. Use it when the related subsystem becomes active work in the project.
+
 **Last verified:** 2026-02-13
 **Status:** Production-Ready (Entities 1.3+, Unity 6.3 LTS)
 **Package:** `com.unity.entities` (Package Manager)

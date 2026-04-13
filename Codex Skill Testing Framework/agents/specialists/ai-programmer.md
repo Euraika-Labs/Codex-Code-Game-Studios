@@ -1,5 +1,7 @@
 # Agent Test Spec: ai-programmer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: NPC behavior, state machines, pathfinding, perception systems, and AI decision-making.
 Does NOT own: player mechanics (gameplay-programmer), rendering or engine internals (engine-programmer).

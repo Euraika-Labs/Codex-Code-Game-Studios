@@ -1,4 +1,5 @@
 # Technical Requirement ID Registry
+# Shared registry used by Codex Code Game Studios to keep requirement IDs stable across design, architecture, and story workflows.
 #
 # PURPOSE: Persistent, stable IDs for every GDD technical requirement.
 # Prevents TR-ID renumbering across $architecture-review runs, which would

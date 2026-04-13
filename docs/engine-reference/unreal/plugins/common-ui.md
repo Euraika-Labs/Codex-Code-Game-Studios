@@ -1,5 +1,7 @@
 # Unreal Engine 5.7 — CommonUI Plugin
 
+> Engine subsystem reference for Codex Code Game Studios. Use it when the related subsystem becomes active work in the project.
+
 **Last verified:** 2026-02-13
 **Status:** Production-Ready
 **Plugin:** `CommonUI` (built-in, enable in Plugins)

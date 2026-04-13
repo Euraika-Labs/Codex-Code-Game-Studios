@@ -1,5 +1,7 @@
 # Skill Test Spec: $help
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$help` analyzes what has been done and what comes next in the project workflow.

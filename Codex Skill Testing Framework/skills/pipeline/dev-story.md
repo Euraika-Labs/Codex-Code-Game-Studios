@@ -1,5 +1,7 @@
 # Skill Test Spec: $dev-story
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$dev-story` reads a story file, loads all required context (referenced ADR,

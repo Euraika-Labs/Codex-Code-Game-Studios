@@ -1,5 +1,7 @@
 # Skill Test Spec: $balance-check
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$balance-check` reads balance data files (JSON or YAML in `assets/data/`) and

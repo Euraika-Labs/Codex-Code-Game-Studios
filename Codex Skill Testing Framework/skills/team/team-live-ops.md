@@ -1,5 +1,7 @@
 # Skill Test Spec: $team-live-ops
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 Orchestrates the live-ops team through a 7-phase planning pipeline to produce a

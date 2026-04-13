@@ -1,5 +1,7 @@
 # Incident Response: [Incident Title]
 
+> Template reference for Codex Code Game Studios. Use this when a workflow asks for the matching artifact, replace bracketed placeholders, and keep only the sections that apply to the current project.
+
 **Severity**: [S1-Critical / S2-Major / S3-Moderate / S4-Minor]
 **Status**: [Active / Mitigated / Resolved / Post-Mortem Complete]
 **Detected**: [Date Time UTC]

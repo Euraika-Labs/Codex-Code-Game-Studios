@@ -1,5 +1,7 @@
 # Skill Test Spec: $playtest-report
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$playtest-report` generates a structured playtest report from session notes or

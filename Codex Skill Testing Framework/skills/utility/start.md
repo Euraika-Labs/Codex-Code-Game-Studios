@@ -1,5 +1,7 @@
 # Skill Test Spec: $start
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$start` is the first-time onboarding skill for new projects. It guides the

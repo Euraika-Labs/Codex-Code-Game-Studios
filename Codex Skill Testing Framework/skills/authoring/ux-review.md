@@ -1,5 +1,7 @@
 # Skill Test Spec: $ux-review
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Skill Summary
 
 `$ux-review` validates an existing UX spec or HUD design document against

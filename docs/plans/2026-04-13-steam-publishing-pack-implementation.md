@@ -1,6 +1,7 @@
 # Steam Publishing Pack Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> Historical implementation record for the repository. Use it as maintenance context and project memory, not as a mandatory execution script.
+
 
 **Goal:** Add a Steamworks-native publishing pack to the repo with Codex skills, templates, docs, metadata, validation, and scenario coverage for premium launch, demo, playtest, Early Access, DLC, soundtrack, bundles, pricing, launch ops, and Steam Deck readiness.
 

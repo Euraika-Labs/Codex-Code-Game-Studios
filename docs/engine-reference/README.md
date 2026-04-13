@@ -1,5 +1,7 @@
 # Engine Reference Documentation
 
+> Engine reference entry point for Codex Code Game Studios. Use this area during engine setup, architecture work, upgrade planning, and implementation reviews.
+
 This directory contains curated, version-pinned documentation snapshots for the
 game engine(s) used in this project. These files exist because **LLM knowledge
 has a cutoff date** and game engines update frequently.

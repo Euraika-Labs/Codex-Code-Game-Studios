@@ -1,5 +1,7 @@
 # Agent Test Spec: tools-programmer
 
+> Framework-maintenance reference for Codex Code Game Studios. Use this area when validating the skills, agents, and workflow contracts that ship with the framework itself.
+
 ## Agent Summary
 Domain: Editor extensions, content authoring tools, debug utilities, and pipeline automation scripts.
 Does NOT own: game code (gameplay-programmer, ui-programmer, etc.), engine core systems (engine-programmer).

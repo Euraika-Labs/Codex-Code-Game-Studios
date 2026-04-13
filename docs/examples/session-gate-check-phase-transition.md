@@ -1,5 +1,7 @@
 # Example Session: $gate-check Phase Transition — Systems Design → Technical Setup
 
+> Example session for Codex Code Game Studios. Treat the commands, wording, and outputs as patterns to adapt to your own project rather than as a rigid transcript.
+
 **Context:** Solo indie dev, end of week 5. The Systems Design phase feels complete — 6 MVP GDDs written, cross-review done, engine set up. User wants to formally advance to Technical Setup.
 
 **Starting State:**
