@@ -22,6 +22,11 @@ except Exception:  # pragma: no cover - optional dependency
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_DIR = REPO_ROOT / ".agents" / "skills"
 AGENTS_DIR = REPO_ROOT / ".codex" / "agents"
+GLOBAL_PACK_DIR = REPO_ROOT / "global-pack"
+GLOBAL_SKILLS_DIR = GLOBAL_PACK_DIR / "skills"
+GLOBAL_AGENTS_DIR = GLOBAL_PACK_DIR / "agents"
+GLOBAL_BIN_DIR = GLOBAL_PACK_DIR / "bin"
+GLOBAL_MANIFEST_PATH = GLOBAL_PACK_DIR / "manifest.json"
 CONFIG_PATH = REPO_ROOT / ".codex" / "config.toml"
 HOOKS_CONFIG_PATH = REPO_ROOT / ".codex" / "hooks.json"
 HOOKS_DIR = REPO_ROOT / ".codex" / "hooks"
@@ -129,6 +134,125 @@ def validate_agents(errors: list[str]) -> None:
 
     if agent_count == 0:
         fail(errors, f"{AGENTS_DIR}: no agent TOMLs found")
+
+
+def validate_global_pack(errors: list[str]) -> None:
+    if not GLOBAL_MANIFEST_PATH.exists():
+        fail(errors, f"{GLOBAL_MANIFEST_PATH}: missing")
+        return
+
+    try:
+        manifest = json.loads(GLOBAL_MANIFEST_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        fail(errors, f"{GLOBAL_MANIFEST_PATH}: JSON parse error: {exc}")
+        return
+
+    required_manifest_keys = {
+        "global_skills",
+        "global_agents",
+        "bin_files",
+        "repo_files",
+        "repo_dirs",
+        "repo_nested_guides",
+        "starter_dirs",
+    }
+    for key in required_manifest_keys:
+        if key not in manifest:
+            fail(errors, f"{GLOBAL_MANIFEST_PATH}: missing key '{key}'")
+
+    global_skill_names = manifest.get("global_skills", [])
+    if not isinstance(global_skill_names, list) or not global_skill_names:
+        fail(errors, f"{GLOBAL_MANIFEST_PATH}: global_skills must be a non-empty list")
+        global_skill_names = []
+
+    for skill_name in global_skill_names:
+        skill_dir = GLOBAL_SKILLS_DIR / skill_name
+        skill_md = skill_dir / "SKILL.md"
+        openai_yaml = skill_dir / "agents" / "openai.yaml"
+        if not skill_md.exists():
+            fail(errors, f"{skill_md}: missing")
+            continue
+        if not openai_yaml.exists():
+            fail(errors, f"{openai_yaml}: missing")
+            continue
+
+        fields = parse_frontmatter(skill_md)
+        name = fields.get("name")
+        description = fields.get("description")
+        if not name or not description:
+            fail(errors, f"{skill_md}: missing frontmatter name/description")
+
+        yaml_text = openai_yaml.read_text(encoding="utf-8")
+        required_patterns = {
+            "display_name": r"(?m)^\s*display_name:\s+",
+            "short_description": r"(?m)^\s*short_description:\s+",
+            "default_prompt": r"(?m)^\s*default_prompt:\s+",
+            "allow_implicit_invocation": r"(?m)^\s*allow_implicit_invocation:\s+(true|false)\s*$",
+        }
+        for field_name, pattern in required_patterns.items():
+            if not re.search(pattern, yaml_text):
+                fail(errors, f"{openai_yaml}: missing {field_name}")
+        if name and f"${name}" not in yaml_text:
+            fail(errors, f"{openai_yaml}: default_prompt should mention ${name}")
+
+    declared_skill_names = set(global_skill_names)
+    actual_skill_names = {path.name for path in GLOBAL_SKILLS_DIR.iterdir() if path.is_dir()} if GLOBAL_SKILLS_DIR.exists() else set()
+    if declared_skill_names != actual_skill_names:
+        fail(
+            errors,
+            f"{GLOBAL_MANIFEST_PATH}: global_skills does not match the skill directories in {GLOBAL_SKILLS_DIR}",
+        )
+
+    global_agent_names = manifest.get("global_agents", [])
+    if not isinstance(global_agent_names, list) or not global_agent_names:
+        fail(errors, f"{GLOBAL_MANIFEST_PATH}: global_agents must be a non-empty list")
+        global_agent_names = []
+
+    for agent_name in global_agent_names:
+        agent_toml = GLOBAL_AGENTS_DIR / agent_name
+        if not agent_toml.exists():
+            fail(errors, f"{agent_toml}: missing")
+            continue
+
+        try:
+            data = tomllib.loads(agent_toml.read_text(encoding="utf-8"))
+        except tomllib.TOMLDecodeError as exc:
+            fail(errors, f"{agent_toml}: TOML parse error: {exc}")
+            continue
+
+        for key in ("name", "description", "developer_instructions", "sandbox_mode"):
+            if not data.get(key):
+                fail(errors, f"{agent_toml}: missing {key}")
+
+    declared_agent_names = set(global_agent_names)
+    actual_agent_names = {path.name for path in GLOBAL_AGENTS_DIR.glob("*.toml")} if GLOBAL_AGENTS_DIR.exists() else set()
+    if declared_agent_names != actual_agent_names:
+        fail(
+            errors,
+            f"{GLOBAL_MANIFEST_PATH}: global_agents does not match the TOMLs in {GLOBAL_AGENTS_DIR}",
+        )
+
+    bin_files = manifest.get("bin_files", [])
+    if not isinstance(bin_files, list) or not bin_files:
+        fail(errors, f"{GLOBAL_MANIFEST_PATH}: bin_files must be a non-empty list")
+        bin_files = []
+
+    for bin_name in bin_files:
+        bin_path = GLOBAL_BIN_DIR / bin_name
+        if not bin_path.exists():
+            fail(errors, f"{bin_path}: missing")
+
+    for key in ("repo_files", "repo_dirs", "repo_nested_guides", "starter_dirs"):
+        values = manifest.get(key, [])
+        if not isinstance(values, list):
+            fail(errors, f"{GLOBAL_MANIFEST_PATH}: {key} must be a list")
+            continue
+        if key == "starter_dirs":
+            continue
+        for relative_path in values:
+            target = REPO_ROOT / relative_path
+            if not target.exists():
+                fail(errors, f"{GLOBAL_MANIFEST_PATH}: referenced repo path is missing: {target}")
 
 
 def validate_project_config(errors: list[str]) -> None:
@@ -400,6 +524,7 @@ def main() -> int:
     errors: list[str] = []
     validate_skills(errors)
     validate_agents(errors)
+    validate_global_pack(errors)
     validate_project_config(errors)
     validate_hooks(errors)
     validate_runtime_wording(errors)
@@ -415,6 +540,8 @@ def main() -> int:
     print("Codex-native validation passed.")
     print(f"Skills checked: {len(list(SKILLS_DIR.glob('*/SKILL.md')))}")
     print(f"Agents checked: {len(list(AGENTS_DIR.glob('*.toml')))}")
+    print(f"Global skills checked: {len(list(GLOBAL_SKILLS_DIR.glob('*/SKILL.md')))}")
+    print(f"Global agents checked: {len(list(GLOBAL_AGENTS_DIR.glob('*.toml')))}")
     print(f"Hooks checked: {len(list(HOOKS_DIR.glob('*.sh')))}")
     print(f"Scenarios checked: {len(list(SCENARIOS_DIR.glob('*.json')))}")
     print(f"Workflow variants checked: {build_matrix()['summary']['variants_total']}")

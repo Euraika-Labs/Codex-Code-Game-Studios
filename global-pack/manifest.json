@@ -1,0 +1,85 @@
+{
+  "global_skills": [
+    "studio-help",
+    "install-studio",
+    "adopt-studio"
+  ],
+  "global_agents": [
+    "studio-bootstrapper.toml"
+  ],
+  "bin_files": [
+    "_installer_lib.py",
+    "install_global_pack.py",
+    "install_repo_studio.py"
+  ],
+  "repo_files": [
+    "AGENTS.md",
+    "docs/AGENTS.md",
+    "docs/WORKFLOW-GUIDE.md"
+  ],
+  "repo_dirs": [
+    ".agents",
+    ".codex",
+    "docs/studio"
+  ],
+  "repo_nested_guides": [
+    "assets/data/AGENTS.md",
+    "assets/shaders/AGENTS.md",
+    "design/AGENTS.md",
+    "design/gdd/AGENTS.md",
+    "design/narrative/AGENTS.md",
+    "prototypes/AGENTS.md",
+    "src/AGENTS.md",
+    "src/ai/AGENTS.md",
+    "src/core/AGENTS.md",
+    "src/gameplay/AGENTS.md",
+    "src/networking/AGENTS.md",
+    "src/ui/AGENTS.md",
+    "tests/AGENTS.md"
+  ],
+  "starter_dirs": [
+    "assets",
+    "assets/art",
+    "assets/audio",
+    "assets/data",
+    "assets/shaders",
+    "assets/vfx",
+    "build",
+    "design",
+    "design/art",
+    "design/assets",
+    "design/gdd",
+    "design/levels",
+    "design/live-ops",
+    "design/narrative",
+    "design/quick-specs",
+    "design/registry",
+    "design/ux",
+    "docs",
+    "docs/architecture",
+    "docs/engine-reference",
+    "docs/registry",
+    "production",
+    "production/epics",
+    "production/gate-checks",
+    "production/milestones",
+    "production/playtests",
+    "production/qa",
+    "production/releases",
+    "production/releases/steam",
+    "production/retrospectives",
+    "production/risk-register",
+    "production/security",
+    "production/session-logs",
+    "production/session-state",
+    "production/sprints",
+    "prototypes",
+    "src",
+    "src/ai",
+    "src/core",
+    "src/gameplay",
+    "src/networking",
+    "src/ui",
+    "tests"
+  ]
+}

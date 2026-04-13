@@ -1,0 +1,6 @@
+interface:
+  display_name: "Install Studio"
+  short_description: "Bootstraps the full studio layer into the current repository."
+  default_prompt: "Use $install-studio to install the Codex Code Game Studios project layer into the current repository."
+policy:
+  allow_implicit_invocation: false

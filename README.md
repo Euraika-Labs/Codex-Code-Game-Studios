@@ -42,6 +42,7 @@ What changed is the surface area:
 | --- | --- | --- |
 | Custom agents | 50 | Directors, department leads, specialists, engine experts, and Steam publishing support |
 | Skills | 84 | Reusable repo skills for design, engineering, QA, release, orchestration, and Steam publishing |
+| Global pack | 3 skills + 1 agent | User-level bootstrap layer for `~/.codex` |
 | Supported hooks | 5 events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` are the current Codex hook surfaces |
 | Path guides | 11 | Nested `AGENTS.md` files for code, docs, shaders, data, tests, and prototypes |
 | Studio docs | 60+ | Workflow docs, templates, gate definitions, and references |
@@ -86,6 +87,9 @@ git clone <your-repo-url> my-game
 cd my-game
 ```
 
+This repository should live in a normal project or tooling directory. Do **not**
+clone the full repo directly into `~/.codex`.
+
 ### 3. Start Codex in the Project Root
 
 ```bash
@@ -104,6 +108,97 @@ Mention a repo skill directly in your prompt:
 
 The skills live in `.agents/skills/`, so you can inspect or customize them just
 like any other part of the project.
+
+## Make It Global
+
+Use the hybrid model if you want Codex to recognize setup helpers everywhere.
+
+### What "global" means here
+
+- `~/.codex/skills` gets a **small global pack** with install and discovery
+  helpers
+- `~/.codex/agents` gets a **small global agent layer**
+- the **full studio** still installs into each target repo, because most game
+  workflows depend on repo-local docs, templates, hooks, agents, and path
+  guides
+
+### 1. Clone this repo once in a normal location
+
+Example:
+
+```bash
+git clone https://github.com/Euraika-Labs/Codex-Code-Game-Studios.git ~/tooling/Codex-Code-Game-Studios
+cd ~/tooling/Codex-Code-Game-Studios
+```
+
+### 2. Install the global pack into `~/.codex`
+
+```bash
+python3 global-pack/bin/install_global_pack.py
+```
+
+Useful flags:
+
+```bash
+python3 global-pack/bin/install_global_pack.py --dry-run
+python3 global-pack/bin/install_global_pack.py --force
+python3 global-pack/bin/install_global_pack.py --codex-home /tmp/codex-home
+```
+
+This installs:
+
+- `~/.codex/skills/studio-help`
+- `~/.codex/skills/install-studio`
+- `~/.codex/skills/adopt-studio`
+- `~/.codex/agents/studio-bootstrapper.toml`
+- `~/.codex/bin/install_repo_studio.py`
+- `~/.codex/bin/install_global_pack.py`
+
+### 3. Bootstrap any existing repo
+
+Once the global pack is installed, open Codex inside any target repository and
+either ask for `$install-studio`, or run the bootstrap script directly:
+
+```bash
+python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo
+```
+
+Useful flags:
+
+```bash
+python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo --dry-run
+python3 ~/.codex/bin/install_repo_studio.py --target /path/to/existing-repo --force
+```
+
+That installs the repo-local studio layer:
+
+- `AGENTS.md`
+- `.agents/`
+- `.codex/`
+- `docs/studio/`
+- nested `AGENTS.md` path guides under `design/`, `src/`, `tests/`, `assets/`,
+  `docs/`, and `prototypes/`
+- starter directories such as `design/`, `production/`, `src/`, `tests/`, and
+  `build/`
+
+### 4. Start using the full studio in that repo
+
+After bootstrap, start Codex in the target repo and use the normal repo skills:
+
+- `$start`
+- `$help`
+- `$project-stage-detect`
+- `$adopt`
+
+### 5. Update the global pack later
+
+Pull the latest version of this repo and rerun:
+
+```bash
+python3 global-pack/bin/install_global_pack.py
+```
+
+For a more detailed walkthrough, see `docs/studio/global-install.md`.
 
 ## Steam Publishing Setup
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Adopt Studio"
+  short_description: "Checks whether a repo is ready for studio bootstrap or brownfield adoption."
+  default_prompt: "Use $adopt-studio to audit whether the current repository is ready for Codex Code Game Studios and what the next setup step should be."
+policy:
+  allow_implicit_invocation: false

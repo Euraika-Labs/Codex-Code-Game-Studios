@@ -1,0 +1,6 @@
+interface:
+  display_name: "Studio Help"
+  short_description: "Explains the hybrid global setup and the next installer step."
+  default_prompt: "Use $studio-help to explain whether the current repo is already studio-enabled and what the user should do next."
+policy:
+  allow_implicit_invocation: true
