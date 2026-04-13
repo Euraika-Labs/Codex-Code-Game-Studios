@@ -40,7 +40,7 @@ What changed is the surface area:
 
 | Category | Count | Notes |
 | --- | --- | --- |
-| Custom agents | 49 | Directors, department leads, specialists, and engine experts |
+| Custom agents | 50 | Directors, department leads, specialists, engine experts, and Steam publishing support |
 | Skills | 84 | Reusable repo skills for design, engineering, QA, release, orchestration, and Steam publishing |
 | Supported hooks | 5 events | `SessionStart`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop` are the current Codex hook surfaces |
 | Path guides | 11 | Nested `AGENTS.md` files for code, docs, shaders, data, tests, and prototypes |
@@ -54,7 +54,7 @@ What changed is the surface area:
 ├── .agents/
 │   └── skills/                  # 84 repo skills
 ├── .codex/
-│   ├── agents/                  # 49 custom agent definitions (.toml)
+│   ├── agents/                  # 50 custom agent definitions (.toml)
 │   ├── hooks/                   # Hook scripts kept in repo
 │   ├── config.toml              # Project defaults for Codex
 │   └── hooks.json               # Hook registration file
@@ -104,6 +104,213 @@ Mention a repo skill directly in your prompt:
 
 The skills live in `.agents/skills/`, so you can inspect or customize them just
 like any other part of the project.
+
+## Steam Publishing Setup
+
+If you want to use the new Steamworks-native flows, this is the exact setup
+order to follow.
+
+### 1. Prepare the Base Project Context
+
+Before you run any Steam-specific skill, make sure these core project inputs
+exist or are at least mostly accurate:
+
+- `AGENTS.md`
+- `docs/studio/technical-preferences.md`
+- `design/gdd/game-concept.md`
+- your normal release artifacts under `production/releases/` if you already
+  have them
+
+If the project is still very early, that is fine. The Steam skills can still
+draft planning artifacts, but the better your concept and platform info are,
+the better the Steam output will be.
+
+### 2. Start With the Base Steam Plan
+
+Run this first:
+
+```bash
+codex
+```
+
+Then prompt:
+
+```text
+Use $steam-publish-plan for this repository. We are shipping a premium Steam PC game.
+```
+
+Common variants:
+
+- Premium launch only:
+  `Use $steam-publish-plan premium for this repository.`
+- Premium + public demo:
+  `Use $steam-publish-plan mixed for this repository. We are shipping a premium game with a public demo.`
+- Early Access:
+  `Use $steam-publish-plan early-access for this repository.`
+
+This creates the master planning artifact at:
+
+- `production/releases/steam/steam-publish-plan.md`
+
+That file is the anchor for everything else in the Steam pack.
+
+### 3. Run the Core Steam Release Sequence
+
+For a normal Steam release, use this order:
+
+1. `$steam-publish-plan`
+2. `$steam-coming-soon`
+3. `$steam-store-assets`
+4. `$steam-review-ready`
+5. `$steam-bundles-pricing`
+6. `$steam-launch-ops`
+7. `$team-release`
+
+Typical prompts:
+
+```text
+Use $steam-coming-soon for this repository.
+Use $steam-store-assets for this repository.
+Use $steam-review-ready for this repository.
+Use $steam-bundles-pricing for this repository.
+Use $steam-launch-ops for this repository.
+```
+
+These write to:
+
+- `production/releases/steam/coming-soon-calendar.md`
+- `production/releases/steam/store-assets.md`
+- `production/releases/steam/review-ready.md`
+- `production/releases/steam/bundles-pricing.md`
+- `production/releases/steam/launch-ops.md`
+
+### 4. Add the Variant Flows You Actually Need
+
+Only run the variant skills that match your release shape.
+
+#### Demo
+
+Use when you want a public-facing Steam demo:
+
+```text
+Use $steam-demo for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/demo-plan.md`
+
+#### Steam Playtest
+
+Use when you want gated signups, invite waves, or load testing before public release:
+
+```text
+Use $steam-playtest for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/playtest-plan.md`
+
+#### Early Access
+
+Use when the base game itself launches in Early Access:
+
+```text
+Use $steam-early-access for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/early-access-plan.md`
+
+#### DLC
+
+Use when you are planning paid or free DLC tied to the base game:
+
+```text
+Use $steam-dlc for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/dlc-plan.md`
+
+#### Soundtrack
+
+Use when the soundtrack should be released as its own Steam product:
+
+```text
+Use $steam-soundtrack for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/soundtrack-plan.md`
+
+#### Steam Deck
+
+Use when you want an explicit Steam Deck readiness pass:
+
+```text
+Use $steam-deck-ready for this repository.
+```
+
+Writes:
+
+- `production/releases/steam/steam-deck-ready.md`
+
+### 5. Map Each Release Shape To The Right Flow
+
+- Premium launch only:
+  `$steam-publish-plan` -> `$steam-coming-soon` -> `$steam-store-assets` -> `$steam-review-ready` -> `$steam-bundles-pricing` -> `$steam-launch-ops`
+- Premium + demo:
+  same as above, plus `$steam-demo`
+- Premium + gated testing:
+  same as above, plus `$steam-playtest`
+- Early Access:
+  `$steam-publish-plan` -> `$steam-early-access` -> `$steam-coming-soon` -> `$steam-store-assets` -> `$steam-review-ready` -> `$steam-bundles-pricing` -> `$steam-launch-ops`
+- Post-launch DLC:
+  `$steam-publish-plan` -> `$steam-dlc` -> `$steam-bundles-pricing` -> `$steam-review-ready` -> `$steam-launch-ops`
+- Soundtrack:
+  `$steam-publish-plan` -> `$steam-soundtrack` -> `$steam-bundles-pricing` -> `$steam-review-ready`
+
+### 6. Keep the Generic Release Flow
+
+The Steam pack does not replace the normal release skills. Keep using:
+
+- `$release-checklist`
+- `$launch-checklist`
+- `$patch-notes`
+- `$changelog`
+- `$team-release`
+
+The pattern is:
+
+- generic release skills for broad cross-discipline readiness
+- Steam skills for Steamworks-specific app/package/depot/store/review/timing work
+
+### 7. Validate After Editing The Steam Pack
+
+If you change the Steam skills, templates, agent, or docs, run:
+
+```bash
+python3 scripts/sync_codex_metadata.py
+python3 scripts/validate_codex_native.py
+python3 scripts/run_codex_scenarios.py --scenario steam-publish-plan
+```
+
+For the full workflow matrix refresh:
+
+```bash
+python3 scripts/build_workflow_matrix.py
+```
+
+### 8. Where To Read More
+
+- `docs/studio/steam-publishing-guide.md`
+- `docs/WORKFLOW-GUIDE.md`
+- `docs/studio/templates/steam-*.md`
 
 ## How This Repo Uses Codex
 
