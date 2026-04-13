@@ -7,6 +7,7 @@ This reference explains what belongs in the root `AGENTS.md` and what should mov
 Keep the root guide focused on repo-wide operating behavior:
 
 - first-step routing
+- stable machine-readable anchors for engine setup and gate checks
 - source-of-truth documents
 - shared workflow expectations
 - validation expectations
@@ -30,3 +31,20 @@ Those belong in nested `AGENTS.md` files or in the matching reference docs under
 - `docs/studio/technical-preferences.md`
 - `docs/studio/coordination-rules.md`
 - `docs/studio/coding-standards.md`
+
+## Required Runtime Anchors
+
+The root `AGENTS.md` must keep these headings and labels stable because repo skills and E2E scenarios read them directly:
+
+- `## Technology Stack`
+- `## Engine Version Reference`
+- `## Technical Preferences`
+- `- **Engine**: ...`
+- `- **Language**: ...`
+
+The same rule applies to `docs/studio/technical-preferences.md`, especially:
+
+- `## Engine & Language`
+- `## Input & Platform`
+- `## Engine Specialists`
+- `### File Extension Routing`

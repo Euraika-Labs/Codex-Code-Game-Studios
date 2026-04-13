@@ -66,6 +66,38 @@ STALE_DOC_PATTERNS = {
     "built for Claude": "docs should not frame the repo as a derivative product",
     "port of the original": "docs should not frame the repo as a port",
 }
+REQUIRED_ROOT_AGENTS_HEADINGS = (
+    "## Technology Stack",
+    "## Engine Version Reference",
+    "## Technical Preferences",
+)
+REQUIRED_TECHNICAL_PREFERENCES_HEADINGS = (
+    "## Engine & Language",
+    "## Input & Platform",
+    "## Naming Conventions",
+    "## Performance Budgets",
+    "## Testing",
+    "## Forbidden Patterns",
+    "## Allowed Libraries / Addons",
+    "## Architecture Decisions Log",
+    "## Engine Specialists",
+    "### File Extension Routing",
+)
+REQUIRED_ROOT_AGENTS_PATTERNS = {
+    r"(?m)^- \*\*Engine\*\*: ": "root AGENTS.md must expose an Engine field in Technology Stack",
+    r"(?m)^- \*\*Language\*\*: ": "root AGENTS.md must expose a Language field in Technology Stack",
+    r"docs/engine-reference/": "root AGENTS.md must point to an engine reference path",
+}
+REQUIRED_TECHNICAL_PREFERENCES_PATTERNS = {
+    r"(?m)^- \*\*Engine\*\*: ": "technical-preferences.md must expose an Engine field",
+    r"(?m)^- \*\*Language\*\*: ": "technical-preferences.md must expose a Language field",
+    r"(?m)^- \*\*Target Platforms\*\*: ": "technical-preferences.md must expose Target Platforms",
+    r"(?m)^- \*\*Primary Input\*\*: ": "technical-preferences.md must expose Primary Input",
+    r"(?m)^- \*\*Gamepad Support\*\*: ": "technical-preferences.md must expose Gamepad Support",
+    r"(?m)^- \*\*Touch Support\*\*: ": "technical-preferences.md must expose Touch Support",
+    r"(?m)^- \*\*Primary\*\*: ": "technical-preferences.md must expose a Primary engine specialist",
+    r"(?m)^- \*\*UI Specialist\*\*: ": "technical-preferences.md must expose a UI specialist",
+}
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -502,6 +534,39 @@ def validate_docs_wording(errors: list[str]) -> None:
                 fail(errors, f"{path}: stale documentation wording '{needle}' ({explanation})")
 
 
+def validate_runtime_contract_docs(errors: list[str]) -> None:
+    root_agents = REPO_ROOT / "AGENTS.md"
+    tech_prefs = REPO_ROOT / "docs" / "studio" / "technical-preferences.md"
+
+    try:
+        root_text = root_agents.read_text(encoding="utf-8")
+    except Exception as exc:
+        fail(errors, f"{root_agents}: could not read runtime contract doc: {exc}")
+        root_text = ""
+
+    try:
+        tech_text = tech_prefs.read_text(encoding="utf-8")
+    except Exception as exc:
+        fail(errors, f"{tech_prefs}: could not read runtime contract doc: {exc}")
+        tech_text = ""
+
+    if root_text:
+        for heading in REQUIRED_ROOT_AGENTS_HEADINGS:
+            if heading not in root_text:
+                fail(errors, f"{root_agents}: missing required heading '{heading}'")
+        for pattern, explanation in REQUIRED_ROOT_AGENTS_PATTERNS.items():
+            if not re.search(pattern, root_text):
+                fail(errors, f"{root_agents}: {explanation}")
+
+    if tech_text:
+        for heading in REQUIRED_TECHNICAL_PREFERENCES_HEADINGS:
+            if heading not in tech_text:
+                fail(errors, f"{tech_prefs}: missing required heading '{heading}'")
+        for pattern, explanation in REQUIRED_TECHNICAL_PREFERENCES_PATTERNS.items():
+            if not re.search(pattern, tech_text):
+                fail(errors, f"{tech_prefs}: {explanation}")
+
+
 def validate_scenarios(errors: list[str]) -> None:
     if not SCENARIOS_DIR.exists():
         return
@@ -607,6 +672,7 @@ def main() -> int:
     validate_hooks(errors)
     validate_runtime_wording(errors)
     validate_docs_wording(errors)
+    validate_runtime_contract_docs(errors)
     validate_scenarios(errors)
     validate_workflow_matrix(errors)
 
